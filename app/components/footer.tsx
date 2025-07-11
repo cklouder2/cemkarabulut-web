@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Mail, Linkedin, Instagram, Github, Heart, ArrowUp } from "lucide-react";
 import { motion } from "framer-motion";
+import { trackNavigationClick, trackSocialClick, trackButtonClick, trackLinkClick } from "../lib/analytics";
 
 const socials = [
   {
@@ -56,30 +57,35 @@ export function Footer() {
             <nav className="flex flex-col space-y-3">
               <Link 
                 href="/about" 
+                onClick={() => trackNavigationClick('about', 'footer')}
                 className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors duration-300"
               >
                 About
               </Link>
               <Link 
                 href="/experience" 
+                onClick={() => trackNavigationClick('experience', 'footer')}
                 className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors duration-300"
               >
                 Experience
               </Link>
               <Link 
                 href="/skills" 
+                onClick={() => trackNavigationClick('skills', 'footer')}
                 className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors duration-300"
               >
                 Skills
               </Link>
               <Link 
                 href="/projects" 
+                onClick={() => trackNavigationClick('projects', 'footer')}
                 className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors duration-300"
               >
                 Projects
               </Link>
               <Link 
                 href="/contact" 
+                onClick={() => trackNavigationClick('contact', 'footer')}
                 className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors duration-300"
               >
                 Contact
@@ -97,6 +103,7 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackSocialClick(social.label.toLowerCase(), 'footer')}
                   className="flex items-center gap-3 text-sm text-zinc-400 hover:text-zinc-100 transition-colors duration-300 group"
                 >
                   <span className="group-hover:scale-110 transition-transform duration-300">
@@ -115,6 +122,7 @@ export function Footer() {
               href="https://www.behance.net/cemkarabulut"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackLinkClick('behance_portfolio', 'behance.net', true)}
               className="block group"
             >
               <div className="p-6 rounded-xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 group-hover:scale-105">
@@ -148,7 +156,10 @@ export function Footer() {
           </div>
           
           <motion.button
-            onClick={scrollToTop}
+            onClick={() => {
+              trackButtonClick('back_to_top', 'footer');
+              scrollToTop();
+            }}
             className="flex items-center gap-2 px-6 py-3 mt-6 text-sm text-zinc-400 hover:text-zinc-100 transition-colors duration-300 md:mt-0 group relative z-70"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

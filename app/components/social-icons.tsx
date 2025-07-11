@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope as faEnvelopeSolid, faPhone as faPhoneSolid } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
+import { trackSocialClick } from "../lib/analytics";
 
 // X için SVG
 const XSvgIcon = ({ className }: { className?: string }) => (
@@ -98,6 +99,7 @@ export default function SocialIcons() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={s.label}
+          onClick={() => trackSocialClick(s.label.toLowerCase(), 'social_icons')}
           variants={iconVariants}
           className={
             [

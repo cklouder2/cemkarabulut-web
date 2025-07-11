@@ -7,9 +7,10 @@ import {
   faBriefcase, 
   faCode, 
   faFolderOpen, 
-  faEnvelope,
+  faEnvelope, 
   faHome 
 } from "@fortawesome/free-solid-svg-icons";
+import { trackNavigationClick } from "../lib/analytics";
 
 function Navigation() {
   const ref = useRef<HTMLElement>(null);
@@ -46,6 +47,7 @@ function Navigation() {
           {/* Sol: Ana sayfa logo */}
           <Link
             href="/"
+            onClick={() => trackNavigationClick('home', 'navigation_header')}
             className="flex items-center gap-2 text-white hover:text-gray-400 font-bold text-lg duration-300 transition-all hover:scale-110"
           >
             <FontAwesomeIcon icon={faHome} className="w-5 h-5" />
@@ -57,6 +59,7 @@ function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => trackNavigationClick(item.name.toLowerCase(), 'navigation_header')}
                 className="flex items-center gap-2 duration-300 text-white hover:text-gray-300 font-semibold transition-all hover:scale-105"
               >
                 <FontAwesomeIcon icon={item.icon} className="w-4 h-4" />

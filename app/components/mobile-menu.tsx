@@ -9,6 +9,7 @@ import {
   faBehance as faBehanceBrand,
   faWhatsapp
 } from "@fortawesome/free-brands-svg-icons";
+import { trackNavigationClick, trackSocialClick } from "../lib/analytics";
 
 const navigation = [
   { name: "Home", href: "/", icon: faHome },
@@ -111,7 +112,10 @@ export default function MobileMenu() {
                 <Link
                   href={item.href}
                   className="flex items-center gap-3 py-2 px-4 rounded-lg text-zinc-200 border-l-4 border-l-transparent hover:border-l-zinc-700 hover:bg-zinc-800 transition-colors text-base font-semibold tracking-wide shadow-sm group w-full"
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    trackNavigationClick(item.name.toLowerCase(), 'mobile_menu');
+                    setOpen(false);
+                  }}
                 >
                   <FontAwesomeIcon icon={item.icon} className="w-5 h-5 text-zinc-400 group-hover:text-zinc-200 transition-colors" />
                   {item.name}
@@ -128,6 +132,7 @@ export default function MobileMenu() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
+                onClick={() => trackSocialClick(s.label.toLowerCase(), 'mobile_menu')}
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-zinc-800/70 hover:bg-zinc-700 transition-colors text-zinc-200 text-lg shadow border border-zinc-700"
               >
                 <FontAwesomeIcon icon={s.icon} />

@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import SocialIcons from "./components/social-icons";
 import MobileMenu from "./components/mobile-menu";
+import { trackButtonClick, trackLinkClick } from "./lib/analytics";
 // Error Boundary Component
 class ErrorBoundary extends React.Component<
   { children: React.ReactNode },
@@ -264,6 +265,7 @@ export default function Home() {
             <div className={`flex flex-col items-center justify-center gap-4 w-full mb-8 transition-all duration-50 ${showButtons ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
               <Link
                 href="/about"
+                onClick={() => trackButtonClick('lets_start_here', 'homepage_mobile')}
                 className="w-full max-w-xs mx-auto px-6 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-100 text-sm font-medium hover:border-zinc-400/60 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
               >
                 Let's start here →
@@ -272,6 +274,7 @@ export default function Home() {
                 href="https://www.behance.net/cemkarabulut"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackLinkClick('behance_portfolio', 'behance.net', true)}
                 className="w-full max-w-xs mx-auto px-6 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-300 text-sm font-medium hover:border-zinc-400/60 hover:text-zinc-100 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
               >
                 Take a look at what Cem has built →
@@ -378,6 +381,7 @@ export default function Home() {
             <div className={`flex flex-col sm:flex-row items-center justify-center gap-5 mb-8 sm:mb-12 transition-all duration-50 z-20 relative ${showButtons ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
               <Link
                 href="/about"
+                onClick={() => trackButtonClick('lets_start_here', 'homepage_desktop')}
                 className="px-6 sm:px-8 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-100 text-sm sm:text-base font-medium hover:border-zinc-400/60 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
               >
                 Let's start here →
@@ -386,6 +390,7 @@ export default function Home() {
                 href="https://www.behance.net/cemkarabulut"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackLinkClick('behance_portfolio', 'behance.net', true)}
                 className="px-6 sm:px-8 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-300 text-sm sm:text-base font-medium hover:border-zinc-400/60 hover:text-zinc-100 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
               >
                 Take a look at what Cem has built →
