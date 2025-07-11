@@ -261,7 +261,7 @@ export default function Home() {
               </span>
             </h2>
             {/* Butonlar */}
-            <div className={`flex flex-col items-center justify-center gap-4 w-full mb-8 transition-all duration-50 ${showButtons ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
+            <div className={`flex flex-col items-center justify-center gap-4 w-full mb-20 transition-all duration-50 ${showButtons ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
               <Link
                 href="/about"
                 className="w-full max-w-xs mx-auto px-6 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-100 text-sm font-medium hover:border-zinc-400/60 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
@@ -277,21 +277,23 @@ export default function Home() {
                 Take a look at what I've built →
               </Link>
             </div>
-          </div>
-          {/* En altta featured brands */}
-          <div className="w-full px-1 pb-4">
-            <p className="text-zinc-300 text-xs mb-2 text-center">Some of the brands I've had the pleasure to work with:</p>
-            <div className="flex flex-wrap justify-center gap-2 gap-y-2">
+            {/* Brands title - daha okunur ve aşağıda */}
+            <p className="text-zinc-300 text-sm font-medium mb-3 text-center mt-10">Some of the brands I've had the pleasure to work with:</p>
+            {/* Markalar - max-width ile sınırlı ve daha güzel */}
+            <div className="flex flex-wrap justify-center gap-2 gap-y-2 mt-2 max-w-sm mx-auto">
               {(showAllBrands ? featuredBrands : featuredBrands.slice(0,8)).map((brand, i) => (
-                <span key={i} className="inline-block text-xs px-2 py-1 rounded-xl border border-zinc-700/50 bg-zinc-900/40 text-zinc-200 font-medium mb-1 mr-1">{brand}</span>
+                <span key={i} className="inline-block text-xs px-3 py-1.5 rounded-xl border border-zinc-700/50 bg-zinc-900/40 text-zinc-200 font-medium">{brand}</span>
               ))}
             </div>
             {!showAllBrands && featuredBrands.length > 8 && (
-              <button onClick={()=>setShowAllBrands(true)} className="block mx-auto mt-2 text-xs text-zinc-400 underline">Show more</button>
+              <button onClick={()=>setShowAllBrands(true)} className="block mx-auto mt-4 px-4 py-2 rounded-lg border border-blue-600/50 bg-blue-900/20 text-blue-300 text-xs font-medium hover:border-blue-500/60 hover:text-blue-200 hover:bg-blue-800/30 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95">Show more</button>
             )}
             {showAllBrands && featuredBrands.length > 8 && (
-              <button onClick={()=>setShowAllBrands(false)} className="block mx-auto mt-2 text-xs text-zinc-400 underline">Show less</button>
+              <button onClick={()=>setShowAllBrands(false)} className="block mx-auto mt-4 px-4 py-2 rounded-lg border border-blue-600/50 bg-blue-900/20 text-blue-300 text-xs font-medium hover:border-blue-500/60 hover:text-blue-200 hover:bg-blue-800/30 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95">Show less</button>
             )}
+          </div>
+          {/* En altta boş alan */}
+          <div className="w-full px-1 pb-4">
           </div>
         </div>
         {/* Masaüstü için mevcut yapı */}
