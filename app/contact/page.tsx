@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, Suspense, lazy, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navigation from "../components/nav";
 import { Typewriter } from "../components/typewriter";
 import { Card } from "../components/card";
@@ -36,10 +36,6 @@ const XSvgIcon = ({ className }: { className?: string }) => (
     </defs>
   </svg>
 );
-
-// Lazy load components
-const MouseGradient = lazy(() => import("../components/mouse-gradient"));
-const Particles = lazy(() => import("../components/particles"));
 
 const contactMethods = [
   {
@@ -176,21 +172,12 @@ export default function ContactPage() {
   useEffect(() => { setTypewriterMounted(true); }, []);
 
   return (
-    <div className="relative min-h-screen bg-black overflow-visible">
-      {/* Particles - Background effect */}
-      <Suspense fallback={null}>
-        <Particles className="absolute inset-0 z-10 animate-fade-in" quantity={100} />
-      </Suspense>
-      
-      {/* MouseGradient - Load with delay for better performance */}
-      <Suspense fallback={null}>
-        <MouseGradient />
-      </Suspense>
+    <div className="relative min-h-screen bg-transparent overflow-visible">
       
       <Navigation />
       
-      <div className="px-6 pt-20 mx-auto space-y-8 max-w-6xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative overflow-visible">
-        <div className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+      <div className="px-2 md:px-6 pt-20 mx-auto space-y-10 max-w-full md:max-w-6xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative overflow-visible">
+        <div className="max-w-full md:max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
           <h1 className="text-4xl font-bold text-zinc-100 mb-8">
             {typewriterMounted && !typewriterDone ? (
               <Typewriter text="Contact" speed={40} onDone={handleTypewriterDone} />
@@ -198,11 +185,10 @@ export default function ContactPage() {
               "Contact"
             )}
           </h1>
-          <p className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>
-            Let's discuss your next creative project. I'm always open to new collaborations, freelance opportunities, and interesting challenges.
+          <p className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>Hi! If you have a project in mind, want to collaborate, or just want to chat about design, feel free to reach out. I’m always happy to connect with new people and explore creative ideas together.
           </p>
         </div>
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+        <div className="divider-white" />
         
         {showContent && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7 }} style={{overflow: 'visible'}} className="overflow-visible">
@@ -241,8 +227,8 @@ export default function ContactPage() {
             {/* Social Links Section */}
             <Card className="p-8 mb-16">
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-zinc-100 mb-4">Connect With Me</h2>
-                <p className="text-zinc-400 font-medium text-lg">Follow my work and stay updated with my latest projects</p>
+                <h2 className="text-3xl font-bold text-zinc-100 mb-4">Let's Stay in Touch</h2>
+                <p className="text-zinc-400 font-medium text-lg">I share my latest work, creative thoughts, and sometimes a bit of behind-the-scenes. If you want to follow along or just say hi, you’re more than welcome!</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {socialLinks.map((social, index) => (
@@ -284,7 +270,7 @@ export default function ContactPage() {
                      initial={{ opacity: 0, x: -20 }}
                      animate={{ opacity: 1, x: 0 }}
                      transition={{ delay: index * 0.1 }}
-                     className={`p-6 bg-zinc-800/30 rounded-xl border border-zinc-700/30 hover:border-zinc-600 hover:bg-zinc-800/50 transition-all duration-300 relative overflow-hidden`}
+                     className={`p-6 bg-zinc-800/30 rounded-xl border border-zinc-700/30 hover:border-zinc-600 hover:bg-zinc-800/50 transition-all duration-300 relative overflow-visible`}
                    >
                      <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${service.color} opacity-80`}></div>
                      <h3 className="text-zinc-100 font-semibold text-lg mb-3">{service.title}</h3>

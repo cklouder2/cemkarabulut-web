@@ -29,7 +29,7 @@ export const Card: React.FC<CardProps> = ({ children, className }) => {
 		<motion.div
 			onMouseMove={onMouseMove}
 			className={clsx(
-         "overflow-hidden relative duration-700 border rounded-xl hover:bg-zinc-800/10 group md:gap-8 hover:border-zinc-400/50 border-zinc-700/50 backdrop-blur-sm bg-zinc-900/20",
+         "card relative duration-700 border rounded-xl group md:gap-8 border-zinc-700/50 backdrop-blur-sm bg-zinc-900/20 hover:bg-zinc-900/80 hover:border-zinc-400/50 transition-colors overflow-visible",
          className
        )}
 			whileHover={{ 

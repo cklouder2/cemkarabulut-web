@@ -4,10 +4,15 @@ import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
 import { PerformanceMonitor } from "./components/performance-monitor";
 import { FooterWrapper } from "./components/footer-wrapper";
+import SocialIcons from "./components/social-icons";
+import MobileMenu from "./components/mobile-menu";
+import BackgroundEffect from "./components/background-effect";
+import { headers } from "next/headers";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import Script from "next/script";
+import React, { Suspense, lazy } from "react";
 
 // Prevent FontAwesome from adding its CSS since we did it manually above
 config.autoAddCss = false;
@@ -95,11 +100,17 @@ const montserrat = Montserrat({
   fallback: ["system-ui", "arial"],
 });
 
+
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const headersList = headers();
+  const pathname = headersList.get("x-pathname") || headersList.get("x-invoke-path") || "";
+  const isHomepage = pathname === "/" || pathname === "";
+
   return (
     <html lang="en" className={montserrat.variable}>
       <head>
@@ -152,11 +163,20 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`bg-black font-montserrat antialiased ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
+        className={`bg-black font-montserrat antialiased overflow-x-hidden ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
           }`}
       >
-        <div className="flex flex-col min-h-screen">
-          <main className="flex-1">
+        {/* Global Background Effect - TÜM SAYFALARDA GÖRÜNÜR */}
+        <BackgroundEffect visible={true} />
+
+        {/* Mobile hamburger menu - tüm sayfalarda */}
+        <div className="block sm:hidden">
+          <MobileMenu />
+        </div>
+        
+        {/* Main content wrapper - background effects behind content */}
+        <div className="flex flex-col min-h-screen bg-transparent relative z-10">
+          <main className="flex-1 relative z-10 min-h-screen bg-transparent">
             {children}
           </main>
           <FooterWrapper />

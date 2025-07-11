@@ -24,8 +24,8 @@ export default function Loading() {
   }, []);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black">
-      <div className="text-center space-y-6">
+    <div className="fixed inset-0 flex flex-col items-center justify-center bg-black min-h-screen">
+      <div className="flex flex-col items-center justify-center space-y-6">
         <div className="relative flex items-center justify-center">
           {isLoading ? (
             <div className="w-16 h-16 border-4 border-zinc-800 border-t-zinc-100 rounded-full animate-spin"></div>
@@ -41,7 +41,6 @@ export default function Loading() {
           )}
         </div>
         <h2 className="text-xl font-semibold text-zinc-100">Loading...</h2>
-        <p className="text-zinc-400">Please wait while we load the content.</p>
       </div>
     </div>
   );

@@ -1,15 +1,11 @@
 "use client";
-import { useEffect, useState, Suspense, lazy, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import Navigation from "../components/nav";
 import { motion } from "framer-motion";
 import { Card } from "../components/card";
 import { Typewriter } from "../components/typewriter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
-
-// Lazy load components
-const MouseGradient = lazy(() => import("../components/mouse-gradient"));
-const Particles = lazy(() => import("../components/particles"));
 
 export default function ProjectsPage() {
   const [countdown, setCountdown] = useState(5);
@@ -64,21 +60,12 @@ export default function ProjectsPage() {
   }, [showContent]);
 
   return (
-    <div className="relative min-h-screen bg-black overflow-x-hidden">
-      {/* Particles - Background effect */}
-      <Suspense fallback={null}>
-        <Particles className="absolute inset-0 z-10 animate-fade-in" quantity={100} />
-      </Suspense>
-      
-      {/* MouseGradient - Load with delay for better performance */}
-      <Suspense fallback={null}>
-        <MouseGradient />
-      </Suspense>
+    <div className="relative min-h-screen bg-transparent overflow-x-hidden">
       
       <Navigation />
       
-      <div className="px-6 pt-20 mx-auto space-y-8 max-w-6xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative">
-        <div className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+      <div className="px-2 md:px-6 pt-20 mx-auto space-y-10 max-w-full md:max-w-6xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative">
+        <div className="max-w-full md:max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
           <h1 className="text-4xl font-bold text-zinc-100 mb-8">
             {typewriterMounted && !typewriterDone ? (
               <Typewriter text="Portfolio" speed={40} onDone={handleTypewriterDone} />
@@ -86,9 +73,10 @@ export default function ProjectsPage() {
               "Portfolio"
             )}
           </h1>
-          <p className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>Explore my latest work and creative projects on Behance. A showcase of brand identity, digital campaigns, motion graphics, and innovative design solutions.</p>
+          <p className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>I share my projects and latest work on Behance. From branding to digital campaigns, motion graphics to innovative design solutions—if you want to see what I've been working on, I'd love to invite you there!
+          </p>
         </div>
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+        <div className="divider-white" />
 
         {showContent && (
           <motion.div
@@ -105,7 +93,7 @@ export default function ProjectsPage() {
                     Behance Portfolio
                   </h2>
                   <p className="text-lg text-zinc-300 leading-relaxed">
-                    Cem's Behance portfolio is opening in a new tab. You'll be redirected automatically in a few seconds.
+                    My Behance portfolio will open in a new tab. I'll redirect you there in a few seconds. If the automatic redirect doesn't work, you can click the button below.
                   </p>
                 </div>
 
@@ -122,7 +110,7 @@ export default function ProjectsPage() {
                 {/* Manuel Link */}
                 <div className="pt-6 border-t border-zinc-700/50">
                   <p className="text-zinc-400 mb-4 text-center">
-                    If you're not redirected automatically, click the button below:
+                    If you're not redirected automatically, you can click the button below:
                   </p>
                   <div className="flex justify-center">
                     <motion.a

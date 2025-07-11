@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, Suspense, lazy, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navigation from "../components/nav";
 import { Typewriter } from "../components/typewriter";
 import { Card } from "../components/card";
@@ -11,17 +11,20 @@ import {
   faLightbulb, 
   faTools, 
   faStar, 
-  faEnvelope
+  faEnvelope,
+  faHeart,
+  faRocket,
+  faUsers,
+  faBrain,
+  faMagicWandSparkles,
+  faEye,
+  faHandshake
 } from "@fortawesome/free-solid-svg-icons";
 import { 
   faLinkedin as faLinkedinBrand,
   faInstagram as faInstagramBrand,
   faBehance as faBehanceBrand
 } from "@fortawesome/free-brands-svg-icons";
-
-// Lazy load components
-const MouseGradient = lazy(() => import("../components/mouse-gradient"));
-const Particles = lazy(() => import("../components/particles"));
 
 // Timeline component
 const Timeline = ({ items }: { items: Array<{ year: string; title: string; description: string }> }) => (
@@ -91,7 +94,7 @@ const BrandsShowcase = ({ brands }: { brands: string[] }) => (
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: index * 0.05 }}
       >
-        <Card className="p-4 text-center hover:bg-zinc-800/20">
+        <Card className="p-4 text-center">
           <div className="text-zinc-300 font-medium text-sm">{brand}</div>
         </Card>
       </motion.div>
@@ -131,22 +134,22 @@ export default function AboutPage() {
     {
       year: "2008-2012",
       title: "Early Career",
-      description: "Started in advertising agencies, learning the fundamentals of visual communication and brand design."
+      description: "I started out in advertising agencies, learning the basics of visual communication and brand design. Those early years taught me the value of teamwork and the power of a good idea."
     },
     {
       year: "2012-2016",
       title: "Growth Period",
-      description: "Expanded into digital media, motion graphics, and began working with major brands."
+      description: "During this time, I dove into digital media and motion graphics, and had the chance to work with some amazing brands. Every project pushed me to try new things and expand my creative toolkit."
     },
     {
       year: "2016-2020",
       title: "Art Direction",
-      description: "Transitioned to Art Director role, leading creative teams and developing comprehensive brand strategies."
+      description: "I stepped into the role of Art Director, leading creative teams and helping shape brand strategies from the ground up. It was a time of big ideas, late nights, and a lot of learning."
     },
     {
       year: "2020-Present",
       title: "Innovation Era",
-      description: "Embracing AI tools, 3D design, and cutting-edge technologies while maintaining creative excellence."
+      description: "Lately, I’ve been embracing AI tools, 3D design, and new technologies, always looking for ways to keep my work fresh and exciting. But no matter how much things change, my focus on creativity and connection stays the same."
     }
   ];
 
@@ -181,7 +184,21 @@ export default function AboutPage() {
     "Microsoft", "Coca-Cola", "Nestlé", "Ford Otosan", "Nescafé", "Lipton", 
     "Cif", "Avon", "Beko", "Dimes", "Obsesso", "Akbank", "Enerjisa", 
     "Kayalar Kimya", "Düfa", "Metro İstanbul", "İBB", "İGDAŞ", 
-    "Türk Nippon Sigorta", "Baymak", "Electrolux", "Vialand", "Greenlog"
+    "Türk Nippon Sigorta", "Baymak", "Electrolux", "Vialand", "Greenlog",
+    "Acun Medya"
+  ];
+
+  const tvProductions = [
+    "Exatlon",
+    "Survivor",
+    "The Voice Turkey",
+    "MasterChef Turkey",
+    "TV8",
+    "Kanal D Europe",
+    "TRT",
+    "TV Azteca",
+    "Telemundo",
+    "Netflix"
   ];
 
   const socialLinks = [
@@ -191,140 +208,139 @@ export default function AboutPage() {
   ];
   
   return (
-    <div className="relative min-h-screen bg-black overflow-x-hidden">
-      {/* Particles - Background effect */}
-      <Suspense fallback={null}>
-        <Particles className="absolute inset-0 z-10 animate-fade-in" quantity={100} />
-      </Suspense>
-      
-      {/* MouseGradient - Load with delay for better performance */}
-      <Suspense fallback={null}>
-        <MouseGradient />
-      </Suspense>
+    <div className="relative min-h-screen bg-transparent overflow-x-hidden z-20">
       
       <Navigation />
       
-      <div className="px-6 pt-20 mx-auto space-y-8 max-w-6xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative">
-        <div className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+      <div className="px-2 md:px-6 pt-20 mx-auto space-y-10 max-w-full md:max-w-6xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative">
+        <div className="max-w-full md:max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
           <h1 className="text-4xl font-bold text-zinc-100 mb-8">
-            {typewriterMounted && !typewriterDone ? (
-              <Typewriter text="About Cem Karabulut" speed={40} onDone={handleTypewriterDone} />
-            ) : (
-              "About Cem Karabulut"
-            )}
+            About Me
           </h1>
-          <p className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>Creative Art Director with over 15 years of experience in visual communication and digital media design. Specialized in brand identity development, campaign design, and multimedia storytelling.</p>
+          <p className="mt-6 text-lg text-zinc-400 font-medium leading-relaxed">
+            Hi! I'm Cem Karabulut, a creative art director with 15+ years of experience in turning ideas into visuals that speak. I love building brand stories through design, whether it's a logo, a campaign, or a full digital experience. For me, design is all about connection, clarity, and creativity. Every brand has a unique story, and I love helping bring those stories to life in a way that feels authentic and memorable.
+          </p>
         </div>
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
-        {showContent && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7 }}>
-            {/* Hero Section */}
-            <Card className="p-8">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-gradient-to-br from-zinc-400 to-zinc-600 rounded-full flex items-center justify-center">
-                    <FontAwesomeIcon icon={faLightbulb} className="text-zinc-800 text-xl" />
-                  </div>
-                </div>
-                <div>
-                  <h2 className="text-2xl font-semibold text-zinc-100 mb-4">Creative Vision</h2>
-                  <p className="text-zinc-300 font-medium leading-relaxed">
-                    Cem Karabulut is a Creative Art Director from Turkey, known for his multidisciplinary approach to visual communication, storytelling, and digital media design. His career spans collaborations with leading agencies and brands, delivering impactful solutions in branding, motion graphics, UI/UX, and digital campaigns.
-                  </p>
-                </div>
-              </div>
-            </Card>
+        <div className="divider-white" />
+        <div className="space-y-10 md:space-y-14">
+          <Card className="p-8 md:p-12 mb-8">
+            <h2 className="text-xl font-semibold mb-2 text-white">My Approach</h2>
+            <p className="text-zinc-200">
+              My approach is all about blending strategy, creativity, and technology to create work that really means something. I love getting to know the people and stories behind every project. For me, every collaboration is a chance to learn, grow, and make something that truly connects.
+            </p>
+          </Card>
+          {/* Creative Vision Section */}
+          <Card className="p-8 md:p-12 mb-8">
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-4">Creative Vision</h2>
+            <p className="text-zinc-300 font-medium leading-relaxed">
+              My creative vision is all about curiosity and storytelling. I love exploring new ways to turn ideas into visuals that spark emotion and inspire action. Whether I’m working on a brand, a motion graphic, or a digital campaign, I want every project to feel fresh, thoughtful, and true to its purpose. For me, design is about connection, clarity, and creativity—helping people see and feel something new.
+            </p>
+          </Card>
 
-            {/* Philosophy Section */}
-            <Card className="p-8">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-gradient-to-br from-zinc-400 to-zinc-600 rounded-full flex items-center justify-center">
-                    <FontAwesomeIcon icon={faPalette} className="text-zinc-800 text-xl" />
-                  </div>
-                </div>
-                <div>
-                  <h2 className="text-2xl font-semibold text-zinc-100 mb-4">Design Philosophy</h2>
-                  <p className="text-zinc-300 font-medium leading-relaxed">
-                    Cem believes design is not just about aesthetics, but a way to interpret, communicate, and reshape ideas into visual language. He values a minimalist yet expressive style, focusing on balance, emotional resonance, and clarity. He integrates technology and narrative thinking to create future-focused, detail-oriented solutions.
-                  </p>
-                </div>
-              </div>
-            </Card>
+          {/* My Process Section */}
+          <Card className="p-8 md:p-12 mb-8">
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-4">My Process</h2>
+            <p className="text-zinc-300 font-medium leading-relaxed">
+              I start by listening—really listening—to understand not just what you want, but why you want it. I dive deep into research, sketch, experiment, and iterate until we find that sweet spot where strategy meets creativity. I believe in honesty, transparency, and treating every project like it’s the most important one I’ll ever work on. I value deep thinking, quality, and building real relationships along the way.
+            </p>
+          </Card>
 
-            {/* Timeline Section */}
-            <div>
-              <h2 className="text-2xl font-semibold text-zinc-100 mb-6">Career Journey</h2>
-              <Card className="p-8">
-                <Timeline items={timelineData} />
-              </Card>
-            </div>
+          {/* What I Love Section */}
+          <Card className="p-8 md:p-12 mb-8">
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-4">What I Love</h2>
+            <p className="text-zinc-300 font-medium leading-relaxed">
+              I love the moment when everything clicks—when a design feels so right that it almost creates itself. I love collaborating with passionate people, learning new things, and creating work that makes a real difference. The best part of my job is seeing an idea come to life and knowing it means something to someone else.
+            </p>
+          </Card>
 
-            {/* Skills Section */}
-            <div>
-              <h2 className="text-2xl font-semibold text-zinc-100 mb-6">Tools & Technologies</h2>
+          {/* Timeline Section */}
+          <div>
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-6">Career Journey</h2>
+            <Timeline items={[
+              {
+                year: "2008-2012",
+                title: "Early Career",
+                description: "I started out in advertising agencies, learning the basics of visual communication and brand design. Those early years taught me the value of teamwork and the power of a good idea."
+              },
+              {
+                year: "2012-2016",
+                title: "Growth Period",
+                description: "During this time, I dove into digital media and motion graphics, and had the chance to work with some amazing brands. Every project pushed me to try new things and expand my creative toolkit."
+              },
+              {
+                year: "2016-2020",
+                title: "Art Direction",
+                description: "I stepped into the role of Art Director, leading creative teams and helping shape brand strategies from the ground up. It was a time of big ideas, late nights, and a lot of learning."
+              },
+              {
+                year: "2020-Present",
+                title: "Innovation Era",
+                description: "Lately, I’ve been embracing AI tools, 3D design, and new technologies, always looking for ways to keep my work fresh and exciting. But no matter how much things change, my focus on creativity and connection stays the same."
+              }
+            ]} />
+          </div>
+
+          {/* Skills Section */}
+          <div>
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-6">Tools & Technologies</h2>
+            <div className="space-y-8">
               <SkillsGrid skills={skillsData} />
             </div>
+          </div>
 
-            {/* Brands Section */}
-            <div>
-              <h2 className="text-2xl font-semibold text-zinc-100 mb-6">Featured Brands & Productions</h2>
-              <Card className="p-8">
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold text-zinc-100 mb-4">Major Brands</h3>
-                  <BrandsShowcase brands={featuredBrands.slice(0, 12)} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-zinc-100 mb-4">TV Productions</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Card className="p-4">
-                      <div className="text-zinc-300 font-medium">Exatlon, Survivor, The Voice Turkey, MasterChef Turkey</div>
-                    </Card>
-                    <Card className="p-4">
-                      <div className="text-zinc-300 font-medium">TV8, Kanal D Europe, TRT, TV Azteca, Telemundo, Netflix</div>
-                    </Card>
-                  </div>
-                </div>
-              </Card>
+          {/* Brands Section */}
+          <div>
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-6">Featured Brands & Productions</h2>
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold text-zinc-100 mb-4">Major Brands</h3>
+              <BrandsShowcase brands={featuredBrands} />
             </div>
-
-            {/* Contact Section */}
-            <Card className="p-8">
-              <div className="text-center">
-                <h2 className="text-2xl font-semibold text-zinc-100 mb-6">Let's Connect</h2>
-                <p className="text-zinc-300 font-medium mb-6">
-                  For collaborations, project inquiries, or just to say hello, feel free to reach out.
-                </p>
-                
-                <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-6">
-                  <a 
-                    href="mailto:cem@cemkarabulut.com" 
-                    className="flex items-center space-x-2 px-6 py-3 bg-zinc-800/50 border border-zinc-700/50 rounded-lg hover:bg-zinc-700/50 transition-colors"
-                  >
-                    <FontAwesomeIcon icon={faEnvelope} className="text-zinc-300" />
-                    <span className="text-zinc-100 font-medium">cem@cemkarabulut.com</span>
-                  </a>
-                </div>
-
-                <div className="flex justify-center space-x-4">
-                  {socialLinks.map((social, index) => (
-                    <motion.a
-                      key={index}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-zinc-800/50 border border-zinc-700/50 rounded-lg flex items-center justify-center hover:bg-zinc-700/50 transition-colors"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <FontAwesomeIcon icon={social.icon} className="text-zinc-300 text-lg" />
-                    </motion.a>
-                  ))}
-                </div>
+            <div>
+              <h3 className="text-lg font-semibold text-zinc-100 mb-4">TV Productions</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {tvProductions.map((prod, idx) => (
+                  <Card key={idx} className="p-4 text-center">
+                    <div className="text-zinc-300 font-medium text-sm">{prod}</div>
+                  </Card>
+                ))}
               </div>
-            </Card>
-          </motion.div>
-        )}
+            </div>
+          </div>
+
+          {/* Contact Section */}
+          <Card className="p-8 md:p-12 mb-8">
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold text-zinc-100 mb-6">Let's Connect</h2>
+              <p className="text-zinc-300 font-medium mb-6">
+                If you want to collaborate, have a project in mind, or just want to say hi, I’d love to hear from you. Drop me a message anytime!
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-6">
+                <a 
+                  href="mailto:cem@cemkarabulut.com" 
+                  className="flex items-center space-x-2 px-6 py-3 bg-zinc-800/60 md:bg-zinc-800/80 border border-zinc-700/50 rounded-lg hover:bg-zinc-700/50 transition-colors"
+                >
+                  <FontAwesomeIcon icon={faEnvelope} className="text-zinc-300" />
+                  <span className="text-zinc-100 font-medium">cem@cemkarabulut.com</span>
+                </a>
+              </div>
+              <div className="flex justify-center space-x-4">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 bg-zinc-800/60 md:bg-zinc-800/80 border border-zinc-700/50 rounded-lg flex items-center justify-center hover:bg-zinc-700/50 transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FontAwesomeIcon icon={social.icon} className="text-zinc-300 text-lg" />
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+          </Card>
+        </div>
       </div>
       
       {/* Footer - Moved to layout */}

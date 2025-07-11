@@ -1,16 +1,11 @@
 "use client";
 
-import React, { useState, Suspense, lazy, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navigation from "../components/nav";
 import { Card } from "../components/card";
 import { motion } from "framer-motion";
 import { Typewriter } from "../components/typewriter";
 import { cemkarabulutText } from "./cemkarabulut-data";
-import { useRef } from "react";
-
-// Lazy load components
-const MouseGradient = lazy(() => import("../components/mouse-gradient"));
-const Particles = lazy(() => import("../components/particles"));
 
 // Parse English work experience section from cemkarabulutText
 const engExpSection = cemkarabulutText.split("🇬🇧 Work Experience – From Present to Past")[1]?.split("🇹🇷 İş Deneyimleri")[0] || "";
@@ -132,18 +127,10 @@ export default function ExperiencePage() {
   useEffect(() => { setTypewriterMounted(true); }, []);
 
   return (
-    <div className="relative min-h-screen bg-black overflow-visible">
-      {/* Particles - Background effect */}
-      <Suspense fallback={null}>
-        <Particles className="absolute inset-0 z-10 animate-fade-in" quantity={100} />
-      </Suspense>
-      {/* MouseGradient - Load with delay for better performance */}
-      <Suspense fallback={null}>
-        <MouseGradient />
-      </Suspense>
+    <div className="relative min-h-screen bg-transparent overflow-visible">
       <Navigation />
-      <div className="px-6 pt-20 mx-auto space-y-8 max-w-6xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative overflow-visible">
-        <div className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+      <div className="px-2 md:px-6 pt-20 mx-auto space-y-10 max-w-full md:max-w-6xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative overflow-visible">
+        <div className="max-w-full md:max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
           <h1 className="text-4xl font-bold text-zinc-100 mb-8">
             {typewriterMounted && !typewriterDone ? (
               <Typewriter text="Experience" speed={40} onDone={handleTypewriterDone} />
@@ -154,10 +141,10 @@ export default function ExperiencePage() {
           <p
             className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}
           >
-            A comprehensive overview of my professional journey, from early career to senior leadership roles. Over 15 years of experience in creative direction, brand development, and digital media design.
+            Here’s a look at my creative journey so far. Over the years, I’ve had the chance to work with amazing teams, lead projects I’m proud of, and constantly learn something new. Every role has shaped how I think about design, teamwork, and what it means to build something meaningful.
           </p>
         </div>
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+        <div className="divider-white" />
         {showContent && (
           <motion.div
             className="grid grid-cols-1 gap-8 mx-auto lg:mx-0 overflow-visible"
@@ -166,55 +153,55 @@ export default function ExperiencePage() {
             transition={{ duration: 0.7 }}
             style={{overflow: 'visible'}}
           >
-            {jobs.map((job, index) => {
-              // Merge tools and highlights, remove duplicates
-              const highlightArr = highlights[index]?.split(",").map(h => h.trim()) || [];
-              // Only show gray for actual tools, blue for all other highlights
-              const allBadges = Array.from(new Set([...(tools[index] || []), ...highlightArr]));
-              return (
-                <motion.div
-                  key={index}
-                  ref={el => { cardRefs.current[index] = el; }}
-                  data-index={index}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={visibleCards.includes(index) ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                  transition={{ duration: 0.7, delay: index * 0.08, type: "spring" }}
-                  style={{overflow: 'visible'}}
-                  className="overflow-visible"
-                >
-                  <Card className="p-8 md:p-10 z-30 relative overflow-visible">
-                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-6">
-                      <div className="space-y-2">
-                        <h3 className="text-2xl font-bold text-zinc-100">{job.role}</h3>
-                        <p className="text-xl text-zinc-300 font-medium">{job.company}</p>
+            {/* Deneyim kartları */}
+            <div className="space-y-8">
+              {jobs.map((job, idx) => {
+                // Merge tools and highlights, remove duplicates
+                const highlightArr = highlights[idx]?.split(",").map(h => h.trim()) || [];
+                const allBadges = Array.from(new Set([...(tools[idx] || []), ...highlightArr]));
+                return (
+                  <Card
+                    key={idx}
+                    className="p-6 md:p-8 rounded-2xl shadow-2xl bg-zinc-900/40 hover:bg-zinc-900/80 backdrop-blur-md border border-zinc-700/40 transition-colors duration-300"
+                  >
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0">
+                      <div className="flex-1 flex flex-col text-center md:text-left items-center md:items-start">
+                        <h2 className="text-2xl font-bold text-zinc-100 mb-1">{job.role}</h2>
+                        <div className="text-lg font-medium text-zinc-300 mb-2">{job.company}</div>
                       </div>
-                      <div className="text-right space-y-1 min-w-[160px] flex flex-col items-end">
-                        <p className="text-sm font-medium flex items-center gap-2 text-zinc-200">
+                      <div className="flex flex-col text-center md:text-right items-center md:items-end">
+                        <div className="text-sm font-medium text-zinc-300 mb-1">
                           {renderPeriod(job.period)}
-                        </p>
-                        <p className="text-sm text-zinc-500">{job.location}</p>
+                          {job.period && job.location && (
+                            <span> </span>
+                          )}
+                        </div>
+                        <div className="text-xs text-zinc-400">{job.location}</div>
                       </div>
                     </div>
-                    <p className="text-zinc-300 font-medium leading-relaxed mb-6 text-lg">{job.description}</p>
-                    {/* Program/Tool ve Öne Çıkanlar Kutucukları (tekrarsız) */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {allBadges.map((badge) => (
-                        <span
-                          key={badge}
-                          className={
-                            tools[index]?.includes(badge)
-                              ? "bg-zinc-800/50 backdrop-blur-sm text-zinc-200 px-4 py-2 rounded-full text-xs font-medium border border-zinc-700/50 hover:border-zinc-600 hover:bg-zinc-800 transition-all duration-300"
-                              : "bg-blue-900/40 text-blue-200 px-4 py-2 rounded-full text-xs font-medium border border-blue-700/40 hover:border-blue-500 hover:bg-blue-900 transition-all duration-300"
-                          }
-                        >
-                          {badge}
-                        </span>
-                      ))}
+                    <div className="mt-4 text-zinc-300 text-center md:text-left">
+                      {job.description}
                     </div>
+                    {allBadges.length > 0 && (
+                      <div className="flex flex-wrap justify-center md:justify-start gap-2 mt-4">
+                        {allBadges.map((badge, badgeIdx) => (
+                          <span
+                            key={badgeIdx}
+                            className={
+                              tools[idx]?.includes(badge)
+                                ? "bg-zinc-800/50 backdrop-blur-sm text-zinc-200 px-4 py-2 rounded-full text-xs font-medium border border-zinc-700/50 hover:bg-zinc-900/80 hover:border-zinc-600 transition-all duration-300"
+                                : "bg-blue-900/40 text-blue-200 px-4 py-2 rounded-full text-xs font-medium border border-blue-700/40 hover:bg-blue-900/80 hover:border-blue-500 transition-all duration-300"
+                            }
+                          >
+                            {badge}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </Card>
-                </motion.div>
-              );
-            })}
+                );
+              })}
+            </div>
           </motion.div>
         )}
       </div>

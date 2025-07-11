@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { useMousePosition } from "@/util/mouse";
 
 interface ParticlesProps {
@@ -13,7 +13,7 @@ interface ParticlesProps {
 
 export default function Particles({
 	className = "",
-	quantity = 30,
+	quantity = 80,
 	staticity = 50,
 	ease = 50,
 	refresh = false,
@@ -100,7 +100,7 @@ export default function Particles({
 		const translateY = 0;
 		const size = Math.floor(Math.random() * 2) + 0.1;
 		const alpha = 0;
-		const targetAlpha = parseFloat((Math.random() * 0.6 + 0.1).toFixed(1));
+		const targetAlpha = parseFloat((Math.random() * 0.8 + 0.3).toFixed(1));
 		const dx = (Math.random() - 0.5) * 0.2;
 		const dy = (Math.random() - 0.5) * 0.2;
 		const magnetism = 0.1 + Math.random() * 4;
@@ -227,8 +227,8 @@ export default function Particles({
 	};
 
 	return (
-		<div className={className} ref={canvasContainerRef} aria-hidden="true">
-			<canvas ref={canvasRef} />
+		<div className={`fixed inset-0 w-full h-full ${className}`} ref={canvasContainerRef} aria-hidden="true">
+			<canvas ref={canvasRef} className="w-full h-full" />
 		</div>
 	);
 }

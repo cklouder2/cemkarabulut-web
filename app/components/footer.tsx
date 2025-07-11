@@ -41,8 +41,7 @@ export function Footer() {
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-zinc-100">Cem Karabulut</h3>
             <p className="text-sm text-zinc-400 leading-relaxed">
-              Creative Art Director from Turkey, specializing in visual communication, 
-              storytelling, and digital media design.
+              This site is built with modern web technologies including Next.js, React, TypeScript, and Tailwind CSS for a smooth, responsive experience.
             </p>
             <div className="flex items-center gap-2 text-xs text-zinc-500 pt-2">
               <span>Made with</span>
@@ -52,7 +51,7 @@ export function Footer() {
           </div>
 
           {/* Orta: Hızlı Linkler */}
-          <div className="space-y-6">
+          <div className="space-y-6 hidden md:block">
             <h3 className="text-lg font-semibold text-zinc-100">Quick Links</h3>
             <nav className="flex flex-col space-y-3">
               <Link 
@@ -89,7 +88,7 @@ export function Footer() {
           </div>
 
           {/* Sağ: Sosyal Medya */}
-          <div className="space-y-6">
+          <div className="space-y-6 hidden md:block">
             <h3 className="text-lg font-semibold text-zinc-100">Connect</h3>
             <div className="flex flex-col space-y-3">
               {socials.map((social) => (
@@ -145,7 +144,7 @@ export function Footer() {
           <div className="flex items-center gap-4 text-xs text-zinc-500">
             <span>© 2025 Cem Karabulut. All rights reserved.</span>
             <span>•</span>
-            <span>Creative Art Director</span>
+            <span>Built with Next.js, React, TypeScript & Tailwind CSS</span>
           </div>
           
           <motion.button

@@ -34,7 +34,7 @@ function Navigation() {
   ];
 
   return (
-    <header ref={ref}>
+    <header ref={ref} className="hidden sm:block">
       <div
         className={`fixed inset-x-0 top-0 z-50 backdrop-blur-lg duration-300 border-b ${
           isIntersecting

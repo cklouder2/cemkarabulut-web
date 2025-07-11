@@ -1,58 +1,56 @@
 "use client";
 
-import React, { useState, Suspense, lazy, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navigation from "../components/nav";
 import { Card } from "../components/card";
 import { Typewriter } from "../components/typewriter";
 import { motion } from "framer-motion";
-
-// Lazy load components
-const MouseGradient = lazy(() => import("../components/mouse-gradient"));
-const Particles = lazy(() => import("../components/particles"));
 
 const skillCategories = [
   {
     title: "Adobe Creative Suite",
     description: "Professional design and production tools",
     skills: [
-      { name: "Adobe Photoshop", level: "Expert" },
-      { name: "Adobe Illustrator", level: "Expert" },
+      { name: "Adobe Photoshop", level: "Advanced" },
+      { name: "Adobe Illustrator", level: "Advanced" },
+      { name: "Adobe After Effects", level: "Advanced" },
       { name: "Adobe InDesign", level: "Advanced" },
-      { name: "Adobe After Effects", level: "Expert" },
       { name: "Adobe Premiere Pro", level: "Advanced" },
-      { name: "Adobe Substance 3D Painter", level: "Intermediate" },
-      { name: "Adobe Substance 3D Designer", level: "Intermediate" }
+      { name: "Adobe Audition", level: "Expert" }
     ]
   },
   {
     title: "3D & Visualization",
     description: "3D modeling, animation and visualization tools",
     skills: [
-      { name: "Cinema 4D", level: "Expert" },
-      { name: "Blender", level: "Advanced" },
-      { name: "Adobe Substance", level: "Intermediate" },
-      { name: "Adobe Dimension", level: "Intermediate" }
+      { name: "Cinema 4D", level: "Advanced" },
+      { name: "Blender", level: "Intermediate" },
+      { name: "Octane", level: "Advanced" },
+      { name: "Adobe Substance 3D Painter", level: "Intermediate" },
+      { name: "Adobe Substance 3D Designer", level: "Intermediate" },
+      { name: "Unreal Engine", level: "Intermediate" }
     ]
   },
   {
     title: "UI/UX & Prototyping",
     description: "User interface design and prototyping tools",
     skills: [
-      { name: "Figma", level: "Expert" },
-      { name: "Adobe XD", level: "Advanced" },
-      { name: "Zeplin", level: "Intermediate" }
+      { name: "Figma", level: "Advanced" },
+      { name: "Adobe XD", level: "Intermediate" }
     ]
   },
   {
     title: "AI-Powered Tools",
     description: "Artificial intelligence tools for creative workflows",
     skills: [
-      { name: "Midjourney", level: "Expert" },
-      { name: "ChatGPT", level: "Expert" },
+      { name: "Midjourney", level: "Advanced" },
+      { name: "ChatGPT", level: "Advanced" },
       { name: "Stable Diffusion", level: "Advanced" },
       { name: "ComfyUI", level: "Advanced" },
-      { name: "KlingAI", level: "Intermediate" },
-      { name: "Runway ML", level: "Intermediate" }
+      { name: "KlingAI", level: "Advanced" },
+      { name: "Runway ML", level: "Intermediate" },
+      { name: "Google Veo 3", level: "Intermediate" },
+      { name: "Gemini", level: "Intermediate" }
     ]
   },
   {
@@ -60,8 +58,7 @@ const skillCategories = [
     description: "Additional tools and platforms",
     skills: [
       { name: "WordPress", level: "Advanced" },
-      { name: "Notion", level: "Advanced" },
-      { name: "Miro/FigJam", level: "Intermediate" }
+      { name: "Notion", level: "Advanced" }
     ]
   },
   {
@@ -69,9 +66,9 @@ const skillCategories = [
     description: "Core design skills and expertise areas",
     skills: [
       { name: "Brand Identity Design", level: "Expert" },
-      { name: "Motion Graphics", level: "Expert" },
-      { name: "Digital Campaigns", level: "Expert" },
-      { name: "Social Media Design", level: "Expert" },
+      { name: "Motion Graphics", level: "Advanced" },
+      { name: "Digital Campaigns", level: "Advanced" },
+      { name: "Social Media Design", level: "Advanced" },
       { name: "Print Design", level: "Advanced" },
       { name: "UI/UX Design", level: "Advanced" },
       { name: "3D Product Visualization", level: "Advanced" },
@@ -123,21 +120,20 @@ export default function SkillsPage() {
   const [typewriterMounted, setTypewriterMounted] = useState(false);
   useEffect(() => { setTypewriterMounted(true); }, []);
   
+  // Sort skills in each category: Advanced first, then Expert, then Intermediate
+  skillCategories.forEach(cat => {
+    cat.skills.sort((a, b) => {
+      const order: { [key: string]: number } = { 'Advanced': 0, 'Expert': 1, 'Intermediate': 2 };
+      return order[a.level as string] - order[b.level as string];
+    });
+  });
+
   return (
-    <div className="relative min-h-screen bg-black overflow-x-hidden">
-      {/* Particles - Background effect */}
-      <Suspense fallback={null}>
-        <Particles className="absolute inset-0 z-10 animate-fade-in" quantity={100} />
-      </Suspense>
-      
-      {/* MouseGradient - Load with delay for better performance */}
-      <Suspense fallback={null}>
-        <MouseGradient />
-      </Suspense>
+    <div className="relative min-h-screen bg-transparent overflow-x-hidden">
       
       <Navigation />
-      <div className="px-6 pt-20 mx-auto space-y-8 max-w-6xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative">
-        <div className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+      <div className="px-2 md:px-6 pt-20 mx-auto space-y-10 max-w-full md:max-w-6xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative">
+        <div className="max-w-full md:max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
           <h1 className="text-4xl font-bold text-zinc-100 mb-8">
             {typewriterMounted && !typewriterDone ? (
               <Typewriter text="Skills" speed={40} onDone={handleTypewriterDone} />
@@ -145,9 +141,10 @@ export default function SkillsPage() {
               "Skills"
             )}
           </h1>
-          <p className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>A comprehensive overview of my technical skills, tools, and design expertise across various disciplines.</p>
+          <p className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>Here's a peek at the tools, platforms, and design disciplines I love working with most. Over the years, everything I've learned and used has given me a fresh perspective on every project. If you're curious about anything, feel free to ask me anytime!
+          </p>
         </div>
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+        <div className="divider-white" />
         {showContent && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7 }}>
             <div className="grid grid-cols-1 gap-8 mx-auto lg:mx-0">
@@ -160,9 +157,7 @@ export default function SkillsPage() {
                       {category.skills.map((skill, skillIndex) => (
                         <div key={skillIndex} className="flex items-center justify-between p-4 bg-zinc-800/50 backdrop-blur-sm rounded-lg border border-zinc-700/50 hover:border-zinc-600 hover:bg-zinc-800 transition-all duration-300">
                           <span className="text-zinc-200 font-medium text-lg">{skill.name}</span>
-                          <span className={`px-3 py-1 rounded-full text-xs font-bold ${getLevelColor(skill.level)}`}>
-                            {skill.level}
-                          </span>
+                          <span className={`px-3 py-1 rounded-full text-xs font-bold ${getLevelColor(skill.level)}`}>{skill.level}</span>
                         </div>
                       ))}
                     </div>
@@ -171,24 +166,23 @@ export default function SkillsPage() {
               ))}
             </div>
 
-            <div className="mt-16 p-8 bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 backdrop-blur-sm rounded-2xl border border-zinc-700/50">
-              <h3 className="text-2xl font-bold text-zinc-100 mb-6">Design Philosophy</h3>
+            <div className="mt-16">
+              <h3 className="text-2xl font-bold text-zinc-100 mb-6">My Design Philosophy</h3>
               <p className="text-zinc-300 font-medium mb-8 text-lg leading-relaxed">
-                I believe design is not merely a tool of aesthetics—it's a way to interpret, communicate, and reshape ideas into visual language. 
-                My approach focuses on creating designs that are not just visually appealing but also strategically sound.
+                For me, design isn't just about aesthetics—it's about how things make people feel and what they help people understand. I'm drawn to a style that's both simple and expressive, always aiming for balance, clarity, and a bit of surprise. I love using technology and storytelling together to create work that's both meaningful and memorable.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center p-6 bg-zinc-800/30 rounded-xl border border-zinc-700/30">
                   <h4 className="text-zinc-100 font-bold text-xl mb-3">Minimalist</h4>
-                  <p className="text-zinc-400 font-medium leading-relaxed">Clean, focused design with purposeful elements</p>
+                  <p className="text-zinc-400 font-medium leading-relaxed">Clean, purposeful designs without unnecessary details</p>
                 </div>
                 <div className="text-center p-6 bg-zinc-800/30 rounded-xl border border-zinc-700/30">
                   <h4 className="text-zinc-100 font-bold text-xl mb-3">Expressive</h4>
-                  <p className="text-zinc-400 font-medium leading-relaxed">Emotional resonance through visual storytelling</p>
+                  <p className="text-zinc-400 font-medium leading-relaxed">Visual storytelling enhanced with emotion and narrative</p>
                 </div>
                 <div className="text-center p-6 bg-zinc-800/30 rounded-xl border border-zinc-700/30">
                   <h4 className="text-zinc-100 font-bold text-xl mb-3">Future-Focused</h4>
-                  <p className="text-zinc-400 font-medium leading-relaxed">Innovative approaches with emerging technologies</p>
+                  <p className="text-zinc-400 font-medium leading-relaxed">Forward-thinking solutions with innovative technologies</p>
                 </div>
               </div>
             </div>

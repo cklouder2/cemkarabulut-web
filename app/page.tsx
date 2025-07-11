@@ -1,8 +1,6 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState, useCallback, Suspense } from "react";
-import Particles from "./components/particles";
-import MouseGradient from "./components/mouse-gradient";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faUser, 
@@ -12,7 +10,7 @@ import {
   faEnvelope 
 } from "@fortawesome/free-solid-svg-icons";
 import SocialIcons from "./components/social-icons";
-
+import MobileMenu from "./components/mobile-menu";
 // Error Boundary Component
 class ErrorBoundary extends React.Component<
   { children: React.ReactNode },
@@ -127,7 +125,7 @@ const FeaturedBrands = React.memo(({ brands, showTitle, showBrands }: {
   return (
     <div className="text-xs animate-fade-in">
       <p className={`mb-4 font-medium transition-opacity duration-50 ${showTitle ? 'opacity-100' : 'opacity-0'} text-white`}>
-        Featured brands I've worked with:
+        Some of the brands I've had the pleasure to work with:
       </p>
       <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
         {brands.map((brand, index) => (
@@ -163,22 +161,21 @@ const featuredBrands = [
 ];
 
 const longTextWords = [
-  "I'm", "a", "Creative", "Art", "Director", "with", "over", "15", "years", "of", "experience", "in", "visual", "communication", "and", "digital", "media", "design.", "I", "specialize", "in", "brand", "identity,", "campaign", "design,", "and", "multimedia", "storytelling.", "I'm", "passionate", "about", "crafting", "compelling", "visual", "narratives", "that", "help", "brands", "connect", "with", "their", "audiences", "through", "innovative", "design", "solutions", "and", "thoughtful", "creative", "direction."
+  "Hi,", "I'm", "Cem", "a", "Creative", "Art", "Director", "with", "15+", "years", "of", "experience", "in", "turning", "ideas", "into", "visuals", "that", "speak.", "I", "love", "building", "brand", "stories", "through", "design,", "whether", "it's", "a", "logo,", "a", "campaign,", "or", "a", "full", "digital", "experience.", "For", "me,", "design", "is", "all", "about", "connection,", "clarity,", "and", "creativity."
 ];
 
 // Main component
 export default function Home() {
+  // Tüm state ve hook'lar en başta, koşulsuz
+  const [isReady, setIsReady] = useState(false);
   const [showNavbar, setShowNavbar] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
   const [showFeaturedTitle, setShowFeaturedTitle] = useState(false);
   const [showBrands, setShowBrands] = useState(false);
   const [visibleWords, setVisibleWords] = useState<number[]>([]);
   const [visibleNavItems, setVisibleNavItems] = useState<number[]>([]);
-  const [isMouseGradientLoaded, setIsMouseGradientLoaded] = useState(false);
-  const [isParticlesLoaded, setIsParticlesLoaded] = useState(false);
-  // showSocialIcons kaldırıldı
+  const [showAllBrands, setShowAllBrands] = useState(false);
 
-  // Animation callbacks
   const startButtons = useCallback(() => {
     setShowButtons(true);
     setTimeout(() => {
@@ -203,28 +200,20 @@ export default function Home() {
         setVisibleWords(prev => [...prev, index]);
       }, index * 25);
     });
-    
     setTimeout(() => {
       startButtons();
     }, longTextWords.length * 25 + 200);
   }, [startButtons]);
 
-  // Load components with delay
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsMouseGradientLoaded(true);
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
+
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsParticlesLoaded(true);
-    }, 50);
-    return () => clearTimeout(timer);
+    const onReady = () => setIsReady(true);
+    if (document.readyState === "complete") onReady();
+    else window.addEventListener("load", onReady);
+    return () => window.removeEventListener("load", onReady);
   }, []);
 
-  // Cursor animation
   useEffect(() => {
     if (typeof window !== "undefined") {
       const style = document.createElement("style");
@@ -233,110 +222,168 @@ export default function Home() {
     }
   }, []);
 
-  return (
-    <ErrorBoundary>
-      <SocialIcons show={showNavbar} />
-      <div className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden bg-black">
-        {/* Particles */}
-        {isParticlesLoaded && (
-          <ErrorBoundary>
-            <Suspense fallback={null}>
-              <Particles className="absolute inset-0 z-20 animate-fade-in" quantity={100} />
-            </Suspense>
-          </ErrorBoundary>
-        )}
-        
-        {/* Mouse Gradient */}
-        {isMouseGradientLoaded && (
-          <ErrorBoundary>
-            <Suspense fallback={null}>
-              <MouseGradient />
-            </Suspense>
-          </ErrorBoundary>
-        )}
-        
-        {/* Navigation */}
-        <nav className={`my-4 transition-opacity duration-100 z-30 ${showNavbar ? 'opacity-100' : 'opacity-0'}`}>
-          <ul className="flex items-center justify-center gap-6">
-            {navigation.map((item, index) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`flex items-center gap-2 text-sm font-bold duration-500 text-white hover:text-gray-400 transition-all ${
-                  visibleNavItems.includes(index) ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                <FontAwesomeIcon icon={item.icon} className="w-4 h-4" />
-                {item.name}
-              </Link>
-            ))}
-          </ul>
-        </nav>
-        
-        {/* Glow Lines - Original chronark style (WORKING VERSION) */}
-        <div className="hidden w-screen h-px md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-        
-        {/* Title */}
-        <h1 className="px-0.5 z-30 text-4xl text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text ">
-          <Typewriter text="Cem Karabulut" speed={50} onComplete={startLongText} />
-        </h1>
-        
-        {/* Glow Lines - Original chronark style (WORKING VERSION) */}
-        <div className="hidden w-screen h-px md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-        
-        {/* Content */}
-        <div className="mt-0 mb-4 text-center animate-fade-in z-30">
-          <h2 className="text-base font-medium text-zinc-200 max-w-4xl mx-auto mb-4 mt-0">
-            <span className="min-h-[4rem] block">
-              <span>
-                {longTextWords.slice(0, 18).map((word, index) => (
-                  <span
-                    key={index}
-                    className={`transition-opacity duration-300 ${
-                      visibleWords.includes(index) ? 'opacity-100' : 'opacity-0'
-                    }`}
-                  >
-                    {word}{' '}
-                  </span>
-                ))}
-                <br />
-                {longTextWords.slice(18).map((word, index) => (
-                  <span
-                    key={"br2-" + index}
-                    className={`transition-opacity duration-300 ${
-                      visibleWords.includes(index + 18) ? 'opacity-100' : 'opacity-0'
-                    }`}
-                  >
-                    {word}{' '}
-                  </span>
-                ))}
-              </span>
-            </span>
-          </h2>
-          
-          {/* Buttons */}
-          <div className={`flex items-center justify-center gap-4 mb-12 transition-all duration-50 z-30 ${showButtons ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
-            <Link
-              href="/about"
-              className="px-8 py-3 rounded-lg bg-gradient-to-r from-zinc-800 to-zinc-700 text-zinc-100 font-semibold hover:from-zinc-700 hover:to-zinc-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              Learn more about Cem →
-            </Link>
-            <Link
-              href="https://www.behance.net/cemkarabulut"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 rounded-lg border-2 border-zinc-600 text-zinc-300 font-semibold hover:border-zinc-400 hover:text-zinc-100 transition-all duration-300 transform hover:scale-105"
-            >
-              View Portfolio →
-            </Link>
-          </div>
-          
-          {/* Featured Brands */}
-          <FeaturedBrands brands={featuredBrands} showTitle={showFeaturedTitle} showBrands={showBrands} />
-        </div>
+  // Loading overlay
+  if (!isReady) {
+    return (
+      <div className="fixed inset-0 flex flex-col items-center justify-center bg-black z-[9999]">
+        <div className="w-16 h-16 border-4 border-zinc-800 border-t-zinc-100 rounded-full animate-spin mb-6"></div>
+        <h2 className="text-xl font-semibold text-zinc-100">Loading...</h2>
       </div>
-    </ErrorBoundary>
+    );
+  }
+
+  return (
+    <>
+      <ErrorBoundary>
+        {/* Mobil için özel düzen */}
+        <div className="flex flex-col min-h-screen sm:hidden bg-transparent">
+          {/* En üstte hamburger menü */}
+          <MobileMenu />
+          {/* Ortada başlık ve uzun yazı */}
+          <div className="flex-1 flex flex-col justify-center items-center px-4">
+            <h1 className="text-5xl font-bold text-center break-words text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display whitespace-pre-line bg-clip-text ">
+              <Typewriter text="Cem Karabulut" speed={50} onComplete={startLongText} />
+            </h1>
+            <h2 className="text-base font-medium text-zinc-200 max-w-sm mx-auto mb-4 mt-6 leading-relaxed text-center ">
+              <span className="min-h-[3rem] block">
+                <span>
+                  {longTextWords.map((word, index) => (
+                    <span
+                      key={index}
+                      className={`transition-opacity duration-300 ${
+                        visibleWords.includes(index) ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    >
+                      {word}{' '}
+                    </span>
+                  ))}
+                </span>
+              </span>
+            </h2>
+            {/* Butonlar */}
+            <div className={`flex flex-col items-center justify-center gap-4 w-full mb-8 transition-all duration-50 ${showButtons ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
+              <Link
+                href="/about"
+                className="w-full max-w-xs mx-auto px-6 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-100 text-sm font-medium hover:border-zinc-400/60 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
+              >
+                Let's start here →
+              </Link>
+              <Link
+                href="https://www.behance.net/cemkarabulut"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full max-w-xs mx-auto px-6 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-300 text-sm font-medium hover:border-zinc-400/60 hover:text-zinc-100 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
+              >
+                Take a look at what I've built →
+              </Link>
+            </div>
+          </div>
+          {/* En altta featured brands */}
+          <div className="w-full px-1 pb-4">
+            <p className="text-zinc-300 text-xs mb-2 text-center">Some of the brands I've had the pleasure to work with:</p>
+            <div className="flex flex-wrap justify-center gap-2 gap-y-2">
+              {(showAllBrands ? featuredBrands : featuredBrands.slice(0,8)).map((brand, i) => (
+                <span key={i} className="inline-block text-xs px-2 py-1 rounded-xl border border-zinc-700/50 bg-zinc-900/40 text-zinc-200 font-medium mb-1 mr-1">{brand}</span>
+              ))}
+            </div>
+            {!showAllBrands && featuredBrands.length > 8 && (
+              <button onClick={()=>setShowAllBrands(true)} className="block mx-auto mt-2 text-xs text-zinc-400 underline">Show more</button>
+            )}
+            {showAllBrands && featuredBrands.length > 8 && (
+              <button onClick={()=>setShowAllBrands(false)} className="block mx-auto mt-2 text-xs text-zinc-400 underline">Show less</button>
+            )}
+          </div>
+        </div>
+        {/* Masaüstü için mevcut yapı */}
+        <div className="hidden sm:flex flex-col items-center justify-center w-full h-screen overflow-x-hidden bg-transparent">
+          <div className="container mx-auto px-4 sm:px-6 pt-6 relative z-30">
+                        {showNavbar && <div className="relative z-30"><SocialIcons /></div>}
+            <nav className={`mt-10 sm:mt-16 mb-3 sm:mb-4 transition-opacity duration-100 z-30 relative ${showNavbar ? 'opacity-100' : 'opacity-0'}`}>
+              <ul className="flex flex-wrap items-center justify-center gap-2 sm:gap-6">
+                {navigation.map((item, index) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-bold duration-500 text-white hover:text-gray-400 transition-all px-2 py-2 sm:px-0 sm:py-0 ${
+                      visibleNavItems.includes(index) ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  >
+                    <FontAwesomeIcon icon={item.icon} className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    {item.name}
+                  </Link>
+                ))}
+              </ul>
+            </nav>
+          </div>
+          {/* Glow Lines - Original chronark style (WORKING VERSION) */}
+          <div className="hidden md:hidden absolute left-0 right-0 w-full h-px animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0 pointer-events-none" style={{maxWidth: '100vw'}} />
+          {/* Title */}
+          <h1 className="hidden sm:block px-0.5 z-20 relative text-4xl sm:text-4xl md:text-6xl lg:text-9xl text-transparent font-bold duration-1000 bg-white cursor-default text-edge-outline animate-title font-display whitespace-pre-line break-words bg-clip-text ">
+            <Typewriter text="Cem Karabulut" speed={50} onComplete={startLongText} />
+          </h1>
+          {/* Glow Lines - Original chronark style (WORKING VERSION) */}
+          <div className="hidden md:hidden absolute left-0 right-0 w-full h-px animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0 pointer-events-none" style={{maxWidth: '100vw'}} />
+          {/* Content */}
+          <div className="hidden sm:block mt-0 mb-4 text-center animate-fade-in z-20 relative">
+            <h2 className="hidden sm:block text-xs sm:text-base font-medium text-zinc-200 max-w-xs sm:max-w-4xl mx-auto mb-4 mt-0 leading-loose sm:leading-normal">
+              <span className="min-h-[3rem] sm:min-h-[4rem] block">
+                <span>
+                  {longTextWords.slice(0, 18).map((word, index) => (
+                    <span
+                      key={index}
+                      className={`transition-opacity duration-300 ${
+                        visibleWords.includes(index) ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    >
+                      {word}{' '}
+                    </span>
+                  ))}
+                  <br />
+                  {longTextWords.slice(18).map((word, index) => (
+                    <span
+                      key={"br2-" + index}
+                      className={`transition-opacity duration-300 ${
+                        visibleWords.includes(index + 18) ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    >
+                      {word}{' '}
+                    </span>
+                  ))}
+                </span>
+              </span>
+            </h2>
+            {/* Buttons */}
+            <div className={`flex flex-col sm:flex-row items-center justify-center gap-5 mb-8 sm:mb-12 transition-all duration-50 z-20 relative ${showButtons ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
+              <Link
+                href="/about"
+                className="px-6 sm:px-8 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-100 text-sm sm:text-base font-medium hover:border-zinc-400/60 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
+              >
+                Let's start here →
+              </Link>
+              <Link
+                href="https://www.behance.net/cemkarabulut"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 sm:px-8 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-300 text-sm sm:text-base font-medium hover:border-zinc-400/60 hover:text-zinc-100 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
+              >
+                Take a look at what I've built →
+              </Link>
+            </div>
+            {/* Featured Brands */}
+            <div className="px-1 sm:px-0">
+              <div className="flex flex-wrap justify-center gap-2 gap-y-2">
+                <span className="hidden sm:block w-full">
+                  <FeaturedBrands brands={featuredBrands} showTitle={showFeaturedTitle} showBrands={showBrands} />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Glow Lines - Original chronark style (WORKING VERSION) */}
+        <div className="hidden md:hidden absolute left-0 right-0 w-full h-px animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0 pointer-events-none" style={{maxWidth: '100vw'}} />
+        <div className="hidden md:hidden absolute left-0 right-0 w-full h-px animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0 pointer-events-none" style={{maxWidth: '100vw'}} />
+      </ErrorBoundary>
+    </>
   );
 }
 

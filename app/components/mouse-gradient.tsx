@@ -42,16 +42,14 @@ export default function MouseGradient() {
       window.addEventListener('resize', resize);
       resize();
 
-      // Gradient blob'larını referans koda göre yapılandır
+      // Gradient blob'larını basitleştirilmiş
       const blobs = [
         { hue: 290, radius: 400, offsetX: 0.3, offsetY: 0.2, speed: 0.00012, angle: 0 },
         { hue: 210, radius: 500, offsetX: -0.25, offsetY: 0.25, speed: 0.00009, angle: 1 },
-        { hue: 40, radius: 350, offsetX: 0.1, offsetY: -0.3, speed: 0.0001, angle: 2 },
-        { hue: 110, radius: 450, offsetX: -0.2, offsetY: -0.25, speed: 0.00011, angle: 3 },
-        { hue: 330, radius: 300, offsetX: 0.25, offsetY: 0.3, speed: 0.00013, angle: 4 }
+        { hue: 40, radius: 350, offsetX: 0.1, offsetY: -0.3, speed: 0.0001, angle: 2 }
       ];
 
-      // Animasyon fonksiyonu - referans koda göre güncellendi
+      // Animasyon fonksiyonu
       const animate = (t: number) => {
         if (!ctx || !canvas) return;
         
@@ -64,7 +62,7 @@ export default function MouseGradient() {
 
             const hueShift = (blob.hue + t * 0.01 + i * 60) % 360;
             const gradient = ctx.createRadialGradient(x, y, 0, x, y, blob.radius);
-            gradient.addColorStop(0, `hsla(${hueShift}, 100%, 65%, 0.35)`); // daha opak
+            gradient.addColorStop(0, `hsla(${hueShift}, 100%, 65%, 0.35)`);
             gradient.addColorStop(1, "transparent");
 
             ctx.fillStyle = gradient;

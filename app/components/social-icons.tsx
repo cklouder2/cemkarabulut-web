@@ -1,3 +1,4 @@
+"use client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin as faLinkedinBrand,
@@ -68,27 +69,41 @@ const socials = [
   }
 ];
 
-export default function SocialIcons({ show }: { show?: boolean }) {
-  if (!show) return null;
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08
+    }
+  }
+};
+
+const iconVariants = {
+  hidden: { opacity: 0, y: -20, scale: 0.8 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 400, damping: 24 } }
+};
+
+export default function SocialIcons() {
   return (
     <motion.div
-      initial={{ opacity: 0, y: -24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      className="fixed top-24 inset-x-0 flex justify-center z-50 gap-2"
+      className="flex justify-center gap-1.5 sm:gap-3 mb-2 mt-4"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
     >
       {socials.map((s) => (
-        <a
+        <motion.a
           key={s.label}
           href={s.href}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={s.label}
+          variants={iconVariants}
           className={
             [
-              "w-8 h-8 flex items-center justify-center",
+              "w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center",
               "rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur",
-              "shadow-md transition-transform duration-200 hover:scale-105 hover:border-zinc-400/60 hover:shadow-lg"
+              "shadow-md transition-transform duration-200 hover:scale-105 hover:border-zinc-400/60 hover:shadow-lg active:scale-95"
             ].join(" ")
           }
         >
@@ -97,7 +112,7 @@ export default function SocialIcons({ show }: { show?: boolean }) {
           ) : (
             typeof s.icon !== 'string' ? <FontAwesomeIcon icon={s.icon} className="text-white text-base" /> : null
           )}
-        </a>
+        </motion.a>
       ))}
     </motion.div>
   );
