@@ -1,158 +1,58 @@
-# Cem Karabulut - Creative Art Director Portfolio
+# Cem Karabulut – Creative Art Director Portfolio
 
-Modern, performans odaklı ve SEO optimize edilmiş kişisel portföy sitesi.
+Welcome to the personal portfolio of Cem Karabulut, a multidisciplinary Creative Art Director from Turkey. This project showcases Cem’s experience, selected works, and skills in visual communication, branding, digital media, and creative direction.
 
-## 🚀 Performans Özellikleri
+## 🌟 About Cem
 
-- **Core Web Vitals Optimizasyonu**: LCP, FID ve CLS metrikleri optimize edildi
-- **Lazy Loading**: Kritik olmayan bileşenler lazy load ediliyor
-- **Bundle Splitting**: Kod bölümleme ile daha hızlı yükleme
-- **Image Optimization**: Next.js image optimizasyonu
-- **Font Optimization**: Font display swap ve preloading
-- **Caching**: Statik kaynaklar için agresif caching
-- **Compression**: Gzip sıkıştırma aktif
+Cem Karabulut is a Creative Art Director with over 15 years of experience in visual communication and digital media design. He specializes in brand identity, campaign design, and multimedia storytelling. Cem is passionate about crafting compelling visual narratives that help brands connect with their audiences through innovative design solutions and thoughtful creative direction.
 
-## 📊 SEO Özellikleri
+## 🏢 Featured Brands
 
-- **Structured Data**: Schema.org markup'ları
-- **Meta Tags**: Kapsamlı meta tag optimizasyonu
-- **Sitemap**: Otomatik sitemap.xml
-- **Robots.txt**: SEO dostu robots.txt
-- **Open Graph**: Sosyal medya paylaşım optimizasyonu
-- **Twitter Cards**: Twitter paylaşım optimizasyonu
+Cem has collaborated with both regional and international brands, including:
 
-## 🛠️ Teknolojiler
+`Microsoft`, `Coca-Cola`, `Nestlé`, `Ford Otosan`, `Nescafé`, `Lipton`, `Cif`, `Avon`, `Beko`, `Dimes`, `Obsesso`, `Akbank`, `Enerjisa`, `Kayalar Kimya`, `Düfa`, `Metro İstanbul`, `İBB`, `İGDAŞ`, `Türk Nippon Sigorta`, `Baymak`, `Electrolux`, `Vialand`, `Greenlog`, `NoorCM`, `Laurastar`, `Baseus`, `Babyliss`, `CVK`, `Air Clinic`, `KKB`, `Senkron`, `Ingram Micro`, `Burgan Bank`
 
-- **Next.js 13**: App Router ile modern React framework
-- **TypeScript**: Tip güvenliği
-- **Tailwind CSS**: Utility-first CSS framework
-- **Framer Motion**: Animasyonlar
-- **Contentlayer**: MDX içerik yönetimi
-- **FontAwesome**: İkonlar
+## 🎬 Entertainment Projects
 
-## 📈 Performans Metrikleri
+Cem has contributed to major entertainment productions such as:
+- **Exatlon** (USA, Mexico, Romania, Hungary)
+- **Survivor** (Turkey, Romania)
+- **The Voice Turkey (O Ses Türkiye)**
+- **MasterChef Turkey**
 
-```bash
-# Bundle analizi
-npm run analyze
+## 🛠️ Tools & Technologies
 
-# Lighthouse performans testi
-npm run lighthouse
+- **Design:** Adobe Creative Suite (Photoshop, Illustrator, InDesign, After Effects, Premiere Pro)
+- **3D & Visualization:** Cinema 4D, Blender, Adobe Substance
+- **UI/UX:** Figma, Adobe XD
+- **AI Tools:** Midjourney, ChatGPT, Stable Diffusion, ComfyUI, KlingAI
+- **Other:** WordPress, Notion, Miro
 
-# Kapsamlı performans testi
-npm run performance
-```
+## 🚀 Live Demo
 
-## 🚀 Kurulum
+> _You can see the live portfolio at:_  
+> [https://cemkarabulut.com](https://cemkarabulut.com) <!-- (If available) -->
+
+## 📂 Project Structure
+
+- `app/` – Main Next.js application
+- `content/` – Project and article content (MDX)
+- `public/` – Static assets
+- `components/` – Reusable React components
+
+## 📦 Getting Started
 
 ```bash
-# Bağımlılıkları yükle
-pnpm install
-
-# Geliştirme sunucusunu başlat
-pnpm dev
-
-# Production build
-pnpm build
-
-# Production sunucusunu başlat
-pnpm start
+git clone https://github.com/cklouder2/cemkarabulut-web.git
+cd cemkarabulut-web
+npm install
+npm run dev
 ```
 
-## 📁 Proje Yapısı
+## 📄 License
 
-```
-cem_karabulut_web/
-├── app/                    # Next.js App Router
-│   ├── components/         # React bileşenleri
-│   ├── about/             # Hakkında sayfası
-│   ├── experience/        # Deneyim sayfası
-│   ├── skills/           # Yetenekler sayfası
-│   ├── projects/         # Projeler sayfası
-│   └── contact/          # İletişim sayfası
-├── content/              # MDX içerik dosyaları
-├── public/              # Statik dosyalar
-└── util/               # Yardımcı fonksiyonlar
-```
+This project is licensed under the MIT License.
 
-## 🔧 Performans İyileştirmeleri
+---
 
-### Bundle Optimizasyonu
-- Kritik olmayan bileşenler lazy loading
-- Bundle splitting ile kod bölümleme
-- Tree shaking ile kullanılmayan kod temizleme
-
-### CSS Optimizasyonu
-- Tailwind JIT mode
-- Critical CSS inline
-- Unused CSS temizleme
-
-### Font Optimizasyonu
-- Font display swap
-- Preloading kritik fontlar
-- Fallback fontlar
-
-### Image Optimizasyonu
-- Next.js Image component
-- WebP format desteği
-- Lazy loading
-
-## 📊 SEO İyileştirmeleri
-
-### Meta Tags
-- Title ve description optimizasyonu
-- Open Graph tags
-- Twitter Card tags
-- Canonical URLs
-
-### Structured Data
-- Person schema markup
-- Organization schema
-- Breadcrumb schema
-
-### Technical SEO
-- Sitemap.xml
-- Robots.txt
-- XML sitemap
-- Meta robots
-
-## 🎯 Core Web Vitals
-
-- **LCP (Largest Contentful Paint)**: < 2.5s
-- **FID (First Input Delay)**: < 100ms
-- **CLS (Cumulative Layout Shift)**: < 0.1
-
-## 📱 Responsive Design
-
-- Mobile-first yaklaşım
-- Touch-friendly interface
-- Optimized for all screen sizes
-
-## 🔒 Güvenlik
-
-- CSP headers
-- XSS protection
-- Frame options
-- Content type options
-
-## 📈 Analytics
-
-- Beam Analytics entegrasyonu
-- Performance monitoring
-- Core Web Vitals tracking
-
-## 🚀 Deployment
-
-```bash
-# Production build
-pnpm build
-
-# Export static files
-pnpm export
-
-# Deploy to hosting platform
-```
-
-## 📝 License
-
-MIT License - Detaylar için LICENSE dosyasına bakın.
+> _For more information, visit [cemkarabulut.com](https://cemkarabulut.com) or contact via [LinkedIn](https://linkedin.com/in/cemkarabulut)._
