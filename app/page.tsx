@@ -287,9 +287,9 @@ export default function Home() {
                 <span 
                   key={i} 
                   className={`inline-block text-xs px-3 py-1.5 rounded-xl border border-zinc-700/50 bg-zinc-900/40 text-zinc-200 font-medium transition-all duration-500 transform hover:border-zinc-400/60 hover:shadow-lg ${
-                    showBrands && i < 8 ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+                    showBrands ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
                   }`}
-                  style={{ transitionDelay: `${i * 100}ms` }}
+                  style={{ transitionDelay: showAllBrands ? `${i * 50}ms` : `${i * 100}ms` }}
                 >
                   {brand}
                 </span>
@@ -298,8 +298,7 @@ export default function Home() {
             {!showAllBrands && featuredBrands.length > 8 && (
               <button 
                 onClick={()=>setShowAllBrands(true)} 
-                className={`block mx-auto mt-4 px-4 py-2 rounded-lg border border-blue-600/50 bg-blue-900/20 text-blue-300 text-xs font-medium hover:border-blue-500/60 hover:text-blue-200 hover:bg-blue-800/30 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 ${showBrands ? 'opacity-100' : 'opacity-0'}`}
-                style={{ transitionDelay: '800ms' }}
+                className="block mx-auto mt-4 px-4 py-2 rounded-lg border border-blue-600/50 bg-blue-900/20 text-blue-300 text-xs font-medium hover:border-blue-500/60 hover:text-blue-200 hover:bg-blue-800/30 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95"
               >
                 Show more
               </button>
@@ -307,8 +306,7 @@ export default function Home() {
             {showAllBrands && featuredBrands.length > 8 && (
               <button 
                 onClick={()=>setShowAllBrands(false)} 
-                className={`block mx-auto mt-4 px-4 py-2 rounded-lg border border-blue-600/50 bg-blue-900/20 text-blue-300 text-xs font-medium hover:border-blue-500/60 hover:text-blue-200 hover:bg-blue-800/30 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 ${showBrands ? 'opacity-100' : 'opacity-0'}`}
-                style={{ transitionDelay: '800ms' }}
+                className="block mx-auto mt-4 px-4 py-2 rounded-lg border border-blue-600/50 bg-blue-900/20 text-blue-300 text-xs font-medium hover:border-blue-500/60 hover:text-blue-200 hover:bg-blue-800/30 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95"
               >
                 Show less
               </button>
