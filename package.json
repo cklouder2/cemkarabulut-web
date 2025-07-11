@@ -1,19 +1,32 @@
 {
-  "name": "chronark.com",
+  "name": "cemkarabulut.com",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "fmt": "pnpm rome check . --apply-unsafe && pnpm rome format . --write"
+    "fmt": "pnpm rome check . --apply-unsafe && pnpm rome format . --write",
+    "analyze": "ANALYZE=true next build",
+    "lighthouse": "lighthouse https://cemkarabulut.com --output=html --output-path=./lighthouse-report.html",
+    "performance": "next build && next export && lighthouse https://cemkarabulut.com --output=json --output-path=./lighthouse-report.json",
+    "cache:clear": "rm -rf .next && rm -rf out",
+    "cache:analyze": "ANALYZE=true pnpm build",
+    "cache:optimize": "next build && next export"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@next/font": "^13.5.4",
     "@next/mdx": "^13.5.4",
     "@upstash/redis": "^1.23.3",
+    "clsx": "^2.1.1",
     "contentlayer": "^0.3.4",
+    "critters": "^0.0.25",
     "framer-motion": "^10.16.4",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.284.0",
     "markdown-wasm": "^1.2.0",
     "next": "^13.5.4",
@@ -28,6 +41,7 @@
     "typescript": "^5.2.2"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^13.5.4",
     "@opentelemetry/api": "1.6.0",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.10",
@@ -35,6 +49,7 @@
     "@types/react": "^18.2.28",
     "@types/react-dom": "^18.2.13",
     "autoprefixer": "^10.4.16",
+    "lighthouse": "^11.6.0",
     "postcss": "^8.4.31",
     "postcss-nesting": "^12.0.1",
     "rome": "^12.1.3",

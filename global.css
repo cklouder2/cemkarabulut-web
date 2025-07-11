@@ -3,8 +3,185 @@
 @tailwind utilities;
 
 @layer base {
+  /* Critical CSS optimizations */
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden !important;
+  }
+  
+  body {
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden !important;
+  }
+  
+  /* Optimize text rendering */
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Reduce layout shift */
+  img, video, canvas, audio, iframe, embed, object {
+    display: block;
+    max-width: 100%;
+  }
+  
   .text-edge-outline {
     -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+  }
+  
+  /* Sayfa yüklenirken siyah background garantisi */
+  html, body {
+    background-color: #000000 !important;
+  }
+  
+  /* Optimize animations */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* Particles animasyonu */
+  .animate-fade-in {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Glow Lines Animations */
+  .animate-fade-left {
+    animation: fadeLeft 3s ease-in-out forwards;
+  }
+  
+  .animate-fade-right {
+    animation: fadeRight 3s ease-in-out forwards;
+  }
+  
+  @keyframes fadeLeft {
+    0% {
+      transform: translateX(100%);
+      opacity: 0%;
+    }
+    30% {
+      transform: translateX(0%);
+      opacity: 100%;
+    }
+    100% {
+      opacity: 0%;
+    }
+  }
+  
+  @keyframes fadeRight {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0%;
+    }
+    30% {
+      transform: translateX(0%);
+      opacity: 100%;
+    }
+    100% {
+      opacity: 0%;
+    }
+  }
+  
+  /* Title animation */
+  .animate-title {
+    animation: title 3s ease-out forwards;
+  }
+  
+  @keyframes title {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Blink animation for cursor */
+  .animate-blink {
+    animation: blink 1s infinite;
+  }
+  
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+  
+  /* Form focus animations */
+  .form-input-focus {
+    transition: all 0.3s ease;
+  }
+  
+  .form-input-focus:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Success animation */
+  .animate-success {
+    animation: successPulse 0.6s ease-in-out;
+  }
+  
+  @keyframes successPulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Optimize font loading */
+  .font-display {
+    font-display: swap;
+  }
+  
+  /* Improve focus styles for accessibility */
+  *:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+  
+  /* Optimize for mobile */
+  @media (max-width: 768px) {
+    .text-edge-outline {
+      -webkit-text-stroke: 0.5px rgba(255,255,255,0.3);
+    }
+  }
+  
+  /* Cache optimization styles */
+  .cache-optimized {
+    will-change: auto;
+    contain: layout style paint;
+  }
+  
+  /* Optimize animations for cache */
+  .animate-cache-friendly {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
   }
 } 
 

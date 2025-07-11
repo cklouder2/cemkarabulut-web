@@ -1,138 +1,162 @@
-import Link from "next/link";
-import React from "react";
-import { allProjects } from "contentlayer/generated";
-import { Navigation } from "../components/nav";
+"use client";
+import { useEffect, useState, Suspense, lazy, useRef } from "react";
+import Navigation from "../components/nav";
+import { motion } from "framer-motion";
 import { Card } from "../components/card";
-import { Article } from "./article";
-import { Redis } from "@upstash/redis";
-import { Eye } from "lucide-react";
+import { Typewriter } from "../components/typewriter";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 
-const redis = Redis.fromEnv();
+// Lazy load components
+const MouseGradient = lazy(() => import("../components/mouse-gradient"));
+const Particles = lazy(() => import("../components/particles"));
 
-export const revalidate = 60;
-export default async function ProjectsPage() {
-  const views = (
-    await redis.mget<number[]>(
-      ...allProjects.map((p) => ["pageviews", "projects", p.slug].join(":")),
-    )
-  ).reduce((acc, v, i) => {
-    acc[allProjects[i].slug] = v ?? 0;
-    return acc;
-  }, {} as Record<string, number>);
+export default function ProjectsPage() {
+  const [countdown, setCountdown] = useState(5);
+  const [isRedirecting, setIsRedirecting] = useState(false);
+  const hasRedirectedRef = useRef(false);
+  const [typewriterDone, setTypewriterDone] = useState(false);
+  const [showBodyCopy, setShowBodyCopy] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+  const scrollHandled = useRef(false);
+  // Fade-in bodycopy after Typewriter
+  const handleTypewriterDone = () => {
+    setTypewriterDone(true);
+    setShowBodyCopy(true);
+    setTimeout(() => setShowContent(true), 700);
+  };
+  // Scroll-adaptive: if user scrolls, show everything immediately
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!scrollHandled.current && (!typewriterDone || !showBodyCopy || !showContent)) {
+        setTypewriterDone(true);
+        setShowBodyCopy(true);
+        setShowContent(true);
+        scrollHandled.current = true;
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [typewriterDone, showBodyCopy, showContent]);
+  // Only run Typewriter on first mount
+  const [typewriterMounted, setTypewriterMounted] = useState(false);
+  useEffect(() => { setTypewriterMounted(true); }, []);
 
-  const featured = allProjects.find((project) => project.slug === "unkey")!;
-  const top2 = allProjects.find((project) => project.slug === "planetfall")!;
-  const top3 = allProjects.find((project) => project.slug === "highstorm")!;
-  const sorted = allProjects
-    .filter((p) => p.published)
-    .filter(
-      (project) =>
-        project.slug !== featured.slug &&
-        project.slug !== top2.slug &&
-        project.slug !== top3.slug,
-    )
-    .sort(
-      (a, b) =>
-        new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
-        new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
-    );
+  useEffect(() => {
+    if (showContent && !hasRedirectedRef.current) {
+      const timer = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            if (!hasRedirectedRef.current) {
+              hasRedirectedRef.current = true;
+              setIsRedirecting(true);
+              // Behance'i yeni sekmede aç
+              window.open("https://www.behance.net/cemkarabulut", "_blank");
+            }
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [showContent]);
 
   return (
-    <div className="relative pb-16">
+    <div className="relative min-h-screen bg-black overflow-x-hidden">
+      {/* Particles - Background effect */}
+      <Suspense fallback={null}>
+        <Particles className="absolute inset-0 z-10 animate-fade-in" quantity={100} />
+      </Suspense>
+      
+      {/* MouseGradient - Load with delay for better performance */}
+      <Suspense fallback={null}>
+        <MouseGradient />
+      </Suspense>
+      
       <Navigation />
-      <div className="px-6 pt-20 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
-        <div className="max-w-2xl mx-auto lg:mx-0">
-          <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
-            Projects
-          </h2>
-          <p className="mt-4 text-zinc-400">
-            Some of the projects are from work and some are on my own time.
-          </p>
+      
+      <div className="px-6 pt-20 mx-auto space-y-8 max-w-6xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative">
+        <div className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+          <h1 className="text-4xl font-bold text-zinc-100 mb-8">
+            {typewriterMounted && !typewriterDone ? (
+              <Typewriter text="Portfolio" speed={40} onDone={handleTypewriterDone} />
+            ) : (
+              "Portfolio"
+            )}
+          </h1>
+          <p className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>Explore my latest work and creative projects on Behance. A showcase of brand identity, digital campaigns, motion graphics, and innovative design solutions.</p>
         </div>
-        <div className="w-full h-px bg-zinc-800" />
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
-        <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 ">
-          <Card>
-            <Link href={`/projects/${featured.slug}`}>
-              <article className="relative w-full h-full p-4 md:p-8">
-                <div className="flex items-center justify-between gap-2">
-                  <div className="text-xs text-zinc-100">
-                    {featured.date ? (
-                      <time dateTime={new Date(featured.date).toISOString()}>
-                        {Intl.DateTimeFormat(undefined, {
-                          dateStyle: "medium",
-                        }).format(new Date(featured.date))}
-                      </time>
-                    ) : (
-                      <span>SOON</span>
-                    )}
-                  </div>
-                  <span className="flex items-center gap-1 text-xs text-zinc-500">
-                    <Eye className="w-4 h-4" />{" "}
-                    {Intl.NumberFormat("en-US", { notation: "compact" }).format(
-                      views[featured.slug] ?? 0,
-                    )}
-                  </span>
-                </div>
-
-                <h2
-                  id="featured-post"
-                  className="mt-4 text-3xl font-bold text-zinc-100 group-hover:text-white sm:text-4xl font-display"
-                >
-                  {featured.title}
-                </h2>
-                <p className="mt-4 leading-8 duration-150 text-zinc-400 group-hover:text-zinc-300">
-                  {featured.description}
-                </p>
-                <div className="absolute bottom-4 md:bottom-8">
-                  <p className="hidden text-zinc-200 hover:text-zinc-50 lg:block">
-                    Read more <span aria-hidden="true">&rarr;</span>
+        {showContent && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="space-y-12"
+          >
+            <Card className="p-12">
+              <div className="space-y-8">
+                {/* Başlık */}
+                <div>
+                  <h2 className="text-2xl font-semibold text-zinc-100 mb-4">
+                    Behance Portfolio
+                  </h2>
+                  <p className="text-lg text-zinc-300 leading-relaxed">
+                    Cem's Behance portfolio is opening in a new tab. You'll be redirected automatically in a few seconds.
                   </p>
                 </div>
-              </article>
-            </Link>
-          </Card>
 
-          <div className="flex flex-col w-full gap-8 mx-auto border-t border-gray-900/10 lg:mx-0 lg:border-t-0 ">
-            {[top2, top3].map((project) => (
-              <Card key={project.slug}>
-                <Article project={project} views={views[project.slug] ?? 0} />
-              </Card>
-            ))}
-          </div>
-        </div>
-        <div className="hidden w-full h-px md:block bg-zinc-800" />
+                {/* Geri Sayım */}
+                <div className="space-y-4">
+                  <div className="text-6xl font-bold text-white mb-4 text-center">
+                    {countdown}
+                  </div>
+                  <p className="text-zinc-400 text-center">
+                    Redirecting to Behance...
+                  </p>
+                </div>
 
-        <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
-          <div className="grid grid-cols-1 gap-4">
-            {sorted
-              .filter((_, i) => i % 3 === 0)
-              .map((project) => (
-                <Card key={project.slug}>
-                  <Article project={project} views={views[project.slug] ?? 0} />
-                </Card>
-              ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {sorted
-              .filter((_, i) => i % 3 === 1)
-              .map((project) => (
-                <Card key={project.slug}>
-                  <Article project={project} views={views[project.slug] ?? 0} />
-                </Card>
-              ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {sorted
-              .filter((_, i) => i % 3 === 2)
-              .map((project) => (
-                <Card key={project.slug}>
-                  <Article project={project} views={views[project.slug] ?? 0} />
-                </Card>
-              ))}
-          </div>
-        </div>
+                {/* Manuel Link */}
+                <div className="pt-6 border-t border-zinc-700/50">
+                  <p className="text-zinc-400 mb-4 text-center">
+                    If you're not redirected automatically, click the button below:
+                  </p>
+                  <div className="flex justify-center">
+                    <motion.a
+                      href="https://www.behance.net/cemkarabulut"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-8 py-3 bg-zinc-800/50 border border-zinc-700/50 rounded-lg text-white font-semibold hover:bg-zinc-700/50 transition-all duration-300 hover:scale-105"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <FontAwesomeIcon icon={faExternalLinkAlt} className="w-4 h-4" />
+                      View Portfolio on Behance
+                    </motion.a>
+                  </div>
+                </div>
+
+                {/* Yönlendirme Durumu */}
+                {isRedirecting && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="pt-4 text-center"
+                  >
+                    <p className="text-green-400 font-medium">
+                      ✓ Redirecting to Behance...
+                    </p>
+                  </motion.div>
+                )}
+              </div>
+            </Card>
+          </motion.div>
+        )}
       </div>
+      
     </div>
   );
 }

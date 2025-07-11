@@ -1,33 +1,158 @@
-<div align="center">
-    <a href="https://chronark.com"><h1 align="center">chronark.com</h1></a>
+# Cem Karabulut - Creative Art Director Portfolio
 
-My personal website, built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Upstash](https://upstash.com?ref=chronark.com), [Contentlayer](https://www.contentlayer.dev/) and deployed to [Vercel](https://vercel.com/).
+Modern, performans odaklı ve SEO optimize edilmiş kişisel portföy sitesi.
 
-</div>
+## 🚀 Performans Özellikleri
 
-<br/>
+- **Core Web Vitals Optimizasyonu**: LCP, FID ve CLS metrikleri optimize edildi
+- **Lazy Loading**: Kritik olmayan bileşenler lazy load ediliyor
+- **Bundle Splitting**: Kod bölümleme ile daha hızlı yükleme
+- **Image Optimization**: Next.js image optimizasyonu
+- **Font Optimization**: Font display swap ve preloading
+- **Caching**: Statik kaynaklar için agresif caching
+- **Compression**: Gzip sıkıştırma aktif
 
+## 📊 SEO Özellikleri
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/upstash/clone?demo-title=Next.js%20Portfolio%20with%20Pageview%20Counter&demo-description=Portfolio%20site%20with%20pageview%20counter%2C%20built%20with%20Next.js%2013%20App%20Router%2C%20Contentlayer%2C%20and%20Upstash%20Redis.&demo-url=https%3A%2F%2Fchronark.com%2F&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1DA8n5a6WaP9p1FXf9LmUY%2Fc6264fa2732355787bf657df92dda8a1%2FCleanShot_2023-04-17_at_14.17.37.png&project-name=Next.js%20Portfolio%20with%20Pageview%20Counter&repository-name=nextjs-portfolio-pageview-counter&repository-url=https%3A%2F%2Fgithub.com%2Fchronark%2Fchronark.com&from=templates&integration-ids=oac_V3R1GIpkoJorr6fqyiwdhl17)
+- **Structured Data**: Schema.org markup'ları
+- **Meta Tags**: Kapsamlı meta tag optimizasyonu
+- **Sitemap**: Otomatik sitemap.xml
+- **Robots.txt**: SEO dostu robots.txt
+- **Open Graph**: Sosyal medya paylaşım optimizasyonu
+- **Twitter Cards**: Twitter paylaşım optimizasyonu
 
-## Running Locally
+## 🛠️ Teknolojiler
 
+- **Next.js 13**: App Router ile modern React framework
+- **TypeScript**: Tip güvenliği
+- **Tailwind CSS**: Utility-first CSS framework
+- **Framer Motion**: Animasyonlar
+- **Contentlayer**: MDX içerik yönetimi
+- **FontAwesome**: İkonlar
 
-```sh-session
-git clone https://github.com/chronark/chronark.com.git
-cd chronark.com
+## 📈 Performans Metrikleri
+
+```bash
+# Bundle analizi
+npm run analyze
+
+# Lighthouse performans testi
+npm run lighthouse
+
+# Kapsamlı performans testi
+npm run performance
 ```
 
+## 🚀 Kurulum
 
-Create a `.env` file similar to [`.env.example`](https://github.com/chronark/chronark.com/blob/main/.env.example).
-
-Then install dependencies and run the development server:
-```sh-session
+```bash
+# Bağımlılıkları yükle
 pnpm install
+
+# Geliştirme sunucusunu başlat
 pnpm dev
+
+# Production build
+pnpm build
+
+# Production sunucusunu başlat
+pnpm start
 ```
 
+## 📁 Proje Yapısı
 
-## Cloning / Forking
+```
+cem_karabulut_web/
+├── app/                    # Next.js App Router
+│   ├── components/         # React bileşenleri
+│   ├── about/             # Hakkında sayfası
+│   ├── experience/        # Deneyim sayfası
+│   ├── skills/           # Yetenekler sayfası
+│   ├── projects/         # Projeler sayfası
+│   └── contact/          # İletişim sayfası
+├── content/              # MDX içerik dosyaları
+├── public/              # Statik dosyalar
+└── util/               # Yardımcı fonksiyonlar
+```
 
-Please remove all of my personal information (projects, images, etc.) before deploying your own version of this site.
+## 🔧 Performans İyileştirmeleri
+
+### Bundle Optimizasyonu
+- Kritik olmayan bileşenler lazy loading
+- Bundle splitting ile kod bölümleme
+- Tree shaking ile kullanılmayan kod temizleme
+
+### CSS Optimizasyonu
+- Tailwind JIT mode
+- Critical CSS inline
+- Unused CSS temizleme
+
+### Font Optimizasyonu
+- Font display swap
+- Preloading kritik fontlar
+- Fallback fontlar
+
+### Image Optimizasyonu
+- Next.js Image component
+- WebP format desteği
+- Lazy loading
+
+## 📊 SEO İyileştirmeleri
+
+### Meta Tags
+- Title ve description optimizasyonu
+- Open Graph tags
+- Twitter Card tags
+- Canonical URLs
+
+### Structured Data
+- Person schema markup
+- Organization schema
+- Breadcrumb schema
+
+### Technical SEO
+- Sitemap.xml
+- Robots.txt
+- XML sitemap
+- Meta robots
+
+## 🎯 Core Web Vitals
+
+- **LCP (Largest Contentful Paint)**: < 2.5s
+- **FID (First Input Delay)**: < 100ms
+- **CLS (Cumulative Layout Shift)**: < 0.1
+
+## 📱 Responsive Design
+
+- Mobile-first yaklaşım
+- Touch-friendly interface
+- Optimized for all screen sizes
+
+## 🔒 Güvenlik
+
+- CSP headers
+- XSS protection
+- Frame options
+- Content type options
+
+## 📈 Analytics
+
+- Beam Analytics entegrasyonu
+- Performance monitoring
+- Core Web Vitals tracking
+
+## 🚀 Deployment
+
+```bash
+# Production build
+pnpm build
+
+# Export static files
+pnpm export
+
+# Deploy to hosting platform
+```
+
+## 📝 License
+
+MIT License - Detaylar için LICENSE dosyasına bakın.

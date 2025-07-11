@@ -1,5 +1,5 @@
 "use client";
-import { ArrowLeft, Eye, Github, Twitter } from "lucide-react";
+import { ArrowLeft, Eye, Github, Linkedin, Instagram } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -9,6 +9,8 @@ type Props = {
 		title: string;
 		description: string;
 		repository?: string;
+		tech?: string[];
+		image?: string;
 	};
 
 	views: number;
@@ -67,8 +69,8 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 								views,
 							)}
 						</span>
-						<Link target="_blank" href="https://twitter.com/chronark_">
-							<Twitter
+						<Link target="_blank" href="https://linkedin.com/in/cemkarabulut">
+							<Linkedin
 								className={`w-6 h-6 duration-200 hover:font-medium ${
 									isIntersecting
 										? " text-zinc-400 hover:text-zinc-100"
@@ -76,7 +78,16 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 								} `}
 							/>
 						</Link>
-						<Link target="_blank" href="https://github.com/chronark">
+						<Link target="_blank" href="https://instagram.com/cemkarabulut">
+							<Instagram
+								className={`w-6 h-6 duration-200 hover:font-medium ${
+									isIntersecting
+										? " text-zinc-400 hover:text-zinc-100"
+										: "text-zinc-600 hover:text-zinc-900"
+								} `}
+							/>
+						</Link>
+						<Link target="_blank" href="https://github.com/cemkarabulut">
 							<Github
 								className={`w-6 h-6 duration-200 hover:font-medium ${
 									isIntersecting
@@ -108,7 +119,22 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 						<p className="mt-6 text-lg leading-8 text-zinc-300">
 							{project.description}
 						</p>
+						{project.tech && project.tech.length > 0 && (
+							<div className="mt-6 flex flex-wrap justify-center gap-2">
+								{project.tech.map((tech) => (
+									<span key={tech} className="bg-zinc-800 text-zinc-200 px-3 py-1 rounded text-sm font-medium">
+										{tech}
+									</span>
+								))}
+							</div>
+						)}
 					</div>
+
+					{project.image && (
+						<div className="mt-8 max-w-2xl">
+							<img src={project.image} alt={project.title} className="rounded-lg w-full max-h-96 object-cover" />
+						</div>
+					)}
 
 					<div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
 						<div className="grid grid-cols-1 gap-y-6 gap-x-8 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">

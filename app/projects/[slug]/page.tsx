@@ -4,7 +4,8 @@ import { Mdx } from "@/app/components/mdx";
 import { Header } from "./header";
 import "./mdx.css";
 import { ReportView } from "./view";
-import { Redis } from "@upstash/redis";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export const revalidate = 60;
 
@@ -13,8 +14,6 @@ type Props = {
     slug: string;
   };
 };
-
-const redis = Redis.fromEnv();
 
 export async function generateStaticParams(): Promise<Props["params"][]> {
   return allProjects
@@ -32,8 +31,7 @@ export default async function PostPage({ params }: Props) {
     notFound();
   }
 
-  const views =
-    (await redis.get<number>(["pageviews", "projects", slug].join(":"))) ?? 0;
+  const views = 0; // Static export için view count kaldırıldı
 
   return (
     <div className="bg-zinc-50 min-h-screen">
@@ -43,6 +41,16 @@ export default async function PostPage({ params }: Props) {
       <article className="px-4 py-12 mx-auto prose prose-zinc prose-quoteless">
         <Mdx code={project.body.code} />
       </article>
+
+      <div className="px-4 py-8 mx-auto max-w-4xl">
+        <Link
+          href="/projects"
+          className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 font-medium"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Tüm Projeler
+        </Link>
+      </div>
     </div>
   );
 }

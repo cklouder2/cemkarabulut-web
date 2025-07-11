@@ -1,3 +1,8 @@
+// BACKUP: Current Homepage State (Working Glow Lines + Typewriter + FontAwesome + Featured Brands)
+// Date: 2025-01-27
+
+export const currentHomepageBackup = {
+  pageContent: `
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState, useCallback, Suspense } from "react";
@@ -11,7 +16,6 @@ import {
   faFolderOpen, 
   faEnvelope 
 } from "@fortawesome/free-solid-svg-icons";
-import SocialIcons from "./components/social-icons";
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component<
@@ -97,7 +101,7 @@ function Typewriter({ text, speed = 80, className = "", onComplete }: {
   return (
     <span className={className}>
       {displayed}
-      <span className={`inline-block w-2 ${showCursor && !hideCursor ? "opacity-100" : "opacity-0"} animate-blink`}>|</span>
+      <span className={\`inline-block w-2 \${showCursor && !hideCursor ? "opacity-100" : "opacity-0"} animate-blink\`}>|</span>
     </span>
   );
 }
@@ -125,19 +129,19 @@ const FeaturedBrands = React.memo(({ brands, showTitle, showBrands }: {
   }, [brands, showBrands]);
 
   return (
-    <div className="text-xs animate-fade-in">
-      <p className={`mb-4 font-medium transition-opacity duration-50 ${showTitle ? 'opacity-100' : 'opacity-0'} text-white`}>
+    <div className="text-xs text-zinc-600 animate-fade-in">
+      <p className={\`mb-4 font-medium transition-opacity duration-50 \${showTitle ? 'opacity-100' : 'opacity-0'}\`}>
         Featured brands I've worked with:
       </p>
       <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
         {brands.map((brand, index) => (
           <span
             key={index}
-            className={`px-3 py-1 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-200 font-medium transition-all duration-500 transform hover:border-zinc-400/60 hover:shadow-lg ${
+            className={\`px-3 py-1 rounded-full bg-zinc-800/50 text-zinc-400 font-medium hover:text-zinc-300 transition-all duration-500 transform \${
               visibleBrands.includes(index) 
                 ? 'opacity-100 scale-100' 
                 : 'opacity-0 scale-75'
-            }`}
+            }\`}
           >
             {brand}
           </span>
@@ -159,11 +163,11 @@ const navigation = [
 ];
 
 const featuredBrands = [
-  "Microsoft", "Coca-Cola", "Nestlé", "Ford Otosan", "Nescafé", "Lipton", "Cif", "Avon", "Beko", "Dimes", "Obsesso", "Akbank", "Enerjisa", "Kayalar Kimya", "Düfa", "Metro İstanbul", "İBB", "İGDAŞ", "Türk Nippon Sigorta", "Baymak", "Electrolux", "Vialand", "Greenlog", "NoorCM", "Laurastar", "Baseus", "Babyliss", "CVK", "Air Clinic", "KKB", "Senkron", "Ingram Micro", "Burgan Bank"
+  "Microsoft", "Coca-Cola", "Nestlé", "Ford Otosan", "Nescafé", "Lipton", "Cif", "Avon", "Beko", "Dimes", "Obsesso", "Akbank", "Enerjisa", "Kayalar Kimya", "Düfa", "Metro İstanbul", "İBB", "İGDAŞ", "Türk Nippon Sigorta", "Baymak", "Electrolux", "Vialand", "Greenlog"
 ];
 
 const longTextWords = [
-  "I'm", "a", "Creative", "Art", "Director", "with", "over", "15", "years", "of", "experience", "in", "visual", "communication", "and", "digital", "media", "design.", "I", "specialize", "in", "brand", "identity,", "campaign", "design,", "and", "multimedia", "storytelling.", "I'm", "passionate", "about", "crafting", "compelling", "visual", "narratives", "that", "help", "brands", "connect", "with", "their", "audiences", "through", "innovative", "design", "solutions", "and", "thoughtful", "creative", "direction."
+  "Creative", "Art", "Director", "with", "over", "15", "years", "of", "experience", "in", "visual", "communication", "and", "digital", "media", "design.", "Specialized", "in", "brand", "identity", "development,", "campaign", "design,", "and", "multimedia", "storytelling.", "Passionate", "about", "creating", "compelling", "visual", "narratives", "that", "connect", "brands", "with", "their", "audiences", "through", "innovative", "design", "solutions", "and", "strategic", "creative", "direction."
 ];
 
 // Main component
@@ -176,7 +180,6 @@ export default function Home() {
   const [visibleNavItems, setVisibleNavItems] = useState<number[]>([]);
   const [isMouseGradientLoaded, setIsMouseGradientLoaded] = useState(false);
   const [isParticlesLoaded, setIsParticlesLoaded] = useState(false);
-  // showSocialIcons kaldırıldı
 
   // Animation callbacks
   const startButtons = useCallback(() => {
@@ -228,20 +231,19 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const style = document.createElement("style");
-      style.innerHTML = `.animate-blink { animation: blink 1s step-end infinite; } @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }`;
+      style.innerHTML = \`.animate-blink { animation: blink 1s step-end infinite; } @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }\`;
       document.head.appendChild(style);
     }
   }, []);
 
   return (
     <ErrorBoundary>
-      <SocialIcons show={showNavbar} />
       <div className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden bg-black">
         {/* Particles */}
         {isParticlesLoaded && (
           <ErrorBoundary>
             <Suspense fallback={null}>
-              <Particles className="absolute inset-0 z-20 animate-fade-in" quantity={100} />
+              <Particles className="absolute inset-0 z-10 animate-fade-in" quantity={100} />
             </Suspense>
           </ErrorBoundary>
         )}
@@ -256,15 +258,15 @@ export default function Home() {
         )}
         
         {/* Navigation */}
-        <nav className={`my-4 transition-opacity duration-100 z-30 ${showNavbar ? 'opacity-100' : 'opacity-0'}`}>
+        <nav className={\`my-4 transition-opacity duration-100 z-30 \${showNavbar ? 'opacity-100' : 'opacity-0'}\`}>
           <ul className="flex items-center justify-center gap-6">
             {navigation.map((item, index) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-2 text-sm font-bold duration-500 text-white hover:text-gray-400 transition-all ${
+                className={\`flex items-center gap-2 text-sm font-bold duration-500 text-white hover:text-gray-400 transition-all \${
                   visibleNavItems.includes(index) ? 'opacity-100' : 'opacity-0'
-                }`}
+                }\`}
               >
                 <FontAwesomeIcon icon={item.icon} className="w-4 h-4" />
                 {item.name}
@@ -277,7 +279,7 @@ export default function Home() {
         <div className="hidden w-screen h-px md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
         
         {/* Title */}
-        <h1 className="px-0.5 z-30 text-4xl text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text ">
+        <h1 className="py-3.5 px-0.5 z-30 text-4xl text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text ">
           <Typewriter text="Cem Karabulut" speed={50} onComplete={startLongText} />
         </h1>
         
@@ -285,27 +287,16 @@ export default function Home() {
         <div className="hidden w-screen h-px md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
         
         {/* Content */}
-        <div className="mt-0 mb-4 text-center animate-fade-in z-30">
-          <h2 className="text-base font-medium text-zinc-200 max-w-4xl mx-auto mb-4 mt-0">
+        <div className="my-4 text-center animate-fade-in z-30">
+          <h2 className="text-base font-medium text-zinc-500 max-w-4xl mx-auto mb-8">
             <span className="min-h-[4rem] block">
               <span>
-                {longTextWords.slice(0, 18).map((word, index) => (
+                {longTextWords.map((word, index) => (
                   <span
                     key={index}
-                    className={`transition-opacity duration-300 ${
+                    className={\`transition-opacity duration-300 \${
                       visibleWords.includes(index) ? 'opacity-100' : 'opacity-0'
-                    }`}
-                  >
-                    {word}{' '}
-                  </span>
-                ))}
-                <br />
-                {longTextWords.slice(18).map((word, index) => (
-                  <span
-                    key={"br2-" + index}
-                    className={`transition-opacity duration-300 ${
-                      visibleWords.includes(index + 18) ? 'opacity-100' : 'opacity-0'
-                    }`}
+                    }\`}
                   >
                     {word}{' '}
                   </span>
@@ -315,7 +306,7 @@ export default function Home() {
           </h2>
           
           {/* Buttons */}
-          <div className={`flex items-center justify-center gap-4 mb-12 transition-all duration-50 z-30 ${showButtons ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
+          <div className={\`flex items-center justify-center gap-4 mb-12 transition-all duration-50 z-30 \${showButtons ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}\`}>
             <Link
               href="/about"
               className="px-8 py-3 rounded-lg bg-gradient-to-r from-zinc-800 to-zinc-700 text-zinc-100 font-semibold hover:from-zinc-700 hover:to-zinc-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
@@ -339,5 +330,51 @@ export default function Home() {
     </ErrorBoundary>
   );
 }
-
-
+  `,
+  description: "Working version with proper glow lines behavior - lines disappear after animation",
+  features: [
+    "FontAwesome ikonları ile navigation menüsü",
+    "Typewriter animasyonu (50ms hız)",
+    "Yanıp sönen imleç (yazı tamamlandıktan sonra kaybolur)",
+    "Uzun açıklama metni (word-by-word animasyon)",
+    "İki buton (About ve Portfolio)",
+    "23 featured brand (staggered animasyon ile)",
+    "ÇALIŞAN glow lines (3s animasyon, sonra kaybolur)",
+    "Particles efekti",
+    "Mouse gradient efekti",
+    "Error boundary ile hata yönetimi"
+  ],
+  animationTiming: {
+    typewriter: "50ms hız",
+    glowLines: "3s süre (orjinal chronark gibi)",
+    featuredBrands: "100ms arayla, 100ms gecikme",
+    cursor: "500ms yanıp sönme, 1s sonra kaybolma",
+    longText: "25ms arayla word animasyonu"
+  },
+  tailwindConfig: {
+    animations: {
+      "fade-in": "fade-in 3s ease-in-out forwards",
+      title: "title 3s ease-out forwards",
+      "fade-left": "fade-left 3s ease-in-out forwards",
+      "fade-right": "fade-right 3s ease-in-out forwards"
+    },
+    keyframes: {
+      "fade-left": {
+        "0%": { transform: "translateX(100%)", opacity: "0%" },
+        "30%": { transform: "translateX(0%)", opacity: "100%" },
+        "100%": { opacity: "0%" }
+      },
+      "fade-right": {
+        "0%": { transform: "translateX(-100%)", opacity: "0%" },
+        "30%": { transform: "translateX(0%)", opacity: "100%" },
+        "100%": { opacity: "0%" }
+      }
+    }
+  },
+  workingFeatures: [
+    "Glow lines 3 saniye animasyon yapıyor",
+    "Animasyon bittiğinde opacity 0% kalıyor (forwards)",
+    "animate-glow sınıfı kaldırıldı (infinite alternate sorunu)",
+    "Orjinal chronark davranışı ile tam uyumlu"
+  ]
+}; 

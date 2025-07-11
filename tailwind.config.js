@@ -7,7 +7,15 @@ module.exports = {
 		"./mdx-components.tsx",
 		"content/**/*.mdx",
 	],
-
+	// Enable JIT mode for better performance
+	mode: 'jit',
+	// Optimize for production
+	...(process.env.NODE_ENV === 'production' && {
+		corePlugins: {
+			// Disable unused utilities in production
+			container: false,
+		},
+	}),
 	theme: {
 		extend: {
 			typography: {
@@ -29,8 +37,9 @@ module.exports = {
 				},
 			},
 			fontFamily: {
-				sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
-				display: ["var(--font-calsans)"],
+				sans: ["var(--font-montserrat)", ...defaultTheme.fontFamily.sans],
+				display: ["var(--font-montserrat)"],
+				montserrat: ["var(--font-montserrat)", ...defaultTheme.fontFamily.sans],
 			},
 			backgroundImage: {
 				"gradient-radial":
@@ -41,6 +50,7 @@ module.exports = {
 				title: "title 3s ease-out forwards",
 				"fade-left": "fade-left 3s ease-in-out forwards",
 				"fade-right": "fade-right 3s ease-in-out forwards",
+				"glow": "glow 2s ease-in-out infinite alternate",
 			},
 			keyframes: {
 				"fade-in": {
@@ -101,11 +111,58 @@ module.exports = {
 						opacity: "100%",
 					},
 				},
+				"glow": {
+					"0%": {
+						"box-shadow": "0 0 20px rgba(255, 255, 255, 0.1)",
+					},
+					"100%": {
+						"box-shadow": "0 0 30px rgba(255, 255, 255, 0.3)",
+					},
+				},
+			},
+			// Optimize for performance
+			spacing: {
+				'18': '4.5rem',
+				'88': '22rem',
+			},
+			// Optimize colors for better contrast
+			colors: {
+				zinc: {
+					50: '#fafafa',
+					100: '#f4f4f5',
+					200: '#e4e4e7',
+					300: '#d4d4d8',
+					400: '#a1a1aa',
+					500: '#71717a',
+					600: '#52525b',
+					700: '#3f3f46',
+					800: '#27272a',
+					900: '#18181b',
+					950: '#09090b',
+				},
 			},
 		},
 	},
 	plugins: [
 		require("@tailwindcss/typography"),
 		require("tailwindcss-debug-screens"),
+		// Custom plugin for performance optimizations
+		function({ addUtilities, theme }) {
+			const newUtilities = {
+				'.text-balance': {
+					'text-wrap': 'balance',
+				},
+				'.will-change-auto': {
+					'will-change': 'auto',
+				},
+				'.will-change-scroll': {
+					'will-change': 'scroll-position',
+				},
+				'.will-change-transform': {
+					'will-change': 'transform',
+				},
+			}
+			addUtilities(newUtilities)
+		},
 	],
 };
