@@ -13,12 +13,12 @@ const socials = [
   },
   {
     icon: <Mail size={20} strokeWidth={1.5} />,
-    href: "mailto:cem@cemkarabulut.com",
+    href: "mailto:info@cemkarabulut.com",
     label: "Email",
   },
   {
     icon: <Instagram size={20} strokeWidth={1.5} />,
-    href: "https://instagram.com/cemkarabulut",
+    href: "https://instagram.com/ceemkarabulut",
     label: "Instagram",
   },
   {
@@ -41,7 +41,7 @@ export function Footer() {
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-zinc-100">Cem Karabulut</h3>
             <p className="text-sm text-zinc-400 leading-relaxed">
-              This site is built with modern web technologies including Next.js, React, TypeScript, and Tailwind CSS for a smooth, responsive experience.
+              I’m Cem Karabulut, a creative art director and designer based in Istanbul. I love turning ideas into visuals and helping brands tell their stories in unique ways.
             </p>
             <div className="flex items-center gap-2 text-xs text-zinc-500 pt-2">
               <span>Made with</span>

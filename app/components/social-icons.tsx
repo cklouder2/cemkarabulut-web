@@ -32,7 +32,7 @@ const socials = [
     label: "LinkedIn"
   },
   {
-    href: "https://instagram.com/cemkarabulut",
+    href: "https://instagram.com/ceemkarabulut",
     icon: faInstagramBrand,
     bg: "from-pink-500 to-purple-600",
     label: "Instagram"
@@ -44,25 +44,25 @@ const socials = [
     label: "Behance"
   },
   {
-    href: "https://x.com/cemkarabulut",
+    href: "https://x.com/ceemkarabulut",
     icon: "x",
     bg: "from-zinc-900 to-zinc-800",
     label: "X"
   },
   {
-    href: "mailto:cem@cemkarabulut.com",
+    href: "mailto:info@cemkarabulut.com",
     icon: faEnvelopeSolid,
     bg: "from-emerald-600 to-teal-600",
     label: "E-mail"
   },
   {
-    href: "tel:+905321234567",
+    href: "tel:+905446806176",
     icon: faPhoneSolid,
     bg: "from-blue-500 to-green-500",
     label: "Telefon"
   },
   {
-    href: "https://wa.me/905321234567",
+    href: "https://wa.me/905446806176",
     icon: faWhatsapp,
     bg: "from-green-600 to-green-500",
     label: "WhatsApp"

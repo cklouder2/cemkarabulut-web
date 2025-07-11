@@ -23,6 +23,10 @@ export async function generateStaticParams(): Promise<Props["params"][]> {
     }));
 }
 
+export const metadata = {
+  description: "This page provides detailed information about a specific project by Cem Karabulut, including his role, process, and outcomes."
+};
+
 export default async function PostPage({ params }: Props) {
   const slug = params?.slug;
   const project = allProjects.find((project) => project.slug === slug);

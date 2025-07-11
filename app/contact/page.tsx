@@ -12,8 +12,9 @@ import {
   faMapMarkerAlt,
   faClock,
   faUser,
-  faComments
+  faComments,
 } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { 
   faLinkedin as faLinkedinBrand,
   faInstagram as faInstagramBrand,
@@ -41,16 +42,16 @@ const contactMethods = [
   {
     icon: faEnvelope,
     title: "Email",
-    value: "cem@cemkarabulut.com",
-    href: "mailto:cem@cemkarabulut.com",
+    value: "info@cemkarabulut.com",
+    href: "mailto:info@cemkarabulut.com",
     description: "Direct communication for projects and collaborations",
     color: "from-blue-500 to-blue-600"
   },
   {
     icon: faPhone,
     title: "Phone",
-    value: "+90 (532) 123 45 67",
-    href: "tel:+905321234567",
+    value: "+90 (544) 680 61 76",
+    href: "tel:+905446806176",
     description: "Available for urgent matters and calls",
     color: "from-green-500 to-green-600"
   },
@@ -84,8 +85,8 @@ const socialLinks = [
   {
     icon: faInstagramBrand,
     title: "Instagram",
-    handle: "@cemkarabulut",
-    href: "https://instagram.com/cemkarabulut",
+    handle: "@ceemkarabulut",
+    href: "https://instagram.com/ceemkarabulut",
     description: "Creative work and behind-the-scenes",
     color: "from-pink-500 to-purple-600"
   },
@@ -100,8 +101,8 @@ const socialLinks = [
   {
     isX: true,
     title: "X",
-    handle: "@cemkarabulut",
-    href: "https://x.com/cemkarabulut",
+    handle: "@ceemkarabulut",
+    href: "https://x.com/ceemkarabulut",
     description: "Industry insights and updates",
     color: "from-zinc-900 to-zinc-800"
   }
@@ -206,16 +207,16 @@ export default function ContactPage() {
                       href={method.href}
                       className="p-6 block hover:bg-zinc-800/20 transition-all duration-300"
                     >
-                                           <div className="flex items-start space-x-4">
+                                           <div className="flex items-center gap-4">
                        <div className="flex-shrink-0">
                          <div className={`w-12 h-12 bg-gradient-to-br ${method.color} rounded-full flex items-center justify-center shadow-lg`}>
                            <FontAwesomeIcon icon={method.icon} className="text-white text-lg" />
                          </div>
                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl font-semibold text-zinc-100 mb-2">{method.title}</h3>
-                          <p className="text-zinc-300 font-medium text-lg mb-2">{method.value}</p>
-                          <p className="text-zinc-400 text-sm">{method.description}</p>
+                        <div className="flex-1 flex flex-col justify-center min-h-[48px]">
+                          <h3 className="text-base font-semibold text-zinc-100 mb-1 leading-tight">{method.title}</h3>
+                          <p className="text-zinc-300 font-medium text-sm mb-1 leading-tight">{method.value}</p>
+                          <p className="text-zinc-400 text-xs leading-tight">{method.description}</p>
                         </div>
                       </div>
                     </a>
@@ -225,10 +226,10 @@ export default function ContactPage() {
             </div>
 
             {/* Social Links Section */}
-            <Card className="p-8 mb-16">
+            <div className="mb-16">
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-zinc-100 mb-4">Let's Stay in Touch</h2>
-                <p className="text-zinc-400 font-medium text-lg">I share my latest work, creative thoughts, and sometimes a bit of behind-the-scenes. If you want to follow along or just say hi, you’re more than welcome!</p>
+                <h2 className="text-3xl font-bold text-zinc-100 mb-4">Let's Connect & Create Together</h2>
+                <p className="text-zinc-400 font-medium text-lg">I love sharing my creative journey, behind-the-scenes moments, and the stories behind my work. Whether you're here for inspiration, collaboration, or just to say hello - you're always welcome in my creative space!</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {socialLinks.map((social, index) => (
@@ -255,10 +256,10 @@ export default function ContactPage() {
                   </motion.a>
                 ))}
               </div>
-            </Card>
+            </div>
 
             {/* Services Section */}
-            <Card className="p-8 mb-16">
+            <div className="mb-16">
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold text-zinc-100 mb-4">Services I Offer</h2>
                 <p className="text-zinc-400 font-medium text-lg">Comprehensive creative solutions for your brand and marketing needs</p>
@@ -278,7 +279,7 @@ export default function ContactPage() {
                    </motion.div>
                 ))}
               </div>
-            </Card>
+            </div>
 
             {/* Call to Action */}
             <Card className="p-8 text-center z-30 relative overflow-visible">
@@ -291,21 +292,30 @@ export default function ContactPage() {
                   Whether you have a specific project in mind or just want to explore possibilities, 
                   I'm here to help bring your creative vision to life.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                     <a
-                     href="mailto:cem@cemkarabulut.com"
-                     className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold rounded-lg hover:from-emerald-500 hover:to-teal-500 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                   >
-                     <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
-                     Start a Conversation
-                   </a>
-                   <a
-                     href="tel:+905321234567"
-                     className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                   >
-                     <FontAwesomeIcon icon={faPhone} className="mr-2" />
-                     Call Now
-                   </a>
+                <div className="flex flex-col md:flex-row flex-wrap md:flex-nowrap gap-3 justify-center items-center">
+                  <a
+                    href="mailto:info@cemkarabulut.com"
+                    className="px-5 py-3 text-base bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold rounded-lg hover:from-emerald-500 hover:to-teal-500 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap"
+                  >
+                    <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
+                    Start a Conversation
+                  </a>
+                  <a
+                    href="tel:+905446806176"
+                    className="px-5 py-3 text-base bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap"
+                  >
+                    <FontAwesomeIcon icon={faPhone} className="mr-2" />
+                    Call Now
+                  </a>
+                  <a
+                   href="https://wa.me/905446806176"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="px-5 py-3 text-base bg-gradient-to-r from-green-500 to-green-700 text-white font-semibold rounded-lg hover:from-green-400 hover:to-green-600 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap"
+                  >
+                    <FontAwesomeIcon icon={faWhatsapp} className="mr-2" />
+                    Message on WhatsApp
+                  </a>
                 </div>
               </div>
             </Card>

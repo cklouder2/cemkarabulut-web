@@ -203,7 +203,7 @@ export default function AboutPage() {
 
   const socialLinks = [
     { icon: faLinkedinBrand, href: "https://linkedin.com/in/cemkarabulut", label: "LinkedIn" },
-    { icon: faInstagramBrand, href: "https://instagram.com/cemkarabulut", label: "Instagram" },
+    { icon: faInstagramBrand, href: "https://instagram.com/ceemkarabulut", label: "Instagram" },
     { icon: faBehanceBrand, href: "https://behance.net/cemkarabulut", label: "Behance" }
   ];
   
@@ -218,7 +218,7 @@ export default function AboutPage() {
             About Me
           </h1>
           <p className="mt-6 text-lg text-zinc-400 font-medium leading-relaxed">
-            Hi! I'm Cem Karabulut, a creative art director with 15+ years of experience in turning ideas into visuals that speak. I love building brand stories through design, whether it's a logo, a campaign, or a full digital experience. For me, design is all about connection, clarity, and creativity. Every brand has a unique story, and I love helping bring those stories to life in a way that feels authentic and memorable.
+            Cem Karabulut is a creative art director with 15+ years of experience in turning ideas into visuals that speak. He specializes in building brand stories through design, whether it's a logo, a campaign, or a full digital experience. His approach to design focuses on connection, clarity, and creativity. Every brand has a unique story, and Cem excels at bringing those stories to life in a way that feels authentic and memorable.
           </p>
         </div>
         <div className="divider-white" />
@@ -226,14 +226,14 @@ export default function AboutPage() {
           <Card className="p-8 md:p-12 mb-8">
             <h2 className="text-xl font-semibold mb-2 text-white">My Approach</h2>
             <p className="text-zinc-200">
-              My approach is all about blending strategy, creativity, and technology to create work that really means something. I love getting to know the people and stories behind every project. For me, every collaboration is a chance to learn, grow, and make something that truly connects.
+              Cem's approach is all about blending strategy, creativity, and technology to create work that really means something. He excels at getting to know the people and stories behind every project. For him, every collaboration is a chance to learn, grow, and make something that truly connects.
             </p>
           </Card>
           {/* Creative Vision Section */}
           <Card className="p-8 md:p-12 mb-8">
             <h2 className="text-2xl font-semibold text-zinc-100 mb-4">Creative Vision</h2>
             <p className="text-zinc-300 font-medium leading-relaxed">
-              My creative vision is all about curiosity and storytelling. I love exploring new ways to turn ideas into visuals that spark emotion and inspire action. Whether I’m working on a brand, a motion graphic, or a digital campaign, I want every project to feel fresh, thoughtful, and true to its purpose. For me, design is about connection, clarity, and creativity—helping people see and feel something new.
+              Cem's creative vision is all about curiosity and storytelling. He excels at exploring new ways to turn ideas into visuals that spark emotion and inspire action. Whether working on a brand, a motion graphic, or a digital campaign, he ensures every project feels fresh, thoughtful, and true to its purpose. His design philosophy focuses on connection, clarity, and creativity—helping people see and feel something new.
             </p>
           </Card>
 
@@ -241,7 +241,7 @@ export default function AboutPage() {
           <Card className="p-8 md:p-12 mb-8">
             <h2 className="text-2xl font-semibold text-zinc-100 mb-4">My Process</h2>
             <p className="text-zinc-300 font-medium leading-relaxed">
-              I start by listening—really listening—to understand not just what you want, but why you want it. I dive deep into research, sketch, experiment, and iterate until we find that sweet spot where strategy meets creativity. I believe in honesty, transparency, and treating every project like it’s the most important one I’ll ever work on. I value deep thinking, quality, and building real relationships along the way.
+              Cem starts by listening—really listening—to understand not just what a client wants, but why they want it. He dives deep into research, sketches, experiments, and iterates until that sweet spot where strategy meets creativity is found. He believes in honesty, transparency, and treating every project like it’s the most important one he’ll ever work on. Cem values deep thinking, quality, and building real relationships along the way.
             </p>
           </Card>
 
@@ -249,7 +249,7 @@ export default function AboutPage() {
           <Card className="p-8 md:p-12 mb-8">
             <h2 className="text-2xl font-semibold text-zinc-100 mb-4">What I Love</h2>
             <p className="text-zinc-300 font-medium leading-relaxed">
-              I love the moment when everything clicks—when a design feels so right that it almost creates itself. I love collaborating with passionate people, learning new things, and creating work that makes a real difference. The best part of my job is seeing an idea come to life and knowing it means something to someone else.
+              Cem loves the moment when everything clicks—when a design feels so right that it almost creates itself. He enjoys collaborating with passionate people, learning new things, and creating work that makes a real difference. The best part of his job is seeing an idea come to life and knowing it means something to someone else.
             </p>
           </Card>
 
@@ -307,39 +307,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Contact Section */}
-          <Card className="p-8 md:p-12 mb-8">
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold text-zinc-100 mb-6">Let's Connect</h2>
-              <p className="text-zinc-300 font-medium mb-6">
-                If you want to collaborate, have a project in mind, or just want to say hi, I’d love to hear from you. Drop me a message anytime!
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-6">
-                <a 
-                  href="mailto:cem@cemkarabulut.com" 
-                  className="flex items-center space-x-2 px-6 py-3 bg-zinc-800/60 md:bg-zinc-800/80 border border-zinc-700/50 rounded-lg hover:bg-zinc-700/50 transition-colors"
-                >
-                  <FontAwesomeIcon icon={faEnvelope} className="text-zinc-300" />
-                  <span className="text-zinc-100 font-medium">cem@cemkarabulut.com</span>
-                </a>
-              </div>
-              <div className="flex justify-center space-x-4">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 bg-zinc-800/60 md:bg-zinc-800/80 border border-zinc-700/50 rounded-lg flex items-center justify-center hover:bg-zinc-700/50 transition-colors"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <FontAwesomeIcon icon={social.icon} className="text-zinc-300 text-lg" />
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-          </Card>
         </div>
       </div>
       

@@ -18,11 +18,12 @@ import React, { Suspense, lazy } from "react";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://cemkarabulut.com'),
   title: {
     default: "Cem Karabulut - Creative Art Director",
     template: "%s | Cem Karabulut",
   },
-  description: "Creative Art Director from Turkey, specializing in visual communication, storytelling, and digital media design. Multidisciplinary approach to branding and digital campaigns.",
+  description: "Cem Karabulut is a Creative Art Director from Turkey with over 15 years of experience in visual communication, storytelling, and digital media design. Specializes in brand identity, motion graphics, and digital campaigns for global brands.",
   keywords: ["Creative Art Director", "Visual Communication", "Digital Media Design", "Brand Identity", "Motion Graphics", "UI/UX Design", "Turkey", "Creative Director", "Brand Strategy", "Digital Campaigns", "Visual Storytelling"],
   authors: [{ name: "Cem Karabulut" }],
   creator: "Cem Karabulut",
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Cem Karabulut - Creative Art Director",
     description:
-      "Creative Art Director from Turkey, specializing in visual communication, storytelling, and digital media design. Multidisciplinary approach to branding and digital campaigns.",
+      "Cem Karabulut is a Creative Art Director from Turkey with over 15 years of experience in visual communication, storytelling, and digital media design. Specializes in brand identity, motion graphics, and digital campaigns for global brands.",
     url: "https://cemkarabulut.com",
     siteName: "Cem Karabulut",
     locale: "en_US",
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Cem Karabulut - Creative Art Director",
-    description: "Creative Art Director from Turkey, specializing in visual communication and digital media design.",
+    description: "Cem Karabulut is a Creative Art Director from Turkey with over 15 years of experience in visual communication and digital media design.",
     images: ["https://cemkarabulut.com/og.png"],
   },
   icons: {
@@ -79,7 +80,7 @@ export const metadata: Metadata = {
     userScalable: true,
   },
   verification: {
-    google: "your-google-verification-code",
+    google: "G-R8E7RMJW7K",
   },
   alternates: {
     canonical: "https://cemkarabulut.com",
@@ -142,7 +143,7 @@ export default function RootLayout({
               "@type": "Person",
               "name": "Cem Karabulut",
               "jobTitle": "Creative Art Director",
-              "description": "Creative Art Director from Turkey, specializing in visual communication, storytelling, and digital media design.",
+              "description": "Cem Karabulut is a Creative Art Director from Turkey with over 15 years of experience in visual communication, storytelling, and digital media design.",
               "url": "https://cemkarabulut.com",
               "sameAs": [
                 "https://www.behance.net/cemkarabulut"
@@ -182,7 +183,21 @@ export default function RootLayout({
           <FooterWrapper />
         </div>
         
-        {/* Non-critical scripts - Load after page content */}
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-R8E7RMJW7K"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-R8E7RMJW7K');
+          `}
+        </Script>
+        
+        {/* FontAwesome Kit - Placeholder for now */}
         <Script
           src="https://kit.fontawesome.com/your-kit-code.js"
           strategy="lazyOnload"

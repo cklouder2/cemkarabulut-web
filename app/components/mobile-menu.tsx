@@ -26,7 +26,7 @@ const socials = [
     label: "LinkedIn"
   },
   {
-    href: "https://instagram.com/cemkarabulut",
+    href: "https://instagram.com/ceemkarabulut",
     icon: faInstagramBrand,
     label: "Instagram"
   },
@@ -36,12 +36,12 @@ const socials = [
     label: "Behance"
   },
   {
-    href: "https://wa.me/905321234567",
+    href: "https://wa.me/905446806176",
     icon: faWhatsapp,
     label: "WhatsApp"
   },
   {
-    href: "mailto:cem@cemkarabulut.com",
+    href: "mailto:info@cemkarabulut.com",
     icon: faEnvelope,
     label: "E-mail"
   },

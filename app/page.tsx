@@ -125,7 +125,7 @@ const FeaturedBrands = React.memo(({ brands, showTitle, showBrands }: {
   return (
     <div className="text-xs animate-fade-in">
       <p className={`mb-4 font-medium transition-opacity duration-50 ${showTitle ? 'opacity-100' : 'opacity-0'} text-white`}>
-        Some of the brands I've had the pleasure to work with:
+        Some of the brands Cem has had the pleasure to work with:
       </p>
       <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
         {brands.map((brand, index) => (
@@ -161,7 +161,7 @@ const featuredBrands = [
 ];
 
 const longTextWords = [
-  "Hi,", "I'm", "Cem", "a", "Creative", "Art", "Director", "with", "15+", "years", "of", "experience", "in", "turning", "ideas", "into", "visuals", "that", "speak.", "I", "love", "building", "brand", "stories", "through", "design,", "whether", "it's", "a", "logo,", "a", "campaign,", "or", "a", "full", "digital", "experience.", "For", "me,", "design", "is", "all", "about", "connection,", "clarity,", "and", "creativity."
+  "Cem", "Karabulut", "is", "a", "Creative", "Art", "Director", "with", "15+", "years", "of", "experience", "in", "turning", "ideas", "into", "visuals", "that", "speak.", "He", "specializes", "in", "building", "brand", "stories", "through", "design,", "whether", "it's", "a", "logo,", "a", "campaign,", "or", "a", "full", "digital", "experience.", "His", "approach", "to", "design", "focuses", "on", "connection,", "clarity,", "and", "creativity."
 ];
 
 // Main component
@@ -274,12 +274,12 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="w-full max-w-xs mx-auto px-6 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-300 text-sm font-medium hover:border-zinc-400/60 hover:text-zinc-100 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
               >
-                Take a look at what I've built →
+                Take a look at what Cem has built →
               </Link>
             </div>
             {/* Brands title - daha okunur ve aşağıda */}
             <p className={`text-zinc-300 text-sm font-medium mb-3 text-center mt-4 transition-opacity duration-500 ${showFeaturedTitle ? 'opacity-100' : 'opacity-0'}`}>
-              Some of the brands I've had the pleasure to work with:
+              Some of the brands Cem has had the pleasure to work with:
             </p>
             {/* Markalar - animasyonlu ve max-width ile sınırlı */}
             <div className="flex flex-wrap justify-center gap-2 gap-y-2 mt-2 max-w-sm mx-auto">
@@ -388,7 +388,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="px-6 sm:px-8 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-300 text-sm sm:text-base font-medium hover:border-zinc-400/60 hover:text-zinc-100 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
               >
-                Take a look at what I've built →
+                Take a look at what Cem has built →
               </Link>
             </div>
             {/* Featured Brands */}
@@ -408,5 +408,7 @@ export default function Home() {
     </>
   );
 }
+
+
 
 
