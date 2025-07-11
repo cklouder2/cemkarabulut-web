@@ -223,33 +223,33 @@ export default function AboutPage() {
         </div>
         <div className="divider-white" />
         <div className="space-y-10 md:space-y-14">
-          <Card className="p-8 md:p-12 mb-8">
-            <h2 className="text-xl font-semibold mb-2 text-white">My Approach</h2>
-            <p className="text-zinc-200">
+          <Card className="p-8 md:p-12 mb-8 text-center md:text-left">
+            <h2 className="text-xl font-semibold mb-2 text-white text-center md:text-left">My Approach</h2>
+            <p className="text-zinc-200 text-center md:text-left">
               Cem's approach is all about blending strategy, creativity, and technology to create work that really means something. He excels at getting to know the people and stories behind every project. For him, every collaboration is a chance to learn, grow, and make something that truly connects.
             </p>
           </Card>
           {/* Creative Vision Section */}
-          <Card className="p-8 md:p-12 mb-8">
-            <h2 className="text-2xl font-semibold text-zinc-100 mb-4">Creative Vision</h2>
-            <p className="text-zinc-300 font-medium leading-relaxed">
-              Cem's creative vision is all about curiosity and storytelling. He excels at exploring new ways to turn ideas into visuals that spark emotion and inspire action. Whether working on a brand, a motion graphic, or a digital campaign, he ensures every project feels fresh, thoughtful, and true to its purpose. His design philosophy focuses on connection, clarity, and creativity—helping people see and feel something new.
+          <Card className="p-8 md:p-12 mb-8 text-center md:text-left">
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-4 text-center md:text-left">Creative Vision</h2>
+            <p className="text-zinc-300 font-medium leading-relaxed text-center md:text-left">
+              Cem's creative vision is all about curiosity and storytelling. He excels at exploring new ways to turn ideas into visuals that spark emotion and inspire action. Whether working on a brand, a motion graphic, or a digital campaign, he ensures every project feels fresh, thoughtful, and true to its purpose. His design philosophy focuses on connection, clarity, and creativity-helping people see and feel something new.
             </p>
           </Card>
 
           {/* My Process Section */}
-          <Card className="p-8 md:p-12 mb-8">
-            <h2 className="text-2xl font-semibold text-zinc-100 mb-4">My Process</h2>
-            <p className="text-zinc-300 font-medium leading-relaxed">
-              Cem starts by listening—really listening—to understand not just what a client wants, but why they want it. He dives deep into research, sketches, experiments, and iterates until that sweet spot where strategy meets creativity is found. He believes in honesty, transparency, and treating every project like it’s the most important one he’ll ever work on. Cem values deep thinking, quality, and building real relationships along the way.
+          <Card className="p-8 md:p-12 mb-8 text-center md:text-left">
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-4 text-center md:text-left">My Process</h2>
+            <p className="text-zinc-300 font-medium leading-relaxed text-center md:text-left">
+              Cem starts by listening-really listening-to understand not just what a client wants, but why they want it. He dives deep into research, sketches, experiments, and iterates until that sweet spot where strategy meets creativity is found. He believes in honesty, transparency, and treating every project like it’s the most important one he’ll ever work on. Cem values deep thinking, quality, and building real relationships along the way.
             </p>
           </Card>
 
           {/* What I Love Section */}
-          <Card className="p-8 md:p-12 mb-8">
-            <h2 className="text-2xl font-semibold text-zinc-100 mb-4">What I Love</h2>
-            <p className="text-zinc-300 font-medium leading-relaxed">
-              Cem loves the moment when everything clicks—when a design feels so right that it almost creates itself. He enjoys collaborating with passionate people, learning new things, and creating work that makes a real difference. The best part of his job is seeing an idea come to life and knowing it means something to someone else.
+          <Card className="p-8 md:p-12 mb-8 text-center md:text-left">
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-4 text-center md:text-left">What I Love</h2>
+            <p className="text-zinc-300 font-medium leading-relaxed text-center md:text-left">
+              Cem loves the moment when everything clicks-when a design feels so right that it almost creates itself. He enjoys collaborating with passionate people, learning new things, and creating work that makes a real difference. The best part of his job is seeing an idea come to life and knowing it means something to someone else.
             </p>
           </Card>
 
@@ -289,14 +289,14 @@ export default function AboutPage() {
           </div>
 
           {/* Brands Section */}
-          <div>
-            <h2 className="text-2xl font-semibold text-zinc-100 mb-6">Featured Brands & Productions</h2>
+          <div className="px-2 md:px-0">
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-6 text-center md:text-left">Featured Brands & Productions</h2>
             <div className="mb-8">
-              <h3 className="text-lg font-semibold text-zinc-100 mb-4">Major Brands</h3>
+              <h3 className="text-lg font-semibold text-zinc-100 mb-4 text-center md:text-left">Major Brands</h3>
               <BrandsShowcase brands={featuredBrands} />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-zinc-100 mb-4">TV Productions</h3>
+              <h3 className="text-lg font-semibold text-zinc-100 mb-4 text-center md:text-left">TV Productions</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {tvProductions.map((prod, idx) => (
                   <Card key={idx} className="p-4 text-center">

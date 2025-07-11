@@ -231,7 +231,7 @@ export default function ContactPage() {
                 <h2 className="text-3xl font-bold text-zinc-100 mb-4">Let's Connect & Create Together</h2>
                 <p className="text-zinc-400 font-medium text-lg">I love sharing my creative journey, behind-the-scenes moments, and the stories behind my work. Whether you're here for inspiration, collaboration, or just to say hello - you're always welcome in my creative space!</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={index}
@@ -292,20 +292,20 @@ export default function ContactPage() {
                   Whether you have a specific project in mind or just want to explore possibilities, 
                   I'm here to help bring your creative vision to life.
                 </p>
-                <div className="flex flex-col md:flex-row flex-wrap md:flex-nowrap gap-3 justify-center items-center">
+                <div className="flex flex-row flex-wrap md:flex-nowrap gap-3 justify-center items-center">
                   <a
                     href="mailto:info@cemkarabulut.com"
                     className="px-5 py-3 text-base bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold rounded-lg hover:from-emerald-500 hover:to-teal-500 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap"
                   >
-                    <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
-                    Start a Conversation
+                    <FontAwesomeIcon icon={faEnvelope} className="mr-2 md:mr-2" />
+                    <span className="hidden md:inline">Start a Conversation</span>
                   </a>
                   <a
                     href="tel:+905446806176"
                     className="px-5 py-3 text-base bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap"
                   >
-                    <FontAwesomeIcon icon={faPhone} className="mr-2" />
-                    Call Now
+                    <FontAwesomeIcon icon={faPhone} className="mr-2 md:mr-2" />
+                    <span className="hidden md:inline">Call Now</span>
                   </a>
                   <a
                    href="https://wa.me/905446806176"
@@ -313,8 +313,8 @@ export default function ContactPage() {
                    rel="noopener noreferrer"
                    className="px-5 py-3 text-base bg-gradient-to-r from-green-500 to-green-700 text-white font-semibold rounded-lg hover:from-green-400 hover:to-green-600 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap"
                   >
-                    <FontAwesomeIcon icon={faWhatsapp} className="mr-2" />
-                    Message on WhatsApp
+                    <FontAwesomeIcon icon={faWhatsapp} className="mr-2 md:mr-2" />
+                    <span className="hidden md:inline">Message on WhatsApp</span>
                   </a>
                 </div>
               </div>

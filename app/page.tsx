@@ -190,9 +190,9 @@ export default function Home() {
               setVisibleNavItems(prev => [...prev, index]);
             }, index * 100);
           });
-        }, 1100);
-      }, 50);
-    }, 50);
+        }, 1500);
+      }, 200);
+    }, 100);
   }, []);
 
   const startLongText = useCallback(() => {
@@ -281,10 +281,12 @@ export default function Home() {
               </Link>
             </div>
             {/* Brands title - daha okunur ve aşağıda */}
+            {/* Markalar - animasyonlu ve max-width ile sınırlı */}
+            {/* Remove featured brands section from mobile */}
+            {/*
             <p className={`text-zinc-300 text-sm font-medium mb-3 text-center mt-4 transition-opacity duration-500 ${showFeaturedTitle ? 'opacity-100' : 'opacity-0'}`}>
               Some of the brands Cem has had the pleasure to work with:
             </p>
-            {/* Markalar - animasyonlu ve max-width ile sınırlı */}
             <div className="flex flex-wrap justify-center gap-2 gap-y-2 mt-2 max-w-sm mx-auto">
               {(showAllBrands ? featuredBrands : featuredBrands.slice(0,8)).map((brand, i) => (
                 <span 
@@ -298,7 +300,7 @@ export default function Home() {
                 </span>
               ))}
             </div>
-            {!showAllBrands && featuredBrands.length > 8 && (
+            {!showAllBrands && featuredBrands.length > 8 && showBrands && (
               <button 
                 onClick={()=>setShowAllBrands(true)} 
                 className="block mx-auto mt-4 px-4 py-2 rounded-lg border border-blue-600/50 bg-blue-900/20 text-blue-300 text-xs font-medium hover:border-blue-500/60 hover:text-blue-200 hover:bg-blue-800/30 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95"
@@ -314,6 +316,7 @@ export default function Home() {
                 Show less
               </button>
             )}
+            */}
           </div>
           {/* En altta boş alan */}
           <div className="w-full px-1 pb-4">

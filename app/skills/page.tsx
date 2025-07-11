@@ -169,7 +169,7 @@ export default function SkillsPage() {
             <div className="mt-16">
               <h3 className="text-2xl font-bold text-zinc-100 mb-6">My Design Philosophy</h3>
               <p className="text-zinc-300 font-medium mb-8 text-lg leading-relaxed">
-                For me, design isn't just about aesthetics—it's about how things make people feel and what they help people understand. I'm drawn to a style that's both simple and expressive, always aiming for balance, clarity, and a bit of surprise. I love using technology and storytelling together to create work that's both meaningful and memorable.
+                For me, design isn't just about aesthetics-it's about how things make people feel and what they help people understand. I'm drawn to a style that's both simple and expressive, always aiming for balance, clarity, and a bit of surprise. I love using technology and storytelling together to create work that's both meaningful and memorable.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center p-6 bg-zinc-800/30 rounded-xl border border-zinc-700/30">

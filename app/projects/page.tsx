@@ -73,7 +73,7 @@ export default function ProjectsPage() {
               "Portfolio"
             )}
           </h1>
-          <p className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>I share my projects and latest work on Behance. From branding to digital campaigns, motion graphics to innovative design solutions—if you want to see what I've been working on, I'd love to invite you there!
+          <p className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>I share my projects and latest work on Behance. From branding to digital campaigns, motion graphics to innovative design solutions-if you want to see what I've been working on, I'd love to invite you there!
           </p>
         </div>
         <div className="divider-white" />

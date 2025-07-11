@@ -80,6 +80,7 @@ export default function ExperiencePage() {
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const scrollHandled = useRef(false);
+  const [showAll, setShowAll] = useState(false);
 
   // Fade-in bodycopy after Typewriter
   const handleTypewriterDone = () => {
@@ -155,7 +156,7 @@ export default function ExperiencePage() {
           >
             {/* Deneyim kartları */}
             <div className="space-y-8">
-              {jobs.map((job, idx) => {
+              {(showAll ? jobs : jobs.slice(0, 5)).map((job, idx) => {
                 // Merge tools and highlights, remove duplicates
                 const highlightArr = highlights[idx]?.split(",").map(h => h.trim()) || [];
                 const allBadges = Array.from(new Set([...(tools[idx] || []), ...highlightArr]));
@@ -201,6 +202,22 @@ export default function ExperiencePage() {
                   </Card>
                 );
               })}
+              {!showAll && jobs.length > 5 && (
+                <button
+                  onClick={() => setShowAll(true)}
+                  className="block mx-auto mt-4 px-6 py-3 rounded-xl border border-blue-600/50 bg-blue-900/20 text-blue-300 text-base font-semibold hover:border-blue-500/60 hover:text-blue-200 hover:bg-blue-800/30 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
+                >
+                  Show More
+                </button>
+              )}
+              {showAll && jobs.length > 5 && (
+                <button
+                  onClick={() => setShowAll(false)}
+                  className="block mx-auto mt-4 px-6 py-3 rounded-xl border border-blue-600/50 bg-blue-900/20 text-blue-300 text-base font-semibold hover:border-blue-500/60 hover:text-blue-200 hover:bg-blue-800/30 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
+                >
+                  Show Less
+                </button>
+              )}
             </div>
           </motion.div>
         )}

@@ -103,7 +103,7 @@ export default function MobileMenu() {
               <FontAwesomeIcon icon={faUser} className="text-zinc-300 text-5xl" />
             </div>
             <div className="text-white font-bold text-xl tracking-wide">Cem Karabulut</div>
-            <div className="text-zinc-400 text-xs tracking-wide">Webpixels</div>
+            <div className="text-zinc-400 text-xs tracking-wide">Creative Art Director</div>
           </div>
           {/* Navigation */}
           <ul className="flex flex-col gap-1 w-full mb-8">

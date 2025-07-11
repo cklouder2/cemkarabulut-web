@@ -39,12 +39,12 @@ export function Footer() {
       <div className="px-8 py-16 mx-auto max-w-7xl lg:px-12">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Sol: Hakkında */}
-          <div className="space-y-6">
+          <div className="space-y-6 text-center md:text-left">
             <h3 className="text-2xl font-bold text-zinc-100">Cem Karabulut</h3>
             <p className="text-sm text-zinc-400 leading-relaxed">
               I’m Cem Karabulut, a creative art director and designer based in Istanbul. I love turning ideas into visuals and helping brands tell their stories in unique ways.
             </p>
-            <div className="flex items-center gap-2 text-xs text-zinc-500 pt-2">
+            <div className="flex flex-col md:flex-row items-center gap-2 text-xs text-zinc-500 pt-2 justify-center md:justify-start">
               <span>Made with</span>
               <Heart size={12} className="text-red-500 fill-current" />
               <span>in Istanbul</span>
@@ -52,7 +52,7 @@ export function Footer() {
           </div>
 
           {/* Orta: Hızlı Linkler */}
-          <div className="space-y-6 hidden md:block">
+          <div className="space-y-6 hidden md:block text-center md:text-left">
             <h3 className="text-lg font-semibold text-zinc-100">Quick Links</h3>
             <nav className="flex flex-col space-y-3">
               <Link 
@@ -94,7 +94,7 @@ export function Footer() {
           </div>
 
           {/* Sağ: Sosyal Medya */}
-          <div className="space-y-6 hidden md:block">
+          <div className="space-y-6 hidden md:block text-center md:text-left">
             <h3 className="text-lg font-semibold text-zinc-100">Connect</h3>
             <div className="flex flex-col space-y-3">
               {socials.map((social) => (
@@ -116,7 +116,7 @@ export function Footer() {
           </div>
 
           {/* Behance Banner */}
-          <div className="space-y-6">
+          <div className="space-y-6 text-center md:text-left">
             <h3 className="text-lg font-semibold text-zinc-100">Portfolio</h3>
             <Link
               href="https://www.behance.net/cemkarabulut"
@@ -148,10 +148,10 @@ export function Footer() {
         </div>
 
         {/* Alt Kısım */}
-        <div className="flex flex-col items-center justify-between pt-12 mt-12 border-t border-zinc-800/30 md:flex-row">
-          <div className="flex items-center gap-4 text-xs text-zinc-500">
+        <div className="flex flex-col items-center justify-between pt-12 mt-12 border-t border-zinc-800/30 md:flex-row text-center md:text-left">
+          <div className="flex flex-col md:flex-row items-center gap-4 text-xs text-zinc-500 text-center md:text-left">
             <span>© 2025 Cem Karabulut. All rights reserved.</span>
-            <span>•</span>
+            <span className="hidden md:inline">•</span>
             <span>Built with Next.js, React, TypeScript & Tailwind CSS</span>
           </div>
           
@@ -160,7 +160,7 @@ export function Footer() {
               trackButtonClick('back_to_top', 'footer');
               scrollToTop();
             }}
-            className="flex items-center gap-2 px-6 py-3 mt-6 text-sm text-zinc-400 hover:text-zinc-100 transition-colors duration-300 md:mt-0 group relative z-70"
+            className="flex items-center gap-2 px-6 py-3 mt-6 text-sm bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all duration-300 md:mt-0 group relative z-70 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
