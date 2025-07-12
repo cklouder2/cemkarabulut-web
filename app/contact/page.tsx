@@ -221,26 +221,28 @@ export default function ContactPage() {
                 <h2 className="text-3xl font-bold text-zinc-100 mb-4">Let's Connect & Create Together</h2>
                 <p className="text-zinc-400 font-medium text-lg">I love sharing my creative journey, behind-the-scenes moments, and the stories behind my work. Whether you're here for inspiration, collaboration, or just to say hello - you're always welcome in my creative space!</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="group p-6 bg-zinc-800/50 backdrop-blur-sm rounded-xl border border-zinc-700/50 hover:border-zinc-600 hover:bg-zinc-800 transition-all duration-300 text-center"
-                  >
-                    <div className={`w-16 h-16 bg-gradient-to-br ${social.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                      {social.icon ? <FontAwesomeIcon icon={social.icon} className="text-white text-2xl" /> : null}
-                    </div>
-                    <h3 className="text-zinc-100 font-semibold text-lg mb-2">{social.title}</h3>
-                    <p className="text-zinc-300 font-medium mb-2">{social.handle}</p>
-                    <p className="text-zinc-400 text-sm">{social.description}</p>
-                  </motion.a>
-                ))}
+              <div className="flex justify-center w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-fit mx-auto justify-center items-center text-center">
+                  {socialLinks.map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="group p-6 bg-zinc-800/50 backdrop-blur-sm rounded-xl border border-zinc-700/50 hover:border-zinc-600 hover:bg-zinc-800 transition-all duration-300 text-center"
+                    >
+                      <div className={`w-16 h-16 bg-gradient-to-br ${social.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                        {social.icon ? <FontAwesomeIcon icon={social.icon} className="text-white text-2xl" /> : null}
+                      </div>
+                      <h3 className="text-zinc-100 font-semibold text-lg mb-2">{social.title}</h3>
+                      <p className="text-zinc-300 font-medium mb-2">{social.handle}</p>
+                      <p className="text-zinc-400 text-sm">{social.description}</p>
+                    </motion.a>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -278,7 +280,7 @@ export default function ContactPage() {
                   Whether you have a specific project in mind or just want to explore possibilities, 
                   I'm here to help bring your creative vision to life.
                 </p>
-                <div className="flex flex-col gap-3 justify-center items-center w-full">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full mb-8">
                   <a
                     href="mailto:info@cemkarabulut.com"
                     className="flex items-center gap-2 px-5 py-3 text-base bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold rounded-lg hover:from-emerald-500 hover:to-teal-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap w-full md:w-auto justify-center"
