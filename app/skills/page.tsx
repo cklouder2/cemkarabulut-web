@@ -5,94 +5,29 @@ import Navigation from "../components/nav";
 import { Card } from "../components/card";
 import { Typewriter } from "../components/typewriter";
 import { motion } from "framer-motion";
-
-const skillCategories = [
-  {
-    title: "Adobe Creative Suite",
-    description: "Professional design and production tools",
-    skills: [
-      { name: "Adobe Photoshop", level: "Advanced" },
-      { name: "Adobe Illustrator", level: "Advanced" },
-      { name: "Adobe After Effects", level: "Advanced" },
-      { name: "Adobe InDesign", level: "Advanced" },
-      { name: "Adobe Premiere Pro", level: "Advanced" },
-      { name: "Adobe Audition", level: "Expert" }
-    ]
-  },
-  {
-    title: "3D & Visualization",
-    description: "3D modeling, animation and visualization tools",
-    skills: [
-      { name: "Cinema 4D", level: "Advanced" },
-      { name: "Blender", level: "Intermediate" },
-      { name: "Octane", level: "Advanced" },
-      { name: "Adobe Substance 3D Painter", level: "Intermediate" },
-      { name: "Adobe Substance 3D Designer", level: "Intermediate" },
-      { name: "Unreal Engine", level: "Intermediate" }
-    ]
-  },
-  {
-    title: "UI/UX & Prototyping",
-    description: "User interface design and prototyping tools",
-    skills: [
-      { name: "Figma", level: "Advanced" },
-      { name: "Adobe XD", level: "Intermediate" }
-    ]
-  },
-  {
-    title: "AI-Powered Tools",
-    description: "Artificial intelligence tools for creative workflows",
-    skills: [
-      { name: "Midjourney", level: "Advanced" },
-      { name: "ChatGPT", level: "Advanced" },
-      { name: "Stable Diffusion", level: "Advanced" },
-      { name: "ComfyUI", level: "Advanced" },
-      { name: "KlingAI", level: "Advanced" },
-      { name: "Runway ML", level: "Intermediate" },
-      { name: "Google Veo 3", level: "Intermediate" },
-      { name: "Gemini", level: "Intermediate" }
-    ]
-  },
-  {
-    title: "Other Tools",
-    description: "Additional tools and platforms",
-    skills: [
-      { name: "WordPress", level: "Advanced" },
-      { name: "Notion", level: "Advanced" }
-    ]
-  },
-  {
-    title: "Design Disciplines",
-    description: "Core design skills and expertise areas",
-    skills: [
-      { name: "Brand Identity Design", level: "Expert" },
-      { name: "Motion Graphics", level: "Advanced" },
-      { name: "Digital Campaigns", level: "Advanced" },
-      { name: "Social Media Design", level: "Advanced" },
-      { name: "Print Design", level: "Advanced" },
-      { name: "UI/UX Design", level: "Advanced" },
-      { name: "3D Product Visualization", level: "Advanced" },
-      { name: "Video Editing", level: "Advanced" },
-      { name: "Web Design", level: "Advanced" },
-      { name: "Packaging Design", level: "Intermediate" }
-    ]
-  }
-];
+import { useLanguage } from "../i18n/language-context";
 
 const getLevelColor = (level: string) => {
   switch (level) {
     case "Expert":
+    case "İleri Seviye":
       return "bg-gradient-to-r from-green-600 to-green-500 text-white shadow-lg";
     case "Advanced":
+    case "Uzman Seviye":
       return "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg";
     case "Intermediate":
+    case "Orta Seviye":
       return "bg-gradient-to-r from-yellow-600 to-yellow-500 text-white shadow-lg";
+    case "Beginner":
+    case "Başlangıç Seviye":
+      return "bg-gradient-to-r from-red-600 to-red-500 text-white shadow-lg";
     default:
       return "bg-gradient-to-r from-zinc-600 to-zinc-500 text-white shadow-lg";
   }
 };
 
 export default function SkillsPage() {
+  const { t, language } = useLanguage();
   const [typewriterDone, setTypewriterDone] = useState(false);
   const [showBodyCopy, setShowBodyCopy] = useState(false);
   const [showContent, setShowContent] = useState(false);
@@ -120,10 +55,89 @@ export default function SkillsPage() {
   const [typewriterMounted, setTypewriterMounted] = useState(false);
   useEffect(() => { setTypewriterMounted(true); }, []);
   
-  // Sort skills in each category: Advanced first, then Expert, then Intermediate
+  // Kategorileri çeviriyle doldur
+  const skillCategories = [
+    {
+      title: t("skills.categories.adobe_creative_suite.title"),
+      description: t("skills.categories.adobe_creative_suite.description"),
+      skills: [
+        { name: "Adobe Photoshop", level: t("skills.levels.advanced") },
+        { name: "Adobe Illustrator", level: t("skills.levels.advanced") },
+        { name: "Adobe After Effects", level: t("skills.levels.advanced") },
+        { name: "Adobe InDesign", level: t("skills.levels.advanced") },
+        { name: "Adobe Premiere Pro", level: t("skills.levels.advanced") },
+        { name: "Adobe Audition", level: t("skills.levels.expert") }
+      ]
+    },
+    {
+      title: t("skills.categories.3d_visualization.title"),
+      description: t("skills.categories.3d_visualization.description"),
+      skills: [
+        { name: "Cinema 4D", level: t("skills.levels.advanced") },
+        { name: "Blender", level: t("skills.levels.beginner") },
+        { name: "Octane", level: t("skills.levels.advanced") },
+        { name: "Adobe Substance 3D Painter", level: t("skills.levels.intermediate") },
+        { name: "Adobe Substance 3D Designer", level: t("skills.levels.intermediate") },
+        { name: "Unreal Engine", level: t("skills.levels.beginner") }
+      ]
+    },
+    {
+      title: t("skills.categories.ui_ux_prototyping.title"),
+      description: t("skills.categories.ui_ux_prototyping.description"),
+      skills: [
+        { name: "Figma", level: t("skills.levels.advanced") },
+        { name: "Adobe XD", level: t("skills.levels.intermediate") }
+      ]
+    },
+    {
+      title: t("skills.categories.ai_powered_tools.title"),
+      description: t("skills.categories.ai_powered_tools.description"),
+      skills: [
+        { name: "Midjourney", level: t("skills.levels.advanced") },
+        { name: "ChatGPT", level: t("skills.levels.advanced") },
+        { name: "Stable Diffusion", level: t("skills.levels.advanced") },
+        { name: "ComfyUI", level: t("skills.levels.advanced") },
+        { name: "KlingAI", level: t("skills.levels.advanced") },
+        { name: "Runway ML", level: t("skills.levels.beginner") },
+        { name: "Google Veo 3", level: t("skills.levels.beginner") },
+        { name: "Gemini", level: t("skills.levels.beginner") }
+      ]
+    },
+    {
+      title: t("skills.categories.other_tools.title"),
+      description: t("skills.categories.other_tools.description"),
+      skills: [
+        { name: "WordPress", level: t("skills.levels.advanced") },
+        { name: "Notion", level: t("skills.levels.advanced") }
+      ]
+    },
+    {
+      title: t("skills.categories.design_disciplines.title"),
+      description: t("skills.categories.design_disciplines.description"),
+      skills: [
+        { name: "Brand Identity Design", level: t("skills.levels.expert") },
+        { name: "Motion Graphics", level: t("skills.levels.advanced") },
+        { name: "Digital Campaigns", level: t("skills.levels.advanced") },
+        { name: "Social Media Design", level: t("skills.levels.advanced") },
+        { name: "Print Design", level: t("skills.levels.advanced") },
+        { name: "UI/UX Design", level: t("skills.levels.advanced") },
+        { name: "3D Product Visualization", level: t("skills.levels.advanced") },
+        { name: "Video Editing", level: t("skills.levels.advanced") },
+        { name: "Web Design", level: t("skills.levels.advanced") },
+        { name: "Packaging Design", level: t("skills.levels.beginner") }
+      ]
+    }
+  ];
+
+  // Sort skills in each category: Expert (İleri Seviye) first, then Advanced (Uzman Seviye), then Intermediate (Orta Seviye), then Beginner (Başlangıç Seviye)
   skillCategories.forEach(cat => {
     cat.skills.sort((a, b) => {
-      const order: { [key: string]: number } = { 'Advanced': 0, 'Expert': 1, 'Intermediate': 2 };
+      const order: { [key: string]: number } = { 
+        'Expert': 0, 'İleri Seviye': 0,
+        'Advanced': 1, 'Uzman Seviye': 1, 
+        'Intermediate': 2, 'Orta Seviye': 2, 
+        'Beginner': 3, 'Başlangıç Seviye': 3 
+      };
       return order[a.level as string] - order[b.level as string];
     });
   });
@@ -133,15 +147,15 @@ export default function SkillsPage() {
       
       <Navigation />
       <div className="px-5 sm:px-8 pt-20 mx-auto space-y-10 max-w-full md:max-w-6xl lg:px-12 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative">
-        <div className="max-w-full md:max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
-          <h1 className="text-4xl font-bold text-zinc-100 mb-8">
+        <div className="max-w-full mx-auto lg:mx-0 text-center lg:text-left">
+          <h1 className="text-4xl font-bold text-zinc-100 mb-6">
             {typewriterMounted && !typewriterDone ? (
-              <Typewriter text="Skills" speed={40} onDone={handleTypewriterDone} />
+              <Typewriter text={t("skills.title")} speed={40} onDone={handleTypewriterDone} />
             ) : (
-              "Skills"
+              t("skills.title")
             )}
           </h1>
-          <p className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>Here's a peek at the tools, platforms, and design disciplines I love working with most. Over the years, everything I've learned and used has given me a fresh perspective on every project. If you're curious about anything, feel free to ask me anytime!
+          <p className={`mt-6 mb-12 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 min-h-auto w-full md:w-full md:col-span-12 md:text-left mx-auto md:mx-0 opacity-100`}>{t("skills.description")}
           </p>
         </div>
         <div className="divider-white" />
@@ -167,22 +181,22 @@ export default function SkillsPage() {
             </div>
 
             <div className="mt-16">
-              <h3 className="text-2xl font-bold text-zinc-100 mb-6">My Design Philosophy</h3>
+              <h3 className="text-2xl font-bold text-zinc-100 mb-6">{t("skills.design_philosophy")}</h3>
               <p className="text-zinc-300 font-medium mb-8 text-lg leading-relaxed">
-                For me, design isn't just about aesthetics-it's about how things make people feel and what they help people understand. I'm drawn to a style that's both simple and expressive, always aiming for balance, clarity, and a bit of surprise. I love using technology and storytelling together to create work that's both meaningful and memorable.
+                {t("skills.philosophy_description")}
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center p-6 bg-zinc-800/30 rounded-xl border border-zinc-700/30">
-                  <h4 className="text-zinc-100 font-bold text-xl mb-3">Minimalist</h4>
-                  <p className="text-zinc-400 font-medium leading-relaxed">Clean, purposeful designs without unnecessary details</p>
+                  <h4 className="text-zinc-100 font-bold text-xl mb-3">{t("skills.philosophy_points.minimalist.title")}</h4>
+                  <p className="text-zinc-400 font-medium leading-relaxed">{t("skills.philosophy_points.minimalist.description")}</p>
                 </div>
                 <div className="text-center p-6 bg-zinc-800/30 rounded-xl border border-zinc-700/30">
-                  <h4 className="text-zinc-100 font-bold text-xl mb-3">Expressive</h4>
-                  <p className="text-zinc-400 font-medium leading-relaxed">Visual storytelling enhanced with emotion and narrative</p>
+                  <h4 className="text-zinc-100 font-bold text-xl mb-3">{t("skills.philosophy_points.expressive.title")}</h4>
+                  <p className="text-zinc-400 font-medium leading-relaxed">{t("skills.philosophy_points.expressive.description")}</p>
                 </div>
                 <div className="text-center p-6 bg-zinc-800/30 rounded-xl border border-zinc-700/30">
-                  <h4 className="text-zinc-100 font-bold text-xl mb-3">Future-Focused</h4>
-                  <p className="text-zinc-400 font-medium leading-relaxed">Forward-thinking solutions with innovative technologies</p>
+                  <h4 className="text-zinc-100 font-bold text-xl mb-3">{t("skills.philosophy_points.future_focused.title")}</h4>
+                  <p className="text-zinc-400 font-medium leading-relaxed">{t("skills.philosophy_points.future_focused.description")}</p>
                 </div>
               </div>
             </div>

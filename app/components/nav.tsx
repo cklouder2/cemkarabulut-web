@@ -11,10 +11,13 @@ import {
   faHome 
 } from "@fortawesome/free-solid-svg-icons";
 import { trackNavigationClick } from "../lib/analytics";
+import { useLanguage } from "../i18n/language-context";
+import LanguageSwitcher from "./language-switcher";
 
 function Navigation() {
   const ref = useRef<HTMLElement>(null);
   const [isIntersecting, setIntersecting] = useState(true);
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     if (!ref.current) return;
@@ -26,12 +29,21 @@ function Navigation() {
     return () => observer.disconnect();
   }, []);
 
+  // Turkish URL mappings
+  const turkishUrls = {
+    'About': '/hakkimda',
+    'Experience': '/deneyim',
+    'Skills': '/yetenekler',
+    'Projects': '/projeler',
+    'Contact': '/iletisim'
+  };
+
   const navigation = [
-    { name: "About", href: "/about", icon: faUser },
-    { name: "Experience", href: "/experience", icon: faBriefcase },
-    { name: "Skills", href: "/skills", icon: faCode },
-    { name: "Projects", href: "/projects", icon: faFolderOpen },
-    { name: "Contact", href: "/contact", icon: faEnvelope },
+    { name: "About", href: language === 'tr' ? "/hakkimda" : "/about", icon: faUser },
+    { name: "Experience", href: language === 'tr' ? "/deneyim" : "/experience", icon: faBriefcase },
+    { name: "Skills", href: language === 'tr' ? "/yetenekler" : "/skills", icon: faCode },
+    { name: "Projects", href: language === 'tr' ? "/projeler" : "/projects", icon: faFolderOpen },
+    { name: "Contact", href: language === 'tr' ? "/iletisim" : "/contact", icon: faEnvelope },
   ];
 
   return (
@@ -50,10 +62,10 @@ function Navigation() {
             onClick={() => trackNavigationClick('home', 'navigation_header')}
             className="flex items-center gap-2 text-white hover:text-gray-400 font-bold text-lg duration-300 transition-all hover:scale-110"
           >
-            <FontAwesomeIcon icon={faHome} className="w-5 h-5" />
+            <FontAwesomeIcon icon={faHome} className="w-5 h-5 text-white" />
           </Link>
 
-          {/* Sağ: Menü */}
+          {/* Orta: Menü */}
           <div className="flex justify-between gap-6">
             {navigation.map((item) => (
               <Link
@@ -62,10 +74,15 @@ function Navigation() {
                 onClick={() => trackNavigationClick(item.name.toLowerCase(), 'navigation_header')}
                 className="flex items-center gap-2 duration-300 text-white hover:text-gray-300 font-semibold transition-all hover:scale-105"
               >
-                <FontAwesomeIcon icon={item.icon} className="w-4 h-4" />
-                {item.name}
+                <FontAwesomeIcon icon={item.icon} className="w-4 h-4 text-white" />
+                {t(`navigation.${item.name.toLowerCase()}`)}
               </Link>
             ))}
+          </div>
+
+          {/* Sağ: Dil değiştirici */}
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher size="default" />
           </div>
         </div>
       </div>

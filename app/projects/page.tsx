@@ -6,8 +6,10 @@ import { Card } from "../components/card";
 import { Typewriter } from "../components/typewriter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import { useLanguage } from "../i18n/language-context";
 
 export default function ProjectsPage() {
+  const { t, language } = useLanguage();
   const [countdown, setCountdown] = useState(5);
   const [isRedirecting, setIsRedirecting] = useState(false);
   const hasRedirectedRef = useRef(false);
@@ -65,16 +67,15 @@ export default function ProjectsPage() {
       <Navigation />
       
       <div className="px-5 sm:px-8 pt-20 mx-auto space-y-10 max-w-full md:max-w-6xl lg:px-12 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative overflow-visible">
-        <div className="max-w-full md:max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
-          <h1 className="text-4xl font-bold text-zinc-100 mb-8">
+        <div className="max-w-full mx-auto lg:mx-0 text-center lg:text-left">
+          <h1 className="text-4xl font-bold text-zinc-100 mb-6">
             {typewriterMounted && !typewriterDone ? (
-              <Typewriter text="Portfolio" speed={40} onDone={handleTypewriterDone} />
+              <Typewriter text={t("projects.title")} speed={40} onDone={handleTypewriterDone} />
             ) : (
-              "Portfolio"
+              t("projects.title")
             )}
           </h1>
-          <p className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>I share my projects and latest work on Behance. From branding to digital campaigns, motion graphics to innovative design solutions-if you want to see what I've been working on, I'd love to invite you there!
-          </p>
+          <p className={`mt-6 mb-12 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 min-h-auto w-full md:w-full md:col-span-12 md:text-left mx-auto md:mx-0 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>{t("projects.description")}</p>
         </div>
         <div className="divider-white" />
 
@@ -90,10 +91,10 @@ export default function ProjectsPage() {
                 {/* Başlık */}
                 <div>
                   <h2 className="text-2xl font-semibold text-zinc-100 mb-4">
-                    Behance Portfolio
+                    {t("projects.behance_portfolio")}
                   </h2>
                   <p className="text-lg text-zinc-300 leading-relaxed">
-                    My Behance portfolio will open in a new tab. I'll redirect you there in a few seconds. If the automatic redirect doesn't work, you can click the button below.
+                    {t("projects.behance_description")}
                   </p>
                 </div>
 
@@ -103,14 +104,14 @@ export default function ProjectsPage() {
                     {countdown}
                   </div>
                   <p className="text-zinc-400 text-center">
-                    Redirecting to Behance...
+                    {t("projects.redirecting")}
                   </p>
                 </div>
 
                 {/* Manuel Link */}
                 <div className="pt-6 border-t border-zinc-700/50">
                   <p className="text-zinc-400 mb-4 text-center">
-                    If you're not redirected automatically, you can click the button below:
+                    {t("projects.manual_redirect")}
                   </p>
                   <div className="flex justify-center">
                     <motion.a
@@ -122,7 +123,7 @@ export default function ProjectsPage() {
                       whileTap={{ scale: 0.95 }}
                     >
                       <FontAwesomeIcon icon={faExternalLinkAlt} className="w-4 h-4" />
-                      View Portfolio on Behance
+                      {t("projects.view_portfolio")}
                     </motion.a>
                   </div>
                 </div>
@@ -135,7 +136,7 @@ export default function ProjectsPage() {
                     className="pt-4 text-center"
                   >
                     <p className="text-green-400 font-medium">
-                      ✓ Redirecting to Behance...
+                      {t("projects.redirecting_status")}
                     </p>
                   </motion.div>
                 )}

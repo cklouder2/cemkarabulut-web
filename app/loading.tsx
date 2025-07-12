@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
+import { useLanguage } from "./i18n/language-context";
 
 export default function Loading() {
   const [animationData, setAnimationData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const fetchAnimation = async () => {
@@ -40,7 +42,7 @@ export default function Loading() {
             <div className="w-16 h-16 border-4 border-zinc-800 border-t-zinc-100 rounded-full animate-spin"></div>
           )}
         </div>
-        <h2 className="text-xl font-semibold text-zinc-100">Loading...</h2>
+        <h2 className="text-xl font-semibold text-zinc-100">{t("loading.title")}</h2>
       </div>
     </div>
   );

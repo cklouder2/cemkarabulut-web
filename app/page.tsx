@@ -11,45 +11,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import SocialIcons from "./components/social-icons";
 import MobileMenu from "./components/mobile-menu";
+import Navigation from "./components/nav";
+import LanguageSwitcher from "./components/language-switcher";
 import { trackButtonClick, trackLinkClick } from "./lib/analytics";
-// Error Boundary Component
-class ErrorBoundary extends React.Component<
-  { children: React.ReactNode },
-  { hasError: boolean }
-> {
-  constructor(props: { children: React.ReactNode }) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error: Error) {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('Error caught by boundary:', error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return (
-        <div className="flex items-center justify-center w-screen h-screen bg-black text-white">
-          <div className="text-center">
-            <h1 className="text-2xl mb-4">Something went wrong</h1>
-            <button 
-              onClick={() => this.setState({ hasError: false })}
-              className="px-4 py-2 bg-zinc-800 rounded hover:bg-zinc-700"
-            >
-              Try again
-            </button>
-          </div>
-        </div>
-      );
-    }
-
-    return this.props.children;
-  }
-}
+import { useLanguage } from "./i18n/language-context";
+import { ErrorBoundary } from "./components/error-boundary";
 
 // Typewriter Component
 function Typewriter({ text, speed = 80, className = "", onComplete }: { 
@@ -108,6 +74,7 @@ const FeaturedBrands = React.memo(({ brands, showTitle, showBrands }: {
   showBrands: boolean;
 }) => {
   const [visibleBrands, setVisibleBrands] = useState<number[]>([]);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (showBrands) {
@@ -126,7 +93,7 @@ const FeaturedBrands = React.memo(({ brands, showTitle, showBrands }: {
   return (
     <div className="text-xs animate-fade-in">
       <p className={`mb-4 font-medium transition-opacity duration-50 ${showTitle ? 'opacity-100' : 'opacity-0'} text-white`}>
-        Some of the brands Cem has had the pleasure to work with:
+        {t('home.brands_title')}
       </p>
       <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
         {brands.map((brand, index) => (
@@ -148,7 +115,7 @@ const FeaturedBrands = React.memo(({ brands, showTitle, showBrands }: {
 
 FeaturedBrands.displayName = 'FeaturedBrands';
 
-// Static data
+// Static data - will be updated dynamically based on language
 const navigation = [
   { name: "About", href: "/about", icon: faUser },
   { name: "Experience", href: "/experience", icon: faBriefcase },
@@ -161,12 +128,26 @@ const featuredBrands = [
   "Microsoft", "Coca-Cola", "Nestlé", "Ford Otosan", "Nescafé", "Lipton", "Cif", "Avon", "Beko", "Dimes", "Obsesso", "Akbank", "Enerjisa", "Kayalar Kimya", "Düfa", "Metro İstanbul", "İBB", "İGDAŞ", "Türk Nippon Sigorta", "Baymak", "Electrolux", "Vialand", "Greenlog", "NoorCM", "Laurastar", "Baseus", "Babyliss", "CVK", "Air Clinic", "KKB", "Senkron", "Ingram Micro", "Burgan Bank"
 ];
 
-const longTextWords = [
-  "I'm", "a", "Creative", "Art", "Director", "with", "15+", "years", "of", "experience", "in", "turning", "ideas", "into", "visuals", "that", "speak.", "I", "specialize", "in", "building", "brand", "stories", "through", "design,", "whether", "it's", "a", "logo,", "a", "campaign,", "or", "a", "full", "digital", "experience.", "My", "approach", "to", "design", "focuses", "on", "connection,", "clarity,", "and", "creativity."
-];
-
 // Main component
 export default function Home() {
+  const { t, language } = useLanguage();
+  
+  // Dynamic navigation based on language
+  const dynamicNavigation = [
+    { name: "About", href: language === 'tr' ? "/hakkimda" : "/about", icon: faUser },
+    { name: "Experience", href: language === 'tr' ? "/deneyim" : "/experience", icon: faBriefcase },
+    { name: "Skills", href: language === 'tr' ? "/yetenekler" : "/skills", icon: faCode },
+    { name: "Projects", href: language === 'tr' ? "/projeler" : "/projects", icon: faFolderOpen },
+    { name: "Contact", href: language === 'tr' ? "/iletisim" : "/contact", icon: faEnvelope },
+  ];
+  
+  // Dil bazlı metin
+  const longTextWords = language === 'tr' ? [
+    "15", "yılı", "aşkın", "deneyimimle", "fikirleri", "konuşan", "görsellere", "dönüştüren", "bir", "Yaratıcı", "Sanat", "Yönetmeniyim.", "Logo,", "kampanya", "veya", "tam", "dijital", "deneyim", "olsun,", "tasarım", "aracılığıyla", "marka", "hikayeleri", "oluşturmada", "uzmanım.", "Tasarım", "yaklaşımım", "bağlantı,", "netlik", "ve", "yaratıcılık", "üzerine", "odaklanır."
+  ] : [
+    "I'm", "a", "Creative", "Art", "Director", "with", "15+", "years", "of", "experience", "in", "turning", "ideas", "into", "visuals", "that", "speak.", "I", "specialize", "in", "building", "brand", "stories", "through", "design,", "whether", "it's", "a", "logo,", "a", "campaign,", "or", "a", "full", "digital", "experience.", "My", "approach", "to", "design", "focuses", "on", "connection,", "clarity,", "and", "creativity."
+  ];
+
   // Tüm state ve hook'lar en başta, koşulsuz
   const [isReady, setIsReady] = useState(false);
   const [showNavbar, setShowNavbar] = useState(false);
@@ -185,7 +166,7 @@ export default function Home() {
         setShowBrands(true);
         setTimeout(() => {
           setShowNavbar(true);
-          navigation.forEach((_, index) => {
+          dynamicNavigation.forEach((_, index) => {
             setTimeout(() => {
               setVisibleNavItems(prev => [...prev, index]);
             }, index * 100);
@@ -228,7 +209,7 @@ export default function Home() {
     return (
       <div className="fixed inset-0 flex flex-col items-center justify-center bg-black z-[9999]">
         <div className="w-16 h-16 border-4 border-zinc-800 border-t-zinc-100 rounded-full animate-spin mb-6"></div>
-        <h2 className="text-xl font-semibold text-zinc-100">Loading...</h2>
+        <h2 className="text-xl font-semibold text-zinc-100">{t('home.loading')}</h2>
       </div>
     );
   }
@@ -264,11 +245,11 @@ export default function Home() {
             {/* Butonlar */}
             <div className={`flex flex-col items-center justify-center gap-4 w-full mb-8 transition-all duration-50 ${showButtons ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
               <Link
-                href="/about"
+                href={language === 'tr' ? "/hakkimda" : "/about"}
                 onClick={() => trackButtonClick('lets_start_here', 'homepage_mobile')}
                 className="w-full max-w-xs mx-auto px-6 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-100 text-sm font-medium hover:border-zinc-400/60 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
               >
-                Let's start here →
+                {t('home.lets_start_here')}
               </Link>
               <Link
                 href="https://www.behance.net/cemkarabulut"
@@ -277,7 +258,7 @@ export default function Home() {
                 onClick={() => trackLinkClick('behance_portfolio', 'behance.net', true)}
                 className="w-full max-w-xs mx-auto px-6 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-300 text-sm font-medium hover:border-zinc-400/60 hover:text-zinc-100 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
               >
-                Take a look at what I've built →
+                {t('home.take_a_look')}
               </Link>
             </div>
             {/* Brands title - daha okunur ve aşağıda */}
@@ -324,11 +305,16 @@ export default function Home() {
         </div>
         {/* Masaüstü için mevcut yapı */}
         <div className="hidden sm:flex flex-col items-center justify-center w-full h-screen overflow-x-hidden bg-transparent">
+          {/* Ana sayfa özel dil değiştirici - sağ üst köşe */}
+          <div className="fixed top-6 right-6 z-50">
+            <LanguageSwitcher size="default" />
+          </div>
+          
           <div className="container mx-auto px-4 sm:px-6 pt-6 relative z-30">
                         {showNavbar && <div className="relative z-30"><SocialIcons /></div>}
             <nav className={`mt-10 sm:mt-16 mb-3 sm:mb-4 transition-opacity duration-100 z-30 relative ${showNavbar ? 'opacity-100' : 'opacity-0'}`}>
               <ul className="flex flex-wrap items-center justify-center gap-2 sm:gap-6">
-                {navigation.map((item, index) => (
+                {dynamicNavigation.map((item, index) => (
                   <Link
                     key={item.href}
                     href={item.href}
@@ -337,7 +323,7 @@ export default function Home() {
                     }`}
                   >
                     <FontAwesomeIcon icon={item.icon} className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    {item.name}
+                    {t(`navigation.${item.name.toLowerCase()}`)}
                   </Link>
                 ))}
               </ul>
@@ -366,7 +352,7 @@ export default function Home() {
                       {word}{' '}
                     </span>
                   ))}
-                  <br />
+                  {language === 'en' && <br />}
                   {longTextWords.slice(17).map((word, index) => (
                     <span
                       key={"br2-" + index}
@@ -387,7 +373,7 @@ export default function Home() {
                 onClick={() => trackButtonClick('lets_start_here', 'homepage_desktop')}
                 className="px-6 sm:px-8 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-100 text-sm sm:text-base font-medium hover:border-zinc-400/60 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
               >
-                Let's start here →
+                {t('home.lets_start_here')}
               </Link>
               <Link
                 href="https://www.behance.net/cemkarabulut"
@@ -396,7 +382,7 @@ export default function Home() {
                 onClick={() => trackLinkClick('behance_portfolio', 'behance.net', true)}
                 className="px-6 sm:px-8 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-300 text-sm sm:text-base font-medium hover:border-zinc-400/60 hover:text-zinc-100 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
               >
-                Take a look at what I've built →
+                {t('home.take_a_look')}
               </Link>
             </div>
             {/* Featured Brands */}

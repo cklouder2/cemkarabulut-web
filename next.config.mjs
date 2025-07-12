@@ -3,7 +3,7 @@ import { withContentlayer } from "next-contentlayer";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	// output: 'export', // KALDIRILDI
-	trailingSlash: true,
+	// trailingSlash: true, // KALDIRILDI - Turkish URL routing için
 	images: {
 		unoptimized: true
 	},

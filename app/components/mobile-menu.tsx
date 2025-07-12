@@ -10,15 +10,10 @@ import {
   faWhatsapp
 } from "@fortawesome/free-brands-svg-icons";
 import { trackNavigationClick, trackSocialClick } from "../lib/analytics";
+import { useLanguage } from "../i18n/language-context";
+import LanguageSwitcher from "./language-switcher";
 
-const navigation = [
-  { name: "Home", href: "/", icon: faHome },
-  { name: "About", href: "/about", icon: faUser },
-  { name: "Experience", href: "/experience", icon: faBriefcase },
-  { name: "Skills", href: "/skills", icon: faCode },
-  { name: "Projects", href: "/projects", icon: faFolderOpen },
-  { name: "Contact", href: "/contact", icon: faEnvelope },
-];
+
 
 const socials = [
   {
@@ -50,6 +45,18 @@ const socials = [
 
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
+  const { t, language } = useLanguage();
+  
+  // Dynamic navigation based on language
+  const navigation = [
+    { name: "Home", href: "/", icon: faHome },
+    { name: "About", href: language === 'tr' ? "/hakkimda" : "/about", icon: faUser },
+    { name: "Experience", href: language === 'tr' ? "/deneyim" : "/experience", icon: faBriefcase },
+    { name: "Skills", href: language === 'tr' ? "/yetenekler" : "/skills", icon: faCode },
+    { name: "Projects", href: language === 'tr' ? "/projeler" : "/projects", icon: faFolderOpen },
+    { name: "Contact", href: language === 'tr' ? "/iletisim" : "/contact", icon: faEnvelope },
+  ];
+  
   return (
     <>
       {/* Hamburger Icon ve sağ üst butonlar */}
@@ -60,17 +67,15 @@ export default function MobileMenu() {
           aria-label="Menu"
         >
           <FontAwesomeIcon icon={faBars} className="text-white text-2xl" />
-          <span className="ml-2 font-bold text-zinc-200 text-base select-none">Menu</span>
+          <span className="ml-2 font-bold text-zinc-200 text-base select-none">{t('common.menu')}</span>
         </button>
       </div>
       <div className="fixed top-4 right-4 z-40 flex flex-row items-center gap-2 sm:hidden">
         {/* Language Button */}
-        <button className="w-10 h-10 flex items-center justify-center rounded-full bg-zinc-800/70 hover:bg-zinc-700 border border-zinc-700 shadow transition-colors" aria-label="Change language">
-          <FontAwesomeIcon icon={faGlobe} className="text-zinc-200 text-lg" />
-        </button>
+        <LanguageSwitcher size="default" />
         {/* Theme Button */}
         <button className="w-10 h-10 flex items-center justify-center rounded-full bg-zinc-800/70 hover:bg-zinc-700 border border-zinc-700 shadow transition-colors" aria-label="Toggle theme">
-          <FontAwesomeIcon icon={faSun} className="text-zinc-200 text-lg" />
+          <FontAwesomeIcon icon={faSun} className="text-white text-lg" />
         </button>
       </div>
       {/* Overlay */}
@@ -117,7 +122,7 @@ export default function MobileMenu() {
                     setOpen(false);
                   }}
                 >
-                  <FontAwesomeIcon icon={item.icon} className="w-5 h-5 text-zinc-400 group-hover:text-zinc-200 transition-colors" />
+                  <FontAwesomeIcon icon={item.icon} className="w-5 h-5 text-white group-hover:text-zinc-200 transition-colors" />
                   {item.name}
                 </Link>
               </li>
@@ -135,7 +140,7 @@ export default function MobileMenu() {
                 onClick={() => trackSocialClick(s.label.toLowerCase(), 'mobile_menu')}
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-zinc-800/70 hover:bg-zinc-700 transition-colors text-zinc-200 text-lg shadow border border-zinc-700"
               >
-                <FontAwesomeIcon icon={s.icon} />
+                <FontAwesomeIcon icon={s.icon} className="text-white" />
               </a>
             ))}
           </div>

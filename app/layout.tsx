@@ -9,6 +9,8 @@ import SocialIcons from "./components/social-icons";
 import MobileMenu from "./components/mobile-menu";
 import BackgroundEffect from "./components/background-effect";
 import { headers } from "next/headers";
+import { LanguageProvider } from "./i18n/language-context";
+import { DynamicMetadata } from "./components/dynamic-metadata";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -167,65 +169,70 @@ export default function RootLayout({
       <body
         className={`bg-black antialiased overflow-x-hidden ${montserrat.className}`}
       >
-        {/* Global Background Effect - TÜM SAYFALARDA GÖRÜNÜR */}
-        <BackgroundEffect visible={true} />
+        <LanguageProvider>
+          {/* Dynamic Metadata for SEO */}
+          <DynamicMetadata />
+          
+          {/* Global Background Effect - TÜM SAYFALARDA GÖRÜNÜR */}
+          <BackgroundEffect visible={true} />
 
-        {/* Mobile hamburger menu - tüm sayfalarda */}
-        <div className="block sm:hidden">
-          <MobileMenu />
-        </div>
-        
-        {/* Main content wrapper - background effects behind content */}
-        <div className="flex flex-col min-h-screen bg-transparent relative z-10">
-          <main className="flex-1 relative z-10 min-h-screen bg-transparent">
-            {children}
-          </main>
-          <FooterWrapper />
-        </div>
-        
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-R8E7RMJW7K"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-R8E7RMJW7K');
-          `}
-        </Script>
-        
-        {/* FontAwesome Kit - Placeholder for now */}
-        <Script
-          src="https://kit.fontawesome.com/your-kit-code.js"
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-        />
-        
-        {/* Vercel Speed Insights */}
-        <VercelSpeedInsights />
-        
-        {/* Clean up unwanted classes from extensions */}
-        <Script id="cleanup-classes" strategy="afterInteractive">
-          {`
-            // Remove unwanted classes from Chrome extensions
-            document.addEventListener('DOMContentLoaded', function() {
-              const body = document.body;
-              if (body) {
-                // Remove Chrome extension classes
-                body.classList.remove('clickup-chrome-ext_installed');
-                body.classList.remove('clickup-chrome-ext_installed');
-                
-                // Ensure proper font class
-                if (!body.classList.contains('${montserrat.className}')) {
-                  body.classList.add('${montserrat.className}');
+          {/* Mobile hamburger menu - tüm sayfalarda */}
+          <div className="block sm:hidden">
+            <MobileMenu />
+          </div>
+          
+          {/* Main content wrapper - background effects behind content */}
+          <div className="flex flex-col min-h-screen bg-transparent relative z-10">
+            <main className="flex-1 relative z-10 min-h-screen bg-transparent">
+              {children}
+            </main>
+            <FooterWrapper />
+          </div>
+          
+          {/* Google Analytics */}
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-R8E7RMJW7K"
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-R8E7RMJW7K');
+            `}
+          </Script>
+          
+          {/* FontAwesome Kit - Placeholder for now */}
+          <Script
+            src="https://kit.fontawesome.com/your-kit-code.js"
+            strategy="lazyOnload"
+            crossOrigin="anonymous"
+          />
+          
+          {/* Vercel Speed Insights */}
+          <VercelSpeedInsights />
+          
+          {/* Clean up unwanted classes from extensions */}
+          <Script id="cleanup-classes" strategy="afterInteractive">
+            {`
+              // Remove unwanted classes from Chrome extensions
+              document.addEventListener('DOMContentLoaded', function() {
+                const body = document.body;
+                if (body) {
+                  // Remove Chrome extension classes
+                  body.classList.remove('clickup-chrome-ext_installed');
+                  body.classList.remove('clickup-chrome-ext_installed');
+                  
+                  // Ensure proper font class
+                  if (!body.classList.contains('${montserrat.className}')) {
+                    body.classList.add('${montserrat.className}');
+                  }
                 }
-              }
-            });
-          `}
-        </Script>
+              });
+            `}
+          </Script>
+        </LanguageProvider>
       </body>
     </html>
   );

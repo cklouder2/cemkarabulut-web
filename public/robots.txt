@@ -12,9 +12,16 @@ Disallow: /api/
 Disallow: /_next/
 Disallow: /admin/
 
-# Allow important pages
+# Allow important pages (English)
 Allow: /about
 Allow: /experience
 Allow: /skills
 Allow: /projects
-Allow: /contact 
+Allow: /contact
+
+# Allow important pages (Turkish)
+Allow: /hakkimda
+Allow: /deneyim
+Allow: /yetenekler
+Allow: /projeler
+Allow: /iletisim 
