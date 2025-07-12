@@ -1,0 +1,216 @@
+{
+  "navigation": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımda",
+    "experience": "Deneyim",
+    "projects": "Projeler",
+    "skills": "Yetenekler",
+    "contact": "İletişim"
+  },
+  "home": {
+    "title": "Cem Karabulut",
+    "subtitle": "Yaratıcı Sanat Yönetmeni",
+    "description": "15 yılı aşkın deneyimimle fikirleri konuşan görsellere dönüştüren bir Yaratıcı Sanat Yönetmeniyim. Logo, kampanya veya tam dijital deneyim olsun, tasarım aracılığıyla marka hikayeleri oluşturmada uzmanım. Tasarım yaklaşımım bağlantı, netlik ve yaratıcılık üzerine odaklanır.",
+    "lets_start_here": "Buradan başlayalım →",
+    "take_a_look": "Neler yaptığıma bakın →",
+    "loading": "Yükleniyor...",
+    "brands_title": "Birlikte çalışmaktan keyif aldığım markalardan bazıları:"
+  },
+  "about": {
+    "title": "Hakkımda",
+    "description": "15 yılı aşkın görsel iletişim ve dijital medya tasarımı deneyimine sahip bir Yaratıcı Sanat Yönetmeniyim.",
+    "main_description": "15 yılı aşkın deneyimimle fikirleri konuşan görsellere dönüştüren bir yaratıcı sanat yönetmeniyim. Logo, kampanya veya tam dijital deneyim olsun, tasarım aracılığıyla marka hikayeleri oluşturmada uzmanım. Tasarım yaklaşımım bağlantı, netlik ve yaratıcılık üzerine odaklanır. Her markanın benzersiz bir hikayesi var ve bu hikayeleri özgün ve akılda kalıcı bir şekilde hayata geçirmekte başarılıyım.",
+    "my_approach": "Yaklaşımım",
+    "approach_description": "Yaklaşımım strateji, yaratıcılık ve teknolojiyi harmanlayarak gerçekten anlam ifade eden işler yaratmak üzerine kurulu. Her projenin arkasındaki insanları ve hikayeleri tanımakta başarılıyım. Benim için her işbirliği öğrenme, büyüme ve gerçekten bağlantı kuran bir şey yaratma fırsatıdır.",
+    "creative_vision": "Yaratıcı Vizyonum",
+    "vision_description": "Yaratıcı vizyonum merak ve hikaye anlatımı üzerine kurulu. Fikirleri duygu uyandıran ve harekete geçiren görsellere dönüştürmenin yeni yollarını keşfetmekte başarılıyım. Bir marka, hareketli grafik veya dijital kampanya üzerinde çalışırken, her projenin taze, düşünceli ve amacına sadık hissettirmesini sağlarım. Tasarım felsefem bağlantı, netlik ve yaratıcılık üzerine odaklanır - insanların yeni bir şey görmesini ve hissetmesini sağlar.",
+    "my_process": "Sürecim",
+    "process_description": "Gerçekten dinleyerek başlarım - müşterinin ne istediğini değil, neden istediğini anlamak için. Araştırmaya dalar, eskiz yapar, dener ve strateji ile yaratıcılığın buluştuğu o tatlı noktayı bulana kadar iterasyon yaparım. Dürüstlüğe, şeffaflığa ve her projeyi hayatımın en önemli projesi gibi ele almaya inanırım. Derin düşünmeyi, kaliteyi ve gerçek ilişkiler kurmayı değerli bulurum.",
+    "what_i_love": "Sevdiğim Şeyler",
+    "what_i_love_description": "Her şeyin yerine oturduğu o anı seviyorum—bir tasarım o kadar doğru hissettiriyor ki neredeyse kendini yaratıyor. Tutkulu insanlarla işbirliği yapmayı, yeni şeyler öğrenmeyi ve gerçek bir fark yaratan işler yaratmayı seviyorum. İşimin en güzel yanı, bir fikrin hayata geçtiğini görmek ve başka birine bir şey ifade ettiğini bilmek.",
+    "timeline": {
+      "early_career": {
+        "year": "2008-2012",
+        "title": "Erken Kariyer",
+        "description": "Reklam ajanslarında başladım, görsel iletişim ve marka tasarımının temellerini öğrendim. Bu erken yıllar bana takım çalışmasının değerini ve iyi bir fikrin gücünü öğretti."
+      },
+      "growth_period": {
+        "year": "2012-2016",
+        "title": "Büyüme Dönemi",
+        "description": "Bu süre zarfında dijital medya ve hareketli grafiklere daldım ve harika markalarla çalışma fırsatı buldum. Her proje beni yeni şeyler denemeye ve yaratıcı araç setimi genişletmeye itti."
+      },
+      "art_direction": {
+        "year": "2016-2020",
+        "title": "Sanat Yönetimi",
+        "description": "Sanat Yönetmeni rolüne adım attım, yaratıcı ekiplere liderlik ettim ve marka stratejilerini sıfırdan şekillendirmeye yardımcı oldum. Büyük fikirler, gece geç saatler ve çok öğrenme zamanıydı."
+      },
+      "innovation_era": {
+        "year": "2020-Günümüz",
+        "title": "İnovasyon Çağı",
+        "description": "Son zamanlarda AI araçlarını, 3D tasarımı ve yeni teknolojileri benimsiyorum, işimi taze ve heyecan verici tutmanın yollarını arıyorum. Ama ne kadar değişirse değişsin, yaratıcılık ve bağlantıya olan odaklanmam aynı kalıyor."
+      }
+    },
+    "skills": {
+      "design": "Tasarım",
+      "3d": "3D",
+      "ui_ux": "UI/UX",
+      "ai_tools": "AI Araçları",
+      "production": "Üretim",
+      "specialties": "Uzmanlık Alanları"
+    },
+    "brands": "Öne Çıkan Markalar",
+    "tv_productions": "TV Prodüksiyonları",
+    "timeline_title": "Kariyer Yolculuğu",
+    "skills_title": "Araçlar & Teknolojiler"
+  },
+  "experience": {
+    "title": "Deneyim",
+    "description": "Şimdiye kadarki yaratıcı yolculuğuma bir bakış. Yıllar boyunca harika ekiplerle çalışma, gurur duyduğum projelere liderlik etme ve sürekli yeni bir şeyler öğrenme fırsatım oldu. Her rol tasarım, takım çalışması ve anlamlı bir şey inşa etmenin ne demek olduğu hakkında düşünme şeklimi şekillendirdi.",
+    "present": "Günümüz",
+    "show_more": "Daha Fazla Göster",
+    "show_less": "Daha Az Göster"
+  },
+  "projects": {
+    "title": "Portfolyo",
+    "description": "Projelerimi ve son çalışmalarımı Behance'de paylaşıyorum. Marka kimliğinden dijital kampanyalara, hareketli grafiklerden yenilikçi tasarım çözümlerine - neler üzerinde çalıştığımı görmek isterseniz, sizi oraya davet etmek isterim!",
+    "behance_portfolio": "Behance Portfolyosu",
+    "behance_description": "Behance portfolyom yeni bir sekmede açılacak. Birkaç saniye içinde sizi oraya yönlendireceğim. Otomatik yönlendirme çalışmazsa, aşağıdaki butona tıklayabilirsiniz.",
+    "redirecting": "Behance'e yönlendiriliyor...",
+    "manual_redirect": "Otomatik olarak yönlendirilmezseniz, aşağıdaki butona tıklayabilirsiniz:",
+    "view_portfolio": "Behance'de Portfolyoyu Görüntüle",
+    "redirecting_status": "✓ Behance'e yönlendiriliyor..."
+  },
+  "skills": {
+    "title": "Yetenekler",
+    "description": "En çok çalışmayı sevdiğim araçlar, platformlar ve tasarım disiplinlerine bir bakış. Yıllar boyunca öğrendiğim ve kullandığım her şey her projeye yeni bir perspektif kazandırdı. Merak ettiğiniz bir şey varsa, istediğiniz zaman sorabilirsiniz!",
+    "categories": {
+      "adobe_creative_suite": {
+        "title": "Adobe Creative Suite",
+        "description": "Profesyonel tasarım ve üretim araçları"
+      },
+      "3d_visualization": {
+        "title": "3D & Görselleştirme",
+        "description": "3D modelleme, animasyon ve görselleştirme araçları"
+      },
+      "ui_ux_prototyping": {
+        "title": "UI/UX & Prototipleme",
+        "description": "Kullanıcı arayüzü tasarımı ve prototipleme araçları"
+      },
+      "ai_powered_tools": {
+        "title": "AI Destekli Araçlar",
+        "description": "Yaratıcı iş akışları için yapay zeka araçları"
+      },
+      "other_tools": {
+        "title": "Diğer Araçlar",
+        "description": "Ek araçlar ve platformlar"
+      },
+      "design_disciplines": {
+        "title": "Tasarım Disiplinleri",
+        "description": "Temel tasarım becerileri ve uzmanlık alanları"
+      }
+    },
+    "levels": {
+      "expert": "İleri Seviye",
+      "advanced": "Uzman Seviye",
+      "intermediate": "Orta Seviye",
+      "beginner": "Başlangıç Seviye"
+    },
+    "design_philosophy": "Tasarım Felsefem",
+    "philosophy_description": "Benim için tasarım sadece estetik değil - şeylerin insanları nasıl hissettirdiği ve ne anlamalarına yardımcı olduğu ile ilgili. Hem basit hem de ifade gücü yüksek bir tarza çekiliyorum, her zaman denge, netlik ve biraz sürpriz hedefliyorum. Teknoloji ve hikaye anlatımını birlikte kullanarak hem anlamlı hem de akılda kalıcı işler yaratmayı seviyorum.",
+    "philosophy_points": {
+      "minimalist": {
+        "title": "Minimalist",
+        "description": "Gereksiz detaylar olmadan temiz, amaçlı tasarımlar"
+      },
+      "expressive": {
+        "title": "İfade Gücü Yüksek",
+        "description": "Duygu ve anlatımla geliştirilmiş görsel hikaye anlatımı"
+      },
+      "future_focused": {
+        "title": "Gelecek Odaklı",
+        "description": "Yenilikçi teknolojilerle ileri görüşlü çözümler"
+      }
+    }
+  },
+  "contact": {
+    "title": "İletişim",
+    "description": "Merhaba! Aklınızda bir proje varsa, işbirliği yapmak istiyorsanız veya sadece tasarım hakkında sohbet etmek istiyorsanız, lütfen iletişime geçin. Yeni insanlarla tanışmaktan ve birlikte yaratıcı fikirleri keşfetmekten her zaman mutluluk duyarım.",
+    "methods": {
+      "email": {
+        "title": "E-posta",
+        "description": "Projeler ve işbirlikleri için doğrudan iletişim"
+      },
+      "phone": {
+        "title": "Telefon",
+        "description": "Acil durumlar ve görüşmeler için müsait"
+      },
+      "location": {
+        "title": "Konum",
+        "description": "İstanbul'da bulunuyorum, uzaktan çalışmaya açığım"
+      },
+      "availability": {
+        "title": "Müsaitlik",
+        "description": "Standart iş saatleri, projeler için esnek"
+      }
+    },
+    "services": {
+      "brand_identity": {
+        "title": "Marka Kimliği Tasarımı",
+        "description": "Logo, kılavuzlar ve uygulamalar dahil tam marka kimliği paketleri"
+      },
+      "motion_graphics": {
+        "title": "Hareketli Grafikler & Animasyon",
+        "description": "Dijital kampanyalar ve sunumlar için dinamik görsel içerik"
+      },
+      "ui_ux": {
+        "title": "UI/UX Tasarımı",
+        "description": "Web ve mobil uygulamalar için kullanıcı arayüzü ve deneyim tasarımı"
+      },
+      "digital_campaigns": {
+        "title": "Dijital Kampanyalar",
+        "description": "Yaratıcı yönetimle uçtan uca dijital pazarlama kampanyaları"
+      },
+      "3d_visualization": {
+        "title": "3D Görselleştirme",
+        "description": "Pazarlama materyalleri için ürün görselleştirme ve 3D tasarım"
+      },
+      "creative_direction": {
+        "title": "Yaratıcı Yönetim",
+        "description": "Markalar ve pazarlama girişimleri için stratejik yaratıcı yönetim"
+      }
+    },
+    "lets_connect": "Bağlanalım & Birlikte Üretelim",
+    "lets_connect_desc": "Yaratıcı yolculuğumu, sahne arkası anlarımı ve işlerimin hikayesini paylaşmayı seviyorum. İlham, işbirliği ya da sadece merhaba demek için buradayım.",
+    "services_title": "Hizmetlerim",
+    "services_desc": "Markanız ve pazarlama ihtiyaçlarınız için kapsamlı yaratıcı çözümler",
+    "cta_title": "Projenize Başlamaya Hazır mısınız?",
+    "cta_desc": "Aklınızda belirli bir proje varsa ya da sadece olasılıkları keşfetmek istiyorsanız, yaratıcı vizyonunuzu hayata geçirmek için buradayım.",
+    "cta_email": "Mesaj Gönder",
+    "cta_call": "Hemen Ara",
+    "cta_whatsapp": "WhatsApp'tan Yaz",
+    "availability": "Pzt-Cuma, 9.00-18.00",
+    "the_voice": "O Ses Türkiye",
+    "masterchef": "MasterChef Türkiye"
+  },
+  "common": {
+    "menu": "Menü",
+    "change_language": "Dili değiştir",
+    "toggle_theme": "Temayı değiştir"
+  },
+  "not_found": {
+    "title": "Sayfa Bulunamadı",
+    "description": "Aradığınız sayfa mevcut değil. Taşınmış, silinmiş olabilir veya yanlış URL girdiniz.",
+    "go_home": "Ana Sayfaya Git",
+    "contact_me": "İletişime Geç"
+  },
+  "error": {
+    "title": "Bir şeyler yanlış gitti!",
+    "description": "Bu sayfa yüklenirken bir hata oluştu. Lütfen tekrar deneyin.",
+    "global_description": "Kritik bir hata oluştu. Lütfen sayfayı yenileyin.",
+    "try_again": "Tekrar dene",
+    "refresh_page": "Sayfayı Yenile"
+  },
+  "loading": {
+    "title": "Yükleniyor..."
+  }
+} 

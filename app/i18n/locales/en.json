@@ -1,0 +1,216 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience", 
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Cem Karabulut",
+    "subtitle": "Creative Art Director",
+    "description": "I'm a Creative Art Director with 15+ years of experience in turning ideas into visuals that speak. I specialize in building brand stories through design, whether it's a logo, a campaign, or a full digital experience. My approach to design focuses on connection, clarity, and creativity.",
+    "lets_start_here": "Let's start here →",
+    "take_a_look": "Take a look at what I've built →",
+    "loading": "Loading...",
+    "brands_title": "Some of the brands I've had the pleasure to work with:"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I am a Creative Art Director with over 15 years of experience in visual communication and digital media design.",
+    "main_description": "I'm a creative art director with 15+ years of experience in turning ideas into visuals that speak. I specialize in building brand stories through design, whether it's a logo, a campaign, or a full digital experience. My approach to design focuses on connection, clarity, and creativity. Every brand has a unique story, and I excel at bringing those stories to life in a way that feels authentic and memorable.",
+    "my_approach": "My Approach",
+    "approach_description": "My approach is all about blending strategy, creativity, and technology to create work that really means something. I excel at getting to know the people and stories behind every project. For me, every collaboration is a chance to learn, grow, and make something that truly connects.",
+    "creative_vision": "Creative Vision",
+    "vision_description": "My creative vision is all about curiosity and storytelling. I excel at exploring new ways to turn ideas into visuals that spark emotion and inspire action. Whether working on a brand, a motion graphic, or a digital campaign, I ensure every project feels fresh, thoughtful, and true to its purpose. My design philosophy focuses on connection, clarity, and creativity-helping people see and feel something new.",
+    "my_process": "My Process",
+    "process_description": "I start by listening—really listening—to understand not just what a client wants, but why they want it. I dive deep into research, sketch, experiment, and iterate until I find that sweet spot where strategy meets creativity. I believe in honesty, transparency, and treating every project like it's the most important one I'll ever work on. I value deep thinking, quality, and building real relationships along the way.",
+    "what_i_love": "What I Love",
+    "what_i_love_description": "I love the moment when everything clicks—when a design feels so right that it almost creates itself. I enjoy collaborating with passionate people, learning new things, and creating work that makes a real difference. The best part of my job is seeing an idea come to life and knowing it means something to someone else.",
+    "timeline": {
+      "early_career": {
+        "year": "2008-2012",
+        "title": "Early Career",
+        "description": "I started out in advertising agencies, learning the basics of visual communication and brand design. Those early years taught me the value of teamwork and the power of a good idea."
+      },
+      "growth_period": {
+        "year": "2012-2016",
+        "title": "Growth Period",
+        "description": "During this time, I dove into digital media and motion graphics, and had the chance to work with some amazing brands. Every project pushed me to try new things and expand my creative toolkit."
+      },
+      "art_direction": {
+        "year": "2016-2020",
+        "title": "Art Direction",
+        "description": "I stepped into the role of Art Director, leading creative teams and helping shape brand strategies from the ground up. It was a time of big ideas, late nights, and a lot of learning."
+      },
+      "innovation_era": {
+        "year": "2020-Present",
+        "title": "Innovation Era",
+        "description": "Lately, I've been embracing AI tools, 3D design, and new technologies, always looking for ways to keep my work fresh and exciting. But no matter how much things change, my focus on creativity and connection stays the same."
+      }
+    },
+    "skills": {
+      "design": "Design",
+      "3d": "3D",
+      "ui_ux": "UI/UX",
+      "ai_tools": "AI Tools",
+      "production": "Production",
+      "specialties": "Specialties"
+    },
+    "brands": "Featured Brands",
+    "tv_productions": "TV Productions",
+    "timeline_title": "Career Journey",
+    "skills_title": "Tools & Technologies"
+  },
+  "experience": {
+    "title": "Experience",
+    "description": "Here's a look at my creative journey so far. Over the years, I've had the chance to work with amazing teams, lead projects I'm proud of, and constantly learn something new. Every role has shaped how I think about design, teamwork, and what it means to build something meaningful.",
+    "present": "Present",
+    "show_more": "Show More",
+    "show_less": "Show Less"
+  },
+  "projects": {
+    "title": "Portfolio",
+    "description": "I share my projects and latest work on Behance. From branding to digital campaigns, motion graphics to innovative design solutions-if you want to see what I've been working on, I'd love to invite you there!",
+    "behance_portfolio": "Behance Portfolio",
+    "behance_description": "My Behance portfolio will open in a new tab. I'll redirect you there in a few seconds. If the automatic redirect doesn't work, you can click the button below.",
+    "redirecting": "Redirecting to Behance...",
+    "manual_redirect": "If you're not redirected automatically, you can click the button below:",
+    "view_portfolio": "View Portfolio on Behance",
+    "redirecting_status": "✓ Redirecting to Behance..."
+  },
+  "skills": {
+    "title": "Skills",
+    "description": "Here's a peek at the tools, platforms, and design disciplines I love working with most. Over the years, everything I've learned and used has given me a fresh perspective on every project. If you're curious about anything, feel free to ask me anytime!",
+    "categories": {
+      "adobe_creative_suite": {
+        "title": "Adobe Creative Suite",
+        "description": "Professional design and production tools"
+      },
+      "3d_visualization": {
+        "title": "3D & Visualization",
+        "description": "3D modeling, animation and visualization tools"
+      },
+      "ui_ux_prototyping": {
+        "title": "UI/UX & Prototyping",
+        "description": "User interface design and prototyping tools"
+      },
+      "ai_powered_tools": {
+        "title": "AI-Powered Tools",
+        "description": "Artificial intelligence tools for creative workflows"
+      },
+      "other_tools": {
+        "title": "Other Tools",
+        "description": "Additional tools and platforms"
+      },
+      "design_disciplines": {
+        "title": "Design Disciplines",
+        "description": "Core design skills and expertise areas"
+      }
+    },
+    "levels": {
+      "expert": "Expert",
+      "advanced": "Advanced",
+      "intermediate": "Intermediate",
+      "beginner": "Beginner"
+    },
+    "design_philosophy": "My Design Philosophy",
+    "philosophy_description": "For me, design isn't just about aesthetics-it's about how things make people feel and what they help people understand. I'm drawn to a style that's both simple and expressive, always aiming for balance, clarity, and a bit of surprise. I love using technology and storytelling together to create work that's both meaningful and memorable.",
+    "philosophy_points": {
+      "minimalist": {
+        "title": "Minimalist",
+        "description": "Clean, purposeful designs without unnecessary details"
+      },
+      "expressive": {
+        "title": "Expressive",
+        "description": "Visual storytelling enhanced with emotion and narrative"
+      },
+      "future_focused": {
+        "title": "Future-Focused",
+        "description": "Forward-thinking solutions with innovative technologies"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Hi! If you have a project in mind, want to collaborate, or just want to chat about design, feel free to reach out. I'm always happy to connect with new people and explore creative ideas together.",
+    "methods": {
+      "email": {
+        "title": "Email",
+        "description": "Direct communication for projects and collaborations"
+      },
+      "phone": {
+        "title": "Phone",
+        "description": "Available for urgent matters and calls"
+      },
+      "location": {
+        "title": "Location",
+        "description": "Based in Istanbul, available for remote work"
+      },
+      "availability": {
+        "title": "Availability",
+        "description": "Standard business hours, flexible for projects"
+      }
+    },
+    "services": {
+      "brand_identity": {
+        "title": "Brand Identity Design",
+        "description": "Complete brand identity packages including logos, guidelines, and applications"
+      },
+      "motion_graphics": {
+        "title": "Motion Graphics & Animation",
+        "description": "Dynamic visual content for digital campaigns and presentations"
+      },
+      "ui_ux": {
+        "title": "UI/UX Design",
+        "description": "User interface and experience design for web and mobile applications"
+      },
+      "digital_campaigns": {
+        "title": "Digital Campaigns",
+        "description": "End-to-end digital marketing campaigns with creative direction"
+      },
+      "3d_visualization": {
+        "title": "3D Visualization",
+        "description": "Product visualization and 3D design for marketing materials"
+      },
+      "creative_direction": {
+        "title": "Creative Direction",
+        "description": "Strategic creative direction for brands and marketing initiatives"
+      }
+    },
+    "lets_connect": "Let's Connect & Create Together",
+    "lets_connect_desc": "I love sharing my creative journey, behind-the-scenes moments, and the stories behind my work. Whether you're looking for inspiration, collaboration, or just want to say hello, I'm here to connect.",
+    "services_title": "Services I Offer",
+    "services_desc": "Comprehensive creative solutions for your brand and marketing needs",
+    "cta_title": "Ready to Start Your Project?",
+    "cta_desc": "Whether you have a specific project in mind or just want to explore possibilities, I'm here to bring your creative vision to life.",
+    "cta_email": "Start a Conversation",
+    "cta_call": "Call Now",
+    "cta_whatsapp": "Message on WhatsApp",
+    "availability": "Mon-Fri, 9AM-6PM",
+    "the_voice": "The Voice Turkey",
+    "masterchef": "MasterChef Turkey"
+  },
+  "common": {
+    "menu": "Menu",
+    "change_language": "Change language",
+    "toggle_theme": "Toggle theme"
+  },
+  "not_found": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist. It might have been moved, deleted, or you entered the wrong URL.",
+    "go_home": "Go Home",
+    "contact_me": "Contact Me"
+  },
+  "error": {
+    "title": "Something went wrong!",
+    "description": "An error occurred while loading this page. Please try again.",
+    "global_description": "A critical error occurred. Please try refreshing the page.",
+    "try_again": "Try again",
+    "refresh_page": "Refresh Page"
+  },
+  "loading": {
+    "title": "Loading..."
+  }
+} 
