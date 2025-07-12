@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
-import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
 
 export function Analytics() {
 	const token = process.env.NEXT_PUBLIC_BEAM_TOKEN;

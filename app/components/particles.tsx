@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useMousePosition } from "@/util/mouse";
 
 interface ParticlesProps {
@@ -26,6 +26,9 @@ export default function Particles({
 	const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 	const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
 	const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+	
+	// Device orientation for mobile
+	const [deviceOrientation, setDeviceOrientation] = useState({ x: 0, y: 0 });
 
 	useEffect(() => {
 		if (canvasRef.current) {
@@ -38,6 +41,27 @@ export default function Particles({
 		return () => {
 			window.removeEventListener("resize", initCanvas);
 		};
+	}, []);
+
+	// Device orientation listener for mobile
+	useEffect(() => {
+		if (window.matchMedia('(pointer: coarse)').matches) {
+			const handleOrientation = (e: DeviceOrientationEvent) => {
+				// gamma: left/right [-90,90], beta: front/back [-180,180]
+				// Normalize to [-0.5,0.5]
+				const x = Math.max(-0.5, Math.min(0.5, (e.gamma ?? 0) / 90));
+				const y = Math.max(-0.5, Math.min(0.5, (e.beta ?? 0) / 180));
+				setDeviceOrientation({ x, y });
+			};
+			window.addEventListener('deviceorientation', handleOrientation);
+			// iOS permission
+			// @ts-ignore
+			if (typeof window.DeviceOrientationEvent !== 'undefined' && typeof window.DeviceOrientationEvent.requestPermission === 'function') {
+				// @ts-ignore
+				window.DeviceOrientationEvent.requestPermission().catch(()=>{});
+			}
+			return () => window.removeEventListener('deviceorientation', handleOrientation);
+		}
 	}, []);
 
 	useEffect(() => {
@@ -190,11 +214,23 @@ export default function Particles({
 			}
 			circle.x += circle.dx;
 			circle.y += circle.dy;
+			
+			// Apply interaction based on device type
+			let interactionX = mouse.current.x;
+			let interactionY = mouse.current.y;
+			
+			// On mobile, use device orientation instead of mouse
+			if (window.matchMedia('(pointer: coarse)').matches) {
+				const maxOffset = 100;
+				interactionX = deviceOrientation.x * maxOffset;
+				interactionY = deviceOrientation.y * maxOffset;
+			}
+			
 			circle.translateX +=
-				(mouse.current.x / (staticity / circle.magnetism) - circle.translateX) /
+				(interactionX / (staticity / circle.magnetism) - circle.translateX) /
 				ease;
 			circle.translateY +=
-				(mouse.current.y / (staticity / circle.magnetism) - circle.translateY) /
+				(interactionY / (staticity / circle.magnetism) - circle.translateY) /
 				ease;
 			// circle gets out of the canvas
 			if (
