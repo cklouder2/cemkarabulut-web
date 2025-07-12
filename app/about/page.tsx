@@ -25,6 +25,7 @@ import {
   faInstagram as faInstagramBrand,
   faBehance as faBehanceBrand
 } from "@fortawesome/free-brands-svg-icons";
+import { useLanguage } from "../i18n/language-context";
 
 // Timeline component
 const Timeline = ({ items }: { items: Array<{ year: string; title: string; description: string }> }) => (
@@ -103,6 +104,7 @@ const BrandsShowcase = ({ brands }: { brands: string[] }) => (
 );
 
 export default function AboutPage() {
+  const { t, language } = useLanguage();
   const [typewriterDone, setTypewriterDone] = useState(false);
   const [showBodyCopy, setShowBodyCopy] = useState(false);
   const [showContent, setShowContent] = useState(false);
@@ -129,73 +131,121 @@ export default function AboutPage() {
   // Only run Typewriter on first mount
   const [typewriterMounted, setTypewriterMounted] = useState(false);
   useEffect(() => { setTypewriterMounted(true); }, []);
-  
+
+  // Timeline data from translations
   const timelineData = [
     {
-      year: "2008-2012",
-      title: "Early Career",
-      description: "I started out in advertising agencies, learning the basics of visual communication and brand design. Those early years taught me the value of teamwork and the power of a good idea."
+      year: t("about.timeline.early_career.year"),
+      title: t("about.timeline.early_career.title"),
+      description: t("about.timeline.early_career.description")
     },
     {
-      year: "2012-2016",
-      title: "Growth Period",
-      description: "During this time, I dove into digital media and motion graphics, and had the chance to work with some amazing brands. Every project pushed me to try new things and expand my creative toolkit."
+      year: t("about.timeline.growth_period.year"),
+      title: t("about.timeline.growth_period.title"),
+      description: t("about.timeline.growth_period.description")
     },
     {
-      year: "2016-2020",
-      title: "Art Direction",
-      description: "I stepped into the role of Art Director, leading creative teams and helping shape brand strategies from the ground up. It was a time of big ideas, late nights, and a lot of learning."
+      year: t("about.timeline.art_direction.year"),
+      title: t("about.timeline.art_direction.title"),
+      description: t("about.timeline.art_direction.description")
     },
     {
-      year: "2020-Present",
-      title: "Innovation Era",
-      description: "Lately, I’ve been embracing AI tools, 3D design, and new technologies, always looking for ways to keep my work fresh and exciting. But no matter how much things change, my focus on creativity and connection stays the same."
+      year: t("about.timeline.innovation_era.year"),
+      title: t("about.timeline.innovation_era.title"),
+      description: t("about.timeline.innovation_era.description")
     }
   ];
 
+  // Modern, sade ve profesyonel Skills bölümü için yeni yapı
   const skillsData = [
     {
-      category: "Design",
+      icon: faPalette,
+      category: language === "tr" ? "Tasarım" : "Design",
       items: ["Photoshop", "Illustrator", "InDesign", "After Effects", "Premiere Pro"]
     },
     {
+      icon: faStar,
       category: "3D",
-      items: ["Cinema 4D", "Blender", "Substance 3D", "3D Modeling", "Animation"]
+      items: ["Cinema 4D", "Blender", "Substance 3D", language === "tr" ? "3D Modelleme" : "3D Modeling"]
     },
     {
+      icon: faTools,
       category: "UI/UX",
-      items: ["Figma", "Adobe XD", "Prototyping", "User Research", "Wireframing"]
+      items: ["Figma", "Adobe XD", language === "tr" ? "Prototipleme" : "Prototyping", language === "tr" ? "Kullanıcı Araştırması" : "User Research", "Wireframing"]
     },
     {
-      category: "AI Tools",
+      icon: faMagicWandSparkles,
+      category: language === "tr" ? "Yapay Zeka Araçları" : "AI Tools",
       items: ["Midjourney", "ChatGPT", "Stable Diffusion", "ComfyUI", "Runway ML"]
     },
     {
-      category: "Production",
-      items: ["WordPress", "Notion", "Miro", "Project Management", "Team Leadership"]
+      icon: faRocket,
+      category: language === "tr" ? "Üretim ve Planlama" : "Production & Planning",
+      items: ["WordPress", "Notion", "Miro", language === "tr" ? "Proje Yönetimi" : "Project Management", language === "tr" ? "Takım Liderliği" : "Team Leadership"]
     },
     {
-      category: "Specialties",
-      items: ["Brand Identity", "Motion Graphics", "Digital Campaigns", "Creative Direction"]
+      icon: faUsers,
+      category: language === "tr" ? "Uzmanlık Alanları" : "Specialties",
+      items: [language === "tr" ? "Marka Kimliği" : "Brand Identity", "Motion Design", language === "tr" ? "Dijital Kampanyalar" : "Digital Campaigns", language === "tr" ? "Yaratıcı Yönetim" : "Creative Direction"]
     }
   ];
 
-  const featuredBrands = [
-    "Microsoft", "Coca-Cola", "Nestlé", "Ford Otosan", "Nescafé", "Lipton", 
-    "Cif", "Avon", "Beko", "Dimes", "Obsesso", "Akbank", "Enerjisa", 
-    "Kayalar Kimya", "Düfa", "Metro İstanbul", "İBB", "İGDAŞ", 
-    "Türk Nippon Sigorta", "Baymak", "Electrolux", "Vialand", "Greenlog",
-    "Acun Medya"
-  ];
+  // Modern Skills Grid
+  const ModernSkillsGrid = ({ skills }: { skills: typeof skillsData }) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {skills.map((group, idx) => (
+        <motion.div
+          key={idx}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: idx * 0.1 }}
+        >
+          <Card className="pt-5 pb-5 px-6 h-full min-h-[260px] flex flex-col items-center justify-start">
+            <div className="flex items-center justify-center mb-3">
+              <FontAwesomeIcon icon={group.icon} className="text-zinc-400 text-lg mr-2" />
+              <h3 className="text-zinc-100 font-semibold text-base mt-0.5">{group.category}</h3>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3 mt-2">
+              {group.items.map((skill: string, skillIdx: number) => (
+                <span
+                  key={skillIdx}
+                  className="px-3 py-1 bg-zinc-800/50 text-zinc-300 text-sm rounded-full border border-zinc-700/50 hover:border-zinc-600/50 transition-colors whitespace-nowrap"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </Card>
+        </motion.div>
+      ))}
+    </div>
+  );
 
-  const tvProductions = [
-    "Exatlon",
-    "Survivor",
-    "The Voice Turkey",
-    "MasterChef Turkey",
+  // Featured Brands - Yerel ve Global olarak ayır
+  const localBrands = [
+    "Ford Otosan", "Beko", "Dimes", "Obsesso", "Akbank", "Enerjisa", "Kayalar Kimya", "Düfa", "Metro İstanbul", "İBB", "İGDAŞ", "Türk Nippon Sigorta", "Baymak", "Vialand", "Greenlog", "Acun Medya",
+    "NoorCM", "KKB", "Senkron", "Burgan Bank", "CVK", "Air Clinic"
+  ];
+  const globalBrands = [
+    "Microsoft", "Coca-Cola", "Nestlé", "Nescafé", "Lipton", "Cif", "Avon", "Electrolux",
+    "Laurastar", "Baseus", "Babyliss", "Ingram Micro"
+  ];
+  // TV yapımları ve kanallar/platformlar ayrı listeler
+  const tvShows = [
+    language === "tr" ? "Exatlon Meksika" : "Exatlon Mexico",
+    language === "tr" ? "Exatlon Türkiye" : "Exatlon Turkey",
+    language === "tr" ? "Exatlon ABD" : "Exatlon USA",
+    language === "tr" ? "Exatlon Macaristan" : "Exatlon Hungary",
+    language === "tr" ? "Exatlon Romanya" : "Exatlon Romania",
+    language === "tr" ? "Survivor Türkiye (2020)" : "Survivor Turkey (2020)",
+    t("contact.the_voice"),
+    t("contact.masterchef"),
+    language === "tr" ? "O Ses Meksika" : "La Voz Mexico"
+  ];
+  const tvChannels = [
     "TV8",
-    "Kanal D Europe",
-    "TRT",
+    language === "tr" ? "Kanal D Avrupa" : "Kanal D Europe",
+    language === "tr" ? "TRT Müzik" : "TRT Music",
     "TV Azteca",
     "Telemundo",
     "Netflix"
@@ -213,94 +263,88 @@ export default function AboutPage() {
       <Navigation />
       
       <div className="px-5 sm:px-8 pt-20 mx-auto space-y-10 max-w-full md:max-w-6xl lg:px-12 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative overflow-visible">
-        <div className="max-w-full md:max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
-          <h1 className="text-4xl font-bold text-zinc-100 mb-8">
-            About Me
+        <div className="max-w-full mx-auto lg:mx-0 text-center lg:text-left">
+          <h1 className="text-4xl font-bold text-zinc-100 mb-6">
+            {t("about.title")}
           </h1>
-          <p className="mt-6 text-lg text-zinc-400 font-medium leading-relaxed">
-            I'm a creative art director with 15+ years of experience in turning ideas into visuals that speak. I specialize in building brand stories through design, whether it's a logo, a campaign, or a full digital experience. My approach to design focuses on connection, clarity, and creativity. Every brand has a unique story, and I excel at bringing those stories to life in a way that feels authentic and memorable.
+          <p className="mt-6 mb-12 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 min-h-auto w-full md:w-full md:col-span-12 md:text-left mx-auto md:mx-0 opacity-100">
+            {t("about.main_description")}
           </p>
         </div>
         <div className="divider-white" />
         <div className="space-y-10 md:space-y-14">
           <Card className="p-8 md:p-12 mb-8 text-center md:text-left">
-            <h2 className="text-xl font-semibold mb-2 text-white text-center md:text-left">My Approach</h2>
+            <h2 className="text-xl font-semibold mb-2 text-white text-center md:text-left">{t("about.my_approach")}</h2>
             <p className="text-zinc-200 text-center md:text-left">
-              My approach is all about blending strategy, creativity, and technology to create work that really means something. I excel at getting to know the people and stories behind every project. For me, every collaboration is a chance to learn, grow, and make something that truly connects.
+              {t("about.approach_description")}
             </p>
           </Card>
           {/* Creative Vision Section */}
           <Card className="p-8 md:p-12 mb-8 text-center md:text-left">
-            <h2 className="text-2xl font-semibold text-zinc-100 mb-4 text-center md:text-left">Creative Vision</h2>
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-4 text-center md:text-left">{t("about.creative_vision")}</h2>
             <p className="text-zinc-300 font-medium leading-relaxed text-center md:text-left">
-              My creative vision is all about curiosity and storytelling. I excel at exploring new ways to turn ideas into visuals that spark emotion and inspire action. Whether working on a brand, a motion graphic, or a digital campaign, I ensure every project feels fresh, thoughtful, and true to its purpose. My design philosophy focuses on connection, clarity, and creativity-helping people see and feel something new.
+              {t("about.vision_description")}
             </p>
           </Card>
-
           {/* My Process Section */}
           <Card className="p-8 md:p-12 mb-8 text-center md:text-left">
-            <h2 className="text-2xl font-semibold text-zinc-100 mb-4 text-center md:text-left">My Process</h2>
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-4 text-center md:text-left">{t("about.my_process")}</h2>
             <p className="text-zinc-300 font-medium leading-relaxed text-center md:text-left">
-              I start by listening—really listening—to understand not just what a client wants, but why they want it. I dive deep into research, sketch, experiment, and iterate until I find that sweet spot where strategy meets creativity. I believe in honesty, transparency, and treating every project like it’s the most important one I’ll ever work on. I value deep thinking, quality, and building real relationships along the way.
+              {t("about.process_description")}
             </p>
           </Card>
-
           {/* What I Love Section */}
           <Card className="p-8 md:p-12 mb-8 text-center md:text-left">
-            <h2 className="text-2xl font-semibold text-zinc-100 mb-4 text-center md:text-left">What I Love</h2>
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-4 text-center md:text-left">{t("about.what_i_love")}</h2>
             <p className="text-zinc-300 font-medium leading-relaxed text-center md:text-left">
-              I love the moment when everything clicks—when a design feels so right that it almost creates itself. I enjoy collaborating with passionate people, learning new things, and creating work that makes a real difference. The best part of my job is seeing an idea come to life and knowing it means something to someone else.
+              {t("about.what_i_love_description")}
             </p>
           </Card>
-
           {/* Timeline Section */}
           <div>
-            <h2 className="text-2xl font-semibold text-zinc-100 mb-6">Career Journey</h2>
-            <Timeline items={[
-              {
-                year: "2008-2012",
-                title: "Early Career",
-                description: "I started out in advertising agencies, learning the basics of visual communication and brand design. Those early years taught me the value of teamwork and the power of a good idea."
-              },
-              {
-                year: "2012-2016",
-                title: "Growth Period",
-                description: "During this time, I dove into digital media and motion graphics, and had the chance to work with some amazing brands. Every project pushed me to try new things and expand my creative toolkit."
-              },
-              {
-                year: "2016-2020",
-                title: "Art Direction",
-                description: "I stepped into the role of Art Director, leading creative teams and helping shape brand strategies from the ground up. It was a time of big ideas, late nights, and a lot of learning."
-              },
-              {
-                year: "2020-Present",
-                title: "Innovation Era",
-                description: "Lately, I’ve been embracing AI tools, 3D design, and new technologies, always looking for ways to keep my work fresh and exciting. But no matter how much things change, my focus on creativity and connection stays the same."
-              }
-            ]} />
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-6">{t("about.timeline_title")}</h2>
+            <Timeline items={timelineData} />
           </div>
-
           {/* Skills Section */}
           <div>
-            <h2 className="text-2xl font-semibold text-zinc-100 mb-6">Tools & Technologies</h2>
-            <div className="space-y-8">
-              <SkillsGrid skills={skillsData} />
-            </div>
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-6">{t("about.skills_title")}</h2>
+            <ModernSkillsGrid skills={skillsData} />
           </div>
-
-          {/* Brands Section */}
+          {/* Brands & TV Productions */}
           <div className="px-2 md:px-0">
-            <h2 className="text-2xl font-semibold text-zinc-100 mb-6 text-center md:text-left">Featured Brands & Productions</h2>
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-6 text-center md:text-left">{t("about.brands")} & {t("about.tv_productions")}</h2>
             <div className="mb-8">
-              <h3 className="text-lg font-semibold text-zinc-100 mb-4 text-center md:text-left">Major Brands</h3>
-              <BrandsShowcase brands={featuredBrands} />
+              <h3 className="text-lg font-semibold text-zinc-100 mb-4 text-center md:text-left">
+                {language === "tr" ? "Global Markalar" : "Global Brands"}
+                <span className="ml-2 text-xs text-zinc-400 font-normal align-middle">({globalBrands.length})</span>
+              </h3>
+              <BrandsShowcase brands={globalBrands} />
+              <h3 className="text-lg font-semibold text-zinc-100 mb-4 mt-8 text-center md:text-left">
+                {language === "tr" ? "Yerel Markalar" : "Local Brands"}
+                <span className="ml-2 text-xs text-zinc-400 font-normal align-middle">({localBrands.length})</span>
+              </h3>
+              <BrandsShowcase brands={localBrands} />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-zinc-100 mb-4 text-center md:text-left">TV Productions</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {tvProductions.map((prod, idx) => (
+              <h3 className="text-lg font-semibold text-zinc-100 mb-4 text-center md:text-left">
+                {t("about.tv_productions")}
+                <span className="ml-2 text-xs text-zinc-400 font-normal align-middle">({tvShows.length})</span>
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+                {tvShows.map((prod, idx) => (
                   <Card key={idx} className="p-4 text-center">
                     <div className="text-zinc-300 font-medium text-sm">{prod}</div>
+                  </Card>
+                ))}
+              </div>
+              <h4 className="text-base font-semibold text-zinc-100 mb-3 text-center md:text-left">
+                {language === "tr" ? "TV Kanalları & Platformlar" : "TV Channels & Platforms"}
+                <span className="ml-2 text-xs text-zinc-400 font-normal align-middle">({tvChannels.length})</span>
+              </h4>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {tvChannels.map((ch, idx) => (
+                  <Card key={idx} className="p-4 text-center">
+                    <div className="text-zinc-300 font-medium text-sm">{ch}</div>
                   </Card>
                 ))}
               </div>
