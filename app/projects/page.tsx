@@ -60,11 +60,11 @@ export default function ProjectsPage() {
   }, [showContent]);
 
   return (
-    <div className="relative min-h-screen bg-transparent overflow-x-hidden">
+    <div className="relative min-h-screen bg-transparent overflow-visible">
       
       <Navigation />
       
-      <div className="px-2 md:px-6 pt-20 mx-auto space-y-10 max-w-full md:max-w-6xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative">
+      <div className="px-5 sm:px-8 pt-20 mx-auto space-y-10 max-w-full md:max-w-6xl lg:px-12 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative overflow-visible">
         <div className="max-w-full md:max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
           <h1 className="text-4xl font-bold text-zinc-100 mb-8">
             {typewriterMounted && !typewriterDone ? (

@@ -22,6 +22,7 @@ import {
   faTwitter as faTwitterBrand,
   faGithub as faGithubBrand
 } from "@fortawesome/free-brands-svg-icons";
+import { ScrollHandler } from "../components/scroll-handler";
 
 // X (Twitter) için resmi SVG logo
 const XSvgIcon = ({ className }: { className?: string }) => (
@@ -97,14 +98,6 @@ const socialLinks = [
     href: "https://behance.net/cemkarabulut",
     description: "Portfolio and project showcases",
     color: "from-cyan-500 to-blue-600"
-  },
-  {
-    isX: true,
-    title: "X",
-    handle: "@ceemkarabulut",
-    href: "https://x.com/ceemkarabulut",
-    description: "Industry insights and updates",
-    color: "from-zinc-900 to-zinc-800"
   }
 ];
 
@@ -145,7 +138,6 @@ export default function ContactPage() {
   const [typewriterDone, setTypewriterDone] = useState(false);
   const [showBodyCopy, setShowBodyCopy] = useState(false);
   const [showContent, setShowContent] = useState(false);
-  const scrollHandled = useRef(false);
 
   // Fade-in bodycopy after Typewriter
   const handleTypewriterDone = () => {
@@ -154,19 +146,14 @@ export default function ContactPage() {
     setTimeout(() => setShowContent(true), 700);
   };
 
-  // Scroll-adaptive: if user scrolls, show everything immediately
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!scrollHandled.current && (!typewriterDone || !showBodyCopy || !showContent)) {
-        setTypewriterDone(true);
-        setShowBodyCopy(true);
-        setShowContent(true);
-        scrollHandled.current = true;
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [typewriterDone, showBodyCopy, showContent]);
+  // Scroll handler callback
+  const handleScroll = () => {
+    if (!typewriterDone || !showBodyCopy || !showContent) {
+      setTypewriterDone(true);
+      setShowBodyCopy(true);
+      setShowContent(true);
+    }
+  };
 
   // Only run Typewriter on first mount
   const [typewriterMounted, setTypewriterMounted] = useState(false);
@@ -177,7 +164,10 @@ export default function ContactPage() {
       
       <Navigation />
       
-      <div className="px-2 md:px-6 pt-20 mx-auto space-y-10 max-w-full md:max-w-6xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative overflow-visible">
+      {/* Optimized scroll handler */}
+      <ScrollHandler onScroll={handleScroll} />
+      
+      <div className="px-5 sm:px-8 pt-20 mx-auto space-y-10 max-w-full md:max-w-6xl lg:px-12 md:space-y-16 md:pt-24 lg:pt-32 z-30 relative overflow-visible">
         <div className="max-w-full md:max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
           <h1 className="text-4xl font-bold text-zinc-100 mb-8">
             {typewriterMounted && !typewriterDone ? (
@@ -186,7 +176,7 @@ export default function ContactPage() {
               "Contact"
             )}
           </h1>
-          <p className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>Hi! If you have a project in mind, want to collaborate, or just want to chat about design, feel free to reach out. I’m always happy to connect with new people and explore creative ideas together.
+          <p className={`mt-6 text-lg text-zinc-400 font-medium leading-relaxed transition-opacity duration-700 ${showBodyCopy ? "opacity-100" : "opacity-0"}`}>Hi! If you have a project in mind, want to collaborate, or just want to chat about design, feel free to reach out. I'm always happy to connect with new people and explore creative ideas together.
           </p>
         </div>
         <div className="divider-white" />
@@ -231,7 +221,7 @@ export default function ContactPage() {
                 <h2 className="text-3xl font-bold text-zinc-100 mb-4">Let's Connect & Create Together</h2>
                 <p className="text-zinc-400 font-medium text-lg">I love sharing my creative journey, behind-the-scenes moments, and the stories behind my work. Whether you're here for inspiration, collaboration, or just to say hello - you're always welcome in my creative space!</p>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={index}
@@ -243,13 +233,9 @@ export default function ContactPage() {
                     transition={{ delay: index * 0.1 }}
                     className="group p-6 bg-zinc-800/50 backdrop-blur-sm rounded-xl border border-zinc-700/50 hover:border-zinc-600 hover:bg-zinc-800 transition-all duration-300 text-center"
                   >
-                                         <div className={`w-16 h-16 bg-gradient-to-br ${social.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                       {social.isX ? (
-                         <XSvgIcon className="w-8 h-8" />
-                       ) : (
-                         social.icon ? <FontAwesomeIcon icon={social.icon} className="text-white text-2xl" /> : null
-                       )}
-                     </div>
+                    <div className={`w-16 h-16 bg-gradient-to-br ${social.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                      {social.icon ? <FontAwesomeIcon icon={social.icon} className="text-white text-2xl" /> : null}
+                    </div>
                     <h3 className="text-zinc-100 font-semibold text-lg mb-2">{social.title}</h3>
                     <p className="text-zinc-300 font-medium mb-2">{social.handle}</p>
                     <p className="text-zinc-400 text-sm">{social.description}</p>
@@ -292,29 +278,29 @@ export default function ContactPage() {
                   Whether you have a specific project in mind or just want to explore possibilities, 
                   I'm here to help bring your creative vision to life.
                 </p>
-                <div className="flex flex-row flex-wrap md:flex-nowrap gap-3 justify-center items-center">
+                <div className="flex flex-col gap-3 justify-center items-center w-full">
                   <a
                     href="mailto:info@cemkarabulut.com"
-                    className="px-5 py-3 text-base bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold rounded-lg hover:from-emerald-500 hover:to-teal-500 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap"
+                    className="flex items-center gap-2 px-5 py-3 text-base bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold rounded-lg hover:from-emerald-500 hover:to-teal-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap w-full md:w-auto justify-center"
                   >
-                    <FontAwesomeIcon icon={faEnvelope} className="mr-2 md:mr-2" />
-                    <span className="hidden md:inline">Start a Conversation</span>
+                    <FontAwesomeIcon icon={faEnvelope} className="text-lg" />
+                    <span>Start a Conversation</span>
                   </a>
                   <a
                     href="tel:+905446806176"
-                    className="px-5 py-3 text-base bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap"
+                    className="flex items-center gap-2 px-5 py-3 text-base bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap w-full md:w-auto justify-center"
                   >
-                    <FontAwesomeIcon icon={faPhone} className="mr-2 md:mr-2" />
-                    <span className="hidden md:inline">Call Now</span>
+                    <FontAwesomeIcon icon={faPhone} className="text-lg" />
+                    <span>Call Now</span>
                   </a>
                   <a
                    href="https://wa.me/905446806176"
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="px-5 py-3 text-base bg-gradient-to-r from-green-500 to-green-700 text-white font-semibold rounded-lg hover:from-green-400 hover:to-green-600 transition-all duration-300 inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap"
+                   className="flex items-center gap-2 px-5 py-3 text-base bg-gradient-to-r from-green-500 to-green-700 text-white font-semibold rounded-lg hover:from-green-400 hover:to-green-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap w-full md:w-auto justify-center"
                   >
-                    <FontAwesomeIcon icon={faWhatsapp} className="mr-2 md:mr-2" />
-                    <span className="hidden md:inline">Message on WhatsApp</span>
+                    <FontAwesomeIcon icon={faWhatsapp} className="text-lg" />
+                    <span>Message on WhatsApp</span>
                   </a>
                 </div>
               </div>

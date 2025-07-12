@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 
 export function Analytics() {
 	const token = process.env.NEXT_PUBLIC_BEAM_TOKEN;
@@ -26,9 +27,13 @@ export function Analytics() {
 		};
 	}, [token]);
 	
-	if (!token) {
-		return null;
-	}
-	
-	return null; // No need to render anything
+	return (
+		<>
+			{/* Vercel Web Analytics */}
+			<VercelAnalytics />
+			
+			{/* Beam Analytics - only render if token exists */}
+			{token && null}
+		</>
+	);
 }

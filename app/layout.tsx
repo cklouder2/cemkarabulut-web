@@ -2,6 +2,7 @@ import "../global.css";
 import { Montserrat } from "next/font/google";
 import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
+import { VercelSpeedInsights } from "./components/speed-insights";
 import { PerformanceMonitor } from "./components/performance-monitor";
 import { FooterWrapper } from "./components/footer-wrapper";
 import SocialIcons from "./components/social-icons";
@@ -164,8 +165,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`bg-black font-montserrat antialiased overflow-x-hidden ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
-          }`}
+        className={`bg-black antialiased overflow-x-hidden ${montserrat.className}`}
       >
         {/* Global Background Effect - TÜM SAYFALARDA GÖRÜNÜR */}
         <BackgroundEffect visible={true} />
@@ -203,6 +203,29 @@ export default function RootLayout({
           strategy="lazyOnload"
           crossOrigin="anonymous"
         />
+        
+        {/* Vercel Speed Insights */}
+        <VercelSpeedInsights />
+        
+        {/* Clean up unwanted classes from extensions */}
+        <Script id="cleanup-classes" strategy="afterInteractive">
+          {`
+            // Remove unwanted classes from Chrome extensions
+            document.addEventListener('DOMContentLoaded', function() {
+              const body = document.body;
+              if (body) {
+                // Remove Chrome extension classes
+                body.classList.remove('clickup-chrome-ext_installed');
+                body.classList.remove('clickup-chrome-ext_installed');
+                
+                // Ensure proper font class
+                if (!body.classList.contains('${montserrat.className}')) {
+                  body.classList.add('${montserrat.className}');
+                }
+              }
+            });
+          `}
+        </Script>
       </body>
     </html>
   );
