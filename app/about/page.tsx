@@ -218,7 +218,7 @@ export default function AboutPage() {
             About Me
           </h1>
           <p className="mt-6 text-lg text-zinc-400 font-medium leading-relaxed">
-            Cem Karabulut is a creative art director with 15+ years of experience in turning ideas into visuals that speak. He specializes in building brand stories through design, whether it's a logo, a campaign, or a full digital experience. His approach to design focuses on connection, clarity, and creativity. Every brand has a unique story, and Cem excels at bringing those stories to life in a way that feels authentic and memorable.
+            I'm a creative art director with 15+ years of experience in turning ideas into visuals that speak. I specialize in building brand stories through design, whether it's a logo, a campaign, or a full digital experience. My approach to design focuses on connection, clarity, and creativity. Every brand has a unique story, and I excel at bringing those stories to life in a way that feels authentic and memorable.
           </p>
         </div>
         <div className="divider-white" />
@@ -226,14 +226,14 @@ export default function AboutPage() {
           <Card className="p-8 md:p-12 mb-8 text-center md:text-left">
             <h2 className="text-xl font-semibold mb-2 text-white text-center md:text-left">My Approach</h2>
             <p className="text-zinc-200 text-center md:text-left">
-              Cem's approach is all about blending strategy, creativity, and technology to create work that really means something. He excels at getting to know the people and stories behind every project. For him, every collaboration is a chance to learn, grow, and make something that truly connects.
+              My approach is all about blending strategy, creativity, and technology to create work that really means something. I excel at getting to know the people and stories behind every project. For me, every collaboration is a chance to learn, grow, and make something that truly connects.
             </p>
           </Card>
           {/* Creative Vision Section */}
           <Card className="p-8 md:p-12 mb-8 text-center md:text-left">
             <h2 className="text-2xl font-semibold text-zinc-100 mb-4 text-center md:text-left">Creative Vision</h2>
             <p className="text-zinc-300 font-medium leading-relaxed text-center md:text-left">
-              Cem's creative vision is all about curiosity and storytelling. He excels at exploring new ways to turn ideas into visuals that spark emotion and inspire action. Whether working on a brand, a motion graphic, or a digital campaign, he ensures every project feels fresh, thoughtful, and true to its purpose. His design philosophy focuses on connection, clarity, and creativity-helping people see and feel something new.
+              My creative vision is all about curiosity and storytelling. I excel at exploring new ways to turn ideas into visuals that spark emotion and inspire action. Whether working on a brand, a motion graphic, or a digital campaign, I ensure every project feels fresh, thoughtful, and true to its purpose. My design philosophy focuses on connection, clarity, and creativity-helping people see and feel something new.
             </p>
           </Card>
 
@@ -241,7 +241,7 @@ export default function AboutPage() {
           <Card className="p-8 md:p-12 mb-8 text-center md:text-left">
             <h2 className="text-2xl font-semibold text-zinc-100 mb-4 text-center md:text-left">My Process</h2>
             <p className="text-zinc-300 font-medium leading-relaxed text-center md:text-left">
-              Cem starts by listening-really listening-to understand not just what a client wants, but why they want it. He dives deep into research, sketches, experiments, and iterates until that sweet spot where strategy meets creativity is found. He believes in honesty, transparency, and treating every project like it’s the most important one he’ll ever work on. Cem values deep thinking, quality, and building real relationships along the way.
+              I start by listening—really listening—to understand not just what a client wants, but why they want it. I dive deep into research, sketch, experiment, and iterate until I find that sweet spot where strategy meets creativity. I believe in honesty, transparency, and treating every project like it’s the most important one I’ll ever work on. I value deep thinking, quality, and building real relationships along the way.
             </p>
           </Card>
 
@@ -249,7 +249,7 @@ export default function AboutPage() {
           <Card className="p-8 md:p-12 mb-8 text-center md:text-left">
             <h2 className="text-2xl font-semibold text-zinc-100 mb-4 text-center md:text-left">What I Love</h2>
             <p className="text-zinc-300 font-medium leading-relaxed text-center md:text-left">
-              Cem loves the moment when everything clicks-when a design feels so right that it almost creates itself. He enjoys collaborating with passionate people, learning new things, and creating work that makes a real difference. The best part of his job is seeing an idea come to life and knowing it means something to someone else.
+              I love the moment when everything clicks—when a design feels so right that it almost creates itself. I enjoy collaborating with passionate people, learning new things, and creating work that makes a real difference. The best part of my job is seeing an idea come to life and knowing it means something to someone else.
             </p>
           </Card>
 

@@ -45,23 +45,22 @@ export default function Particles({
 
 	// Device orientation listener for mobile
 	useEffect(() => {
-		if (window.matchMedia('(pointer: coarse)').matches) {
-			const handleOrientation = (e: DeviceOrientationEvent) => {
-				// gamma: left/right [-90,90], beta: front/back [-180,180]
-				// Normalize to [-0.5,0.5]
-				const x = Math.max(-0.5, Math.min(0.5, (e.gamma ?? 0) / 90));
-				const y = Math.max(-0.5, Math.min(0.5, (e.beta ?? 0) / 180));
-				setDeviceOrientation({ x, y });
-			};
-			window.addEventListener('deviceorientation', handleOrientation);
-			// iOS permission
+		const handleOrientation = (e: DeviceOrientationEvent) => {
+			// gamma: left/right [-90,90], beta: front/back [-180,180]
+			// Normalize to [-0.5,0.5]
+			const x = Math.max(-0.5, Math.min(0.5, (e.gamma ?? 0) / 90));
+			const y = Math.max(-0.5, Math.min(0.5, (e.beta ?? 0) / 180));
+			setDeviceOrientation({ x, y });
+			console.log('DeviceOrientation', { x, y });
+		};
+		window.addEventListener('deviceorientation', handleOrientation);
+		// iOS permission (zararsız, Android'de etkisiz)
+		// @ts-ignore
+		if (typeof window.DeviceOrientationEvent !== 'undefined' && typeof window.DeviceOrientationEvent.requestPermission === 'function') {
 			// @ts-ignore
-			if (typeof window.DeviceOrientationEvent !== 'undefined' && typeof window.DeviceOrientationEvent.requestPermission === 'function') {
-				// @ts-ignore
-				window.DeviceOrientationEvent.requestPermission().catch(()=>{});
-			}
-			return () => window.removeEventListener('deviceorientation', handleOrientation);
+			window.DeviceOrientationEvent.requestPermission().catch(()=>{});
 		}
+		return () => window.removeEventListener('deviceorientation', handleOrientation);
 	}, []);
 
 	useEffect(() => {
@@ -218,9 +217,9 @@ export default function Particles({
 			// Apply interaction based on device type
 			let interactionX = mouse.current.x;
 			let interactionY = mouse.current.y;
-			
 			// On mobile, use device orientation instead of mouse
-			if (window.matchMedia('(pointer: coarse)').matches) {
+			// (Her zaman kullan, test için)
+			if (Math.abs(deviceOrientation.x) > 0.01 || Math.abs(deviceOrientation.y) > 0.01) {
 				const maxOffset = 100;
 				interactionX = deviceOrientation.x * maxOffset;
 				interactionY = deviceOrientation.y * maxOffset;
