@@ -162,7 +162,7 @@ const featuredBrands = [
 ];
 
 const longTextWords = [
-  "Cem", "Karabulut", "is", "a", "Creative", "Art", "Director", "with", "15+", "years", "of", "experience", "in", "turning", "ideas", "into", "visuals", "that", "speak.", "He", "specializes", "in", "building", "brand", "stories", "through", "design,", "whether", "it's", "a", "logo,", "a", "campaign,", "or", "a", "full", "digital", "experience.", "His", "approach", "to", "design", "focuses", "on", "connection,", "clarity,", "and", "creativity."
+  "I'm", "a", "Creative", "Art", "Director", "with", "15+", "years", "of", "experience", "in", "turning", "ideas", "into", "visuals", "that", "speak.", "I", "specialize", "in", "building", "brand", "stories", "through", "design,", "whether", "it's", "a", "logo,", "a", "campaign,", "or", "a", "full", "digital", "experience.", "My", "approach", "to", "design", "focuses", "on", "connection,", "clarity,", "and", "creativity."
 ];
 
 // Main component
@@ -277,7 +277,7 @@ export default function Home() {
                 onClick={() => trackLinkClick('behance_portfolio', 'behance.net', true)}
                 className="w-full max-w-xs mx-auto px-6 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-300 text-sm font-medium hover:border-zinc-400/60 hover:text-zinc-100 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
               >
-                Take a look at what Cem has built →
+                Take a look at what I've built →
               </Link>
             </div>
             {/* Brands title - daha okunur ve aşağıda */}
@@ -356,7 +356,7 @@ export default function Home() {
             <h2 className="hidden sm:block text-xs sm:text-base font-medium text-zinc-200 max-w-xs sm:max-w-4xl mx-auto mb-4 mt-0 leading-loose sm:leading-normal">
               <span className="min-h-[3rem] sm:min-h-[4rem] block">
                 <span>
-                  {longTextWords.slice(0, 18).map((word, index) => (
+                  {longTextWords.slice(0, 17).map((word, index) => (
                     <span
                       key={index}
                       className={`transition-opacity duration-300 ${
@@ -367,11 +367,11 @@ export default function Home() {
                     </span>
                   ))}
                   <br />
-                  {longTextWords.slice(18).map((word, index) => (
+                  {longTextWords.slice(17).map((word, index) => (
                     <span
                       key={"br2-" + index}
                       className={`transition-opacity duration-300 ${
-                        visibleWords.includes(index + 18) ? 'opacity-100' : 'opacity-0'
+                        visibleWords.includes(index + 17) ? 'opacity-100' : 'opacity-0'
                       }`}
                     >
                       {word}{' '}
@@ -396,7 +396,7 @@ export default function Home() {
                 onClick={() => trackLinkClick('behance_portfolio', 'behance.net', true)}
                 className="px-6 sm:px-8 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 backdrop-blur text-zinc-300 text-sm sm:text-base font-medium hover:border-zinc-400/60 hover:text-zinc-100 hover:bg-zinc-800/50 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg active:scale-95 text-center"
               >
-                Take a look at what Cem has built →
+                Take a look at what I've built →
               </Link>
             </div>
             {/* Featured Brands */}
